@@ -63,27 +63,39 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.jane = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  # };
+  users.users.ivan = {
+    isNormalUser = true;
+    home = "/home/ivan";
+    shell = pkgs.fish;
+    extraGroups = [
+      "wheel" # Enable sudo
+      "disk"
+      "audio"
+      "video"
+      "networkmanager"
+      "systemd-journal"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   wget vim
-  #   firefox
-  # ];
+  environment.systemPackages = with pkgs; [
+    bash
+    fish
+    git
+    vim
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
+  programs.fish.enable = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
