@@ -12,13 +12,24 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+  # https://nixos.wiki/wiki/NixOS_on_ZFS
+  boot.loader.grub.copyKernels = true;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.kernelParams = [ "elevator=none" ]; # Because ZFS doesn't have the whole disk
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  boot.kernelPackages = pkgs.linuxPackages_latest; # latest and greatest kernel
+
+  networking = {
+    hostName = "tartarus"; # Define your hostname.
+    hostId = "feedbeef";
+  };
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Los_Angeles";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -32,7 +43,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -83,6 +94,9 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  services.zfs.autoScrub.enable = true;
+  services.zfs.autoSnapshot.enable = true;
+  services.zfs.trim.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
