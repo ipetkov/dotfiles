@@ -2,6 +2,7 @@
 {
   imports = [
     ./git.nix
+    ./fish.nix
   ];
 
   xdg.enable = true;
