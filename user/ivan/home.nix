@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ./git.nix
+  ];
+
   xdg.enable = true;
 
   # This value determines the Home Manager release that your
