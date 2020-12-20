@@ -30,5 +30,6 @@
     ripgrep
     tasksh
     taskwarrior
+    topgrade
   ];
  }
