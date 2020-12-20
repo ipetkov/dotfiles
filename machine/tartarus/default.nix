@@ -1,32 +1,11 @@
-# Input from the flake declaration
-{ home-manager }:
-
-# Actual module
 { config, pkgs, ... }:
 
 {
   imports =
     [
-      home-manager
       ./hardware-configuration.nix
       ../../user/ivan/default.nix
     ];
-
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  home-manager = {
-    # Put home-manager results in /etc/profiles instead of ~/.nix-profile
-    # keeps a clean $HOME (plus it works with nixos-build-vms)
-    useUserPackages = true;
-    # Don't use home-manager's private nixpkgs definition,
-    # use the same one as in the rest of the system.
-    useGlobalPkgs = true;
-  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
