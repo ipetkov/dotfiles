@@ -25,6 +25,7 @@
     fzf
     git
     icdiff
+    jq
     ripgrep
     tasksh
     taskwarrior
