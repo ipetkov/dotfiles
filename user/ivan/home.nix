@@ -5,8 +5,6 @@
     ./fish.nix
   ];
 
-  xdg.enable = true;
-
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -17,8 +15,11 @@
   # changes in each release.
   home.stateVersion = "21.03";
 
+  xdg.enable = true;
+
+  programs.bat.enable = true;
+
   home.packages = with pkgs; [
-    bat
     exa
     fd
     firefox

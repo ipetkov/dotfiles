@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   programs.fish = {
     enable = true;
@@ -7,8 +7,9 @@
     shellInit = "set -x EDITOR vim";
 
     shellAliases = {
-      cat = "bat";
       ll = "exa -la";
+    } // lib.attrsets.optionalAttrs config.programs.bat.enable {
+      cat = "bat";
     };
   };
 }
