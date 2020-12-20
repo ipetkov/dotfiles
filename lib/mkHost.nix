@@ -46,14 +46,9 @@ let
     };
 
     config = {
-      home-manager = {
-        # Put home-manager results in /etc/profiles instead of ~/.nix-profile
-        # keeps a clean $HOME (plus it works with nixos-build-vms)
-        useUserPackages = true;
-        # Don't use home-manager's private nixpkgs definition,
-        # use the same one as in the rest of the system.
-        useGlobalPkgs = true;
-      };
+      # Put home-manager results in /etc/profiles instead of ~/.nix-profile
+      # keeps a clean $HOME (plus it works with nixos-build-vms)
+      home-manager.useUserPackages = true;
     };
   };
 in

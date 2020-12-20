@@ -10,6 +10,8 @@
       # make sure the same version of nixpkgs is used by home-manager
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neovim-nightly-overlay.url = "github:mjlbach/neovim-nightly-overlay";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
