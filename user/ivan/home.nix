@@ -2,6 +2,7 @@
 {
   imports = [
     ./git.nix
+    ./firefox.nix
     ./fish.nix
     ./nvim
   ];
@@ -23,7 +24,6 @@
   home.packages = with pkgs; [
     exa
     fd
-    firefox
     fzf
     git
     icdiff
