@@ -3,6 +3,7 @@
   imports = [
     ./git.nix
     ./fish.nix
+    ./nvim
   ];
 
   # This value determines the Home Manager release that your
