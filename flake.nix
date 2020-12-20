@@ -5,6 +5,11 @@
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     nixos.url = "nixpkgs/nixos-unstable";
 
+    bass = {
+      url = "github:edc/bass";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       # make sure the same version of nixpkgs is used by home-manager

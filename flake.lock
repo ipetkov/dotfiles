@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "bass": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1605852673,
+        "narHash": "sha256-VBqfBhHj0OyUmDzjak7OpSNxXlB0Xp1oG31To35u/rU=",
+        "owner": "edc",
+        "repo": "bass",
+        "rev": "df4a1ebf8c0536e4bd7b7828a4c0dcb2b7b5d22b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edc",
+        "repo": "bass",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -170,6 +186,7 @@
     },
     "root": {
       "inputs": {
+        "bass": "bass",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos": "nixos",

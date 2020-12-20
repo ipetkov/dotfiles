@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   programs.fish = {
     enable = true;
@@ -11,5 +11,16 @@
     } // lib.attrsets.optionalAttrs config.programs.bat.enable {
       cat = "bat";
     };
+
+    plugins = [
+      {
+        name = "bass";
+        src = inputs.bass;
+      }
+    ];
   };
+
+  home.packages = [
+    pkgs.python3 # Needed by bass
+  ];
 }
