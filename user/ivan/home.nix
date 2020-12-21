@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
   imports = [
-    ./git.nix
     ./firefox.nix
     ./fish.nix
+    ./fzf.nix
+    ./git.nix
     ./nvim
   ];
 
@@ -24,8 +25,6 @@
   home.packages = with pkgs; [
     exa
     fd
-    fzf
-    git
     icdiff
     jq
     ripgrep

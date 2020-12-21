@@ -1,5 +1,8 @@
 { pkgs, inputs, ... }:
 {
+  # Ensure we pull in fzf for our fzf plugin below
+  imports = [ ../fzf.nix ];
+
   nixpkgs = {
     overlays = [ inputs.neovim-nightly-overlay.overlay ];
     config = {
