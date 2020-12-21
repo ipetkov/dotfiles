@@ -3,6 +3,12 @@
   programs.fish = {
     enable = true;
 
+    interactiveShellInit = ''
+      function fish_greeting
+        ${lib.strings.optionalString config.programs.taskwarrior.enable "task"}
+      end
+    '';
+
     # NB: allow nvim to create its own alias/symlink if enabled
     shellInit = "set -x EDITOR vim";
 

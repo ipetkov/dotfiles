@@ -6,6 +6,7 @@
     ./fzf.nix
     ./git.nix
     ./nvim
+    ./taskwarrior.nix
   ];
 
   # This value determines the Home Manager release that your
@@ -28,8 +29,6 @@
     icdiff
     jq
     ripgrep
-    tasksh
-    taskwarrior
     topgrade
   ];
  }
