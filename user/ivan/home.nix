@@ -6,6 +6,7 @@
     ./fzf.nix
     ./git.nix
     ./nvim
+    ./rust.nix
     ./taskwarrior.nix
   ];
 
