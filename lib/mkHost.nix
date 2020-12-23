@@ -11,25 +11,6 @@ let
     inherit inputs;
   };
 
-  nixDefaultsModule = { pkgs, ... }: {
-    nix = {
-      package = pkgs.nixFlakes;
-      extraOptions = "experimental-features = nix-command flakes";
-      useSandbox = true;
-
-      # Use our inputs as defaults for nixpkgs/nixos so everything
-      # moves in lockstep. (Note adding a channel will take precedence over this).
-      nixPath = [
-        "nixos=${inputs.nixos}"
-        "nixpkgs=${inputs.nixpkgs}"
-      ];
-      registry = {
-        nixos.flake = inputs.nixos;
-        nixpkgs.flake = inputs.nixpkgs;
-      };
-    };
-  };
-
   homeManagerModule = lib.attrsets.optionalAttrs useHomeManager {
     imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -44,7 +25,7 @@ let
         });
       };
     };
-
+    
     config = {
       # Put home-manager results in /etc/profiles instead of ~/.nix-profile
       # keeps a clean $HOME (plus it works with nixos-build-vms)
@@ -56,7 +37,7 @@ lib.nixosSystem {
   inherit system specialArgs;
 
   modules = [
-    nixDefaultsModule
+    ../nixosModules/nix.nix
     homeManagerModule
     rootConfig
   ];
