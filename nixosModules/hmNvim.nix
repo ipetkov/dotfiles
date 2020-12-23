@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 {
   # Ensure we pull in fzf for our fzf plugin below
-  imports = [ ../fzf.nix ];
+  imports = [ ./hmFzf.nix ];
 
   nixpkgs = {
     overlays = [ inputs.neovim-nightly-overlay.overlay ];
@@ -43,6 +43,6 @@
       vim-easy-align
     ];
 
-    extraConfig = builtins.readFile ./init.vim;
+    extraConfig = builtins.readFile ../config/nvim/init.vim;
   };
 }

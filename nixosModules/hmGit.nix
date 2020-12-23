@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -15,7 +14,6 @@
 
     extraConfig = {
       core.autoctrlf = "input";
-      github.user = "ipetkov";
       merge.conflictstyle = "diff3";
       pull.ff = "only";
       push.default = "matching";

@@ -29,6 +29,14 @@
     inherit (myLib) mkHost;
   in
   {
+    nixosModules =
+      let
+        inherit (nixpkgs) lib;
+        modulesDirContents = lib.filterAttrs (_: type: type == "regular") (builtins.readDir ./nixosModules);
+        mapMod = name: _: lib.nameValuePair (lib.removeSuffix ".nix" name) (import (./nixosModules + "/${name}"));
+      in
+      lib.mapAttrs' mapMod modulesDirContents;
+
     nixosConfigurations.tartarus = mkHost {
       system = "x86_64-linux";
       rootConfig = ./machine/tartarus;
