@@ -4,7 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../../user/ivan/default.nix
+      ../../users/ivan/default.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
