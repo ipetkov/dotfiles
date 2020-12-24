@@ -35,7 +35,9 @@
     };
   in
   {
-    nixosModules = myLib.findNixosModules ./nixosModules;
+    homeManagerModules = myLib.findNixModules ./homeManagerModules;
+
+    nixosModules = myLib.findNixModules ./nixosModules;
 
     nixosConfigurations = myLib.findNixosConfigurations {
       system = "x86_64-linux";

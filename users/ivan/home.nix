@@ -1,13 +1,13 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../nixosModules/hmCommon.nix
-    ../../nixosModules/hmFish.nix
-    ../../nixosModules/hmFzf.nix
-    ../../nixosModules/hmGit.nix
-    ../../nixosModules/hmNvim.nix
-    ../../nixosModules/hmRust.nix
-    ../../nixosModules/hmTaskwarrior.nix
+    ../../homeManagerModules/common.nix
+    ../../homeManagerModules/fish.nix
+    ../../homeManagerModules/fzf.nix
+    ../../homeManagerModules/git.nix
+    ../../homeManagerModules/nvim.nix
+    ../../homeManagerModules/rust.nix
+    ../../homeManagerModules/taskwarrior.nix
   ];
 
   home.packages = with pkgs; [
