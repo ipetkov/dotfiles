@@ -19,9 +19,17 @@
     neovim-nightly-overlay.url = "github:mjlbach/neovim-nightly-overlay";
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }:
+  outputs = inputs@{ self, nixos, ... }:
   let
-    inherit (nixpkgs) lib;
+    # NB: use nixos for building our actual system configuration
+    # by using the lib from that branch. This branch is gated on
+    # desktop tests (e.g. desktop environments passing etc.) which
+    # nixpkgs is not gated on. This will also give us better binary
+    # cache hits when rebuilding the system, kernel modules, etc.
+    #
+    # We will still use the nixpkgs branch for home manager and
+    # other packages installed through there...
+    inherit (nixos) lib;
     myLib = import ./lib {
       inherit inputs lib;
     };
