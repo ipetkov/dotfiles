@@ -21,23 +21,15 @@
 
   outputs = inputs@{ self, nixpkgs, ... }:
   let
+    inherit (nixpkgs) lib;
     myLib = import ./lib {
-      inherit (nixpkgs) lib;
-      inherit inputs;
+      inherit inputs lib;
     };
-
-    inherit (myLib) mkHost;
   in
   {
-    nixosModules =
-      let
-        inherit (nixpkgs) lib;
-        modulesDirContents = lib.filterAttrs (_: type: type == "regular") (builtins.readDir ./nixosModules);
-        mapMod = name: _: lib.nameValuePair (lib.removeSuffix ".nix" name) (import (./nixosModules + "/${name}"));
-      in
-      lib.mapAttrs' mapMod modulesDirContents;
+    nixosModules = myLib.findNixosModules ./nixosModules;
 
-    nixosConfigurations.tartarus = mkHost {
+    nixosConfigurations.tartarus = myLib.mkHost {
       system = "x86_64-linux";
       rootConfig = ./machine/tartarus;
     };
