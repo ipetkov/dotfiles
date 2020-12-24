@@ -37,9 +37,9 @@
   {
     nixosModules = myLib.findNixosModules ./nixosModules;
 
-    nixosConfigurations.tartarus = myLib.mkHost {
+    nixosConfigurations = myLib.findNixosConfigurations {
       system = "x86_64-linux";
-      rootConfig = ./machine/tartarus;
+      nixosConfigurationsDir = ./nixosConfigurations;
     };
   };
 }
