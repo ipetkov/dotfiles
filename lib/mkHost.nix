@@ -37,7 +37,7 @@ lib.nixosSystem {
   inherit system specialArgs;
 
   modules = [
-    ../nixosModules/nix.nix
+    ../nixosModules/nixConfig.nix
     homeManagerModule
     rootConfig
   ];
