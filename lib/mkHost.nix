@@ -38,6 +38,7 @@ lib.nixosSystem {
 
   modules = [
     ../nixosModules/nixConfig.nix
+    ../nixosModules/neovimNightlyBinaryCache.nix
     homeManagerModule
     rootConfig
   ];

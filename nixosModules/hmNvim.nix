@@ -3,13 +3,7 @@
   # Ensure we pull in fzf for our fzf plugin below
   imports = [ ./hmFzf.nix ];
 
-  nixpkgs = {
-    overlays = [ inputs.neovim-nightly-overlay.overlay ];
-    config = {
-      binaryCaches = ["https://mjlbach.cachix.org"];
-      binaryCachePublicKeys = ["mjlbach.cachix.org-1:dR0V90mvaPbXuYria5mXvnDtFibKYqYc2gtl9MWSkqI="];
-    };
-  };
+  nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
 
   programs.neovim = {
     enable = true;
