@@ -28,7 +28,6 @@
 
     shellAliases = {
       ll = "exa -la";
-    } // lib.attrsets.optionalAttrs config.programs.bat.enable {
       cat = "bat";
     };
 
@@ -40,7 +39,10 @@
     ];
   };
 
-  home.packages = [
-    pkgs.python3 # Needed by bass
+  programs.bat.enable = true;
+
+  home.packages = with pkgs; [
+    python3 # Needed by bass
+    exa
   ];
 }

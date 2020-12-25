@@ -12,11 +12,9 @@
 
   xdg.enable = true;
 
-  programs.bat.enable = true;
   programs.jq.enable = true;
 
   home.packages = with pkgs; [
-    exa
     fd
     icdiff
     ripgrep
