@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ../../homeManagerModules/alacritty.nix
     ../../homeManagerModules/common.nix
     ../../homeManagerModules/fish.nix
     ../../homeManagerModules/fonts.nix
