@@ -9,6 +9,7 @@
     ../../homeManagerModules/git.nix
     ../../homeManagerModules/nvim.nix
     ../../homeManagerModules/rust.nix
+    ../../homeManagerModules/sway.nix
     ../../homeManagerModules/taskwarrior.nix
   ];
 
