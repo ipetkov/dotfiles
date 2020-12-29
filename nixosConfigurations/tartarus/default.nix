@@ -47,7 +47,20 @@
   # };
 
   # Desktop/window management
-  programs.sway.enable = true;
+  programs.sway = {
+    enable = true;
+
+    # Tweak the extra packages and make sure they're available
+    # *just* in case something goes wrong with a user sway config
+    extraPackages = with pkgs; [
+      alacritty
+      dmenu
+      swayidle
+      swaylock
+      wl-clipboard
+      xwayland
+    ];
+  };
 
   # Enable sound.
   sound.enable = true;

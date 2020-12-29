@@ -6,21 +6,24 @@
     ./alacritty.nix
   ];
 
-  wayland.windowManager.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
+  xdg.configFile."sway/config".source = ../config/sway/config;
 
-    config = {
-      modifier = "Mod4"; # My keyboard has Win and Alt swapped
-      terminal = "alacritty";
-    };
-  };
 
   home.packages = with pkgs; [
-    swaylock
-    swayidle
-    wl-clipboard
+    i3status
     mako # notification daemon
-    dmenu
   ];
+
+  # Allow starting up sway (which should exec a systemd call that
+  # sway-session.target has started) to then kick off other systemd
+  # units (e.g. redshift, etc.)
+  systemd.user.targets.sway-session = {
+    Unit = {
+      Description = "sway compositor session";
+      Documentation = [ "man:systemd.special(7)" ];
+      BindsTo = [ "graphical-session.target" ];
+      Wants = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+  };
 }
