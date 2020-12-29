@@ -1,5 +1,3 @@
-highlight clear SignColumn
-
 syntax on                                 " enable syntax processing
 set backspace=indent,eol,start            " get around backspace defaults, behave as expected in other apps
 set completeopt=menuone,noinsert,noselect " Set completeopt to have a better completion experience
@@ -23,9 +21,20 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" Even though alacritty sets $COLORINFO = 'truecolor' neovim doesn't
+" seem to turn on gui colors, so we do it manually here
+if $TERM == 'alacritty'
+  set termguicolors
+endif
+
+highlight clear SignColumn
+
 color jellybeans
 " Borrow the search hilight from the darkblue theme
-hi Search guifg=#90fff0 guibg=#2050d0 ctermfg=white ctermbg=darkblue
+highlight Search guifg=#90fff0 guibg=#2050d0 ctermfg=white ctermbg=darkblue
+" "Correct" the GitGutterDelete color since jellybeans sets
+" a really dark (almost black) color for it
+highlight GitGutterDelete ctermfg=12 guifg=#ff2222
 
 let mapleader="\<Space>"
 nnoremap <leader>v :vsplit<CR>
