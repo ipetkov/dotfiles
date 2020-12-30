@@ -7,7 +7,7 @@ default_floating_border pixel 2
 focus_wrapping no
 focus_follows_mouse yes
 workspace_layout default
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 
 ### Variables
 #
@@ -19,7 +19,10 @@ set $down j
 set $up k
 set $right l
 
+set $bgfile ~/Pictures/road.jpg
 set $term alacritty
+
+set $lockcmd 'swaylock -f -i $bgfile --indicator-idle-visible'
 set $exit swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 # Your preferred application launcher
@@ -39,15 +42,16 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 ### Output configuration
 output DP-1 {
+  bg $bgfile center
   resolution 2560x1440@144Hz
   adaptive_sync on
 }
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 600 'swaylock -f -c 000000' \
+         timeout 300 $lockcmd \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep $lockcmd 
 
 ### Key bindings
 #
