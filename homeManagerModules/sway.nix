@@ -7,11 +7,12 @@
   ];
 
   xdg.configFile."sway/config".source = ../config/sway/config;
+  xdg.configFile."waybar/config".source = ../config/waybar/config;
 
 
   home.packages = with pkgs; [
-    i3status
     mako # notification daemon
+    waybar
   ];
 
   # Allow starting up sway (which should exec a systemd call that

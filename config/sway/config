@@ -211,21 +211,7 @@ bindsym XF86MonBrightnessUp exec "brightnessctl set +2%"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-  font pango:monospace 8
-  mode dock
-  position bottom
-  status_command i3status
-  workspace_buttons yes
-  colors {
-    background #000000
-    statusline #ffffff
-    separator #666666
-    focused_workspace #4c7899 #285577 #ffffff
-    active_workspace #333333 #5f676a #ffffff
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace #2f343a #900000 #ffffff
-    binding_mode #2f343a #900000 #ffffff
-  }
+  swaybar_command waybar
 }
 
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"

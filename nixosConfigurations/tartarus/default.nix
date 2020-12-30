@@ -70,6 +70,7 @@
     bash
     fish
     git
+    pavucontrol
     vim
   ];
 
