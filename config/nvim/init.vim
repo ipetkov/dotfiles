@@ -32,7 +32,7 @@ color jellybeans
 highlight clear SignColumn " NB: enforce this *after* color scheme
 
 " Borrow the search hilight from the darkblue theme
-highlight Search guifg=#90fff0 guibg=#2050d0 ctermfg=white ctermbg=darkblue
+highlight Search guifg=#ffffff guibg=#2050d0 ctermfg=white ctermbg=darkblue
 
 " "Correct" the GitGutterDelete color since jellybeans sets
 " a really dark (almost black) color for it
