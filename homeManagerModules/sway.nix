@@ -12,7 +12,12 @@
 
   home.packages = with pkgs; [
     mako # notification daemon
-    waybar
+    waybar # status bar
+    wofi # launcher
+
+    # Default GTK themes, required by wofi
+    hicolor-icon-theme
+    gnome3.adwaita-icon-theme
   ];
 
   # Allow starting up sway (which should exec a systemd call that

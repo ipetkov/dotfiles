@@ -25,10 +25,9 @@ set $term alacritty
 set $lockcmd 'swaylock -f -i $bgfile --indicator-idle-visible'
 set $exit swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# Using drun here to limit launcher to desktop applications since
+# other aribtrary commands should probably be launched in a terminal
+set $menu wofi --show drun
 
 ### Input configuration
 #

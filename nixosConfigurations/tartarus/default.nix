@@ -50,6 +50,11 @@
   programs.sway = {
     enable = true;
 
+    wrapperFeatures = {
+      base = true; # Setup dbus stuff...
+      gtk = true; # Allow GTK apps to run
+    };
+
     # Tweak the extra packages and make sure they're available
     # *just* in case something goes wrong with a user sway config
     extraPackages = with pkgs; [
