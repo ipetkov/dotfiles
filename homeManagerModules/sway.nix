@@ -6,6 +6,7 @@
     ./alacritty.nix
   ];
 
+  xdg.configFile."mako/config".source = ../config/mako/config;
   xdg.configFile."sway/config".source = ../config/sway/config;
   xdg.configFile."waybar/config".source = ../config/waybar/config;
 

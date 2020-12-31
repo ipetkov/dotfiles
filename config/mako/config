@@ -1,0 +1,20 @@
+#
+# Display options
+#
+anchor=bottom-right
+default-timeout=30000
+# Let notifications decay over time
+max-visible=-1
+# Newest notifications on bottom
+sort=+time
+
+#
+# Style
+#
+border-color=#00000000
+height=300
+width=450
+
+[urgency=high]
+background-color=#e21b1b
+default-timeout=0
