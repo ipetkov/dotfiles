@@ -15,8 +15,13 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  home.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = 1;
+    XDG_CURRENT_DESKTOP = "sway";
+  };
+
   home.packages = with pkgs; [
     discord
-    firefox
+    firefox-wayland
   ];
 }
