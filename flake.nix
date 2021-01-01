@@ -13,7 +13,9 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       # make sure the same version of nixpkgs is used by home-manager
-      inputs.nixpkgs.follows = "nixpkgs";
+      # in this case we'll track the nixos branch since that's the
+      # one we use for generating our actual machine configs
+      inputs.nixpkgs.follows = "nixos";
     };
 
     neovim-nightly-overlay.url = "github:mjlbach/neovim-nightly-overlay";
