@@ -2,8 +2,13 @@
 # Read `man 5 sway` for a complete reference.
 
 font pango:monospace 8
+
 default_border pixel 2
 default_floating_border pixel 2
+gaps inner 10
+smart_borders on
+smart_gaps on
+
 focus_wrapping no
 focus_follows_mouse yes
 workspace_layout default
@@ -40,7 +45,7 @@ set $menu wofi --show drun
 #   }
 
 ### Output configuration
-output DP-1 {
+output "Acer Technologies XF270HU T78AA0038543" {
   bg $bgfile center
   resolution 2560x1440@144Hz
   adaptive_sync on
