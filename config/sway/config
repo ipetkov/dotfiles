@@ -55,6 +55,7 @@ output "Acer Technologies XF270HU T78AA0038543" {
 exec swayidle -w \
          timeout 300 $lockcmd \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 1800 'systemctl suspend' \
          before-sleep $lockcmd 
 
 ### Key bindings
