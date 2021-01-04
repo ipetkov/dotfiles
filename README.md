@@ -19,6 +19,7 @@ robust options (like how home-manager might lay things out)!
 directories and automatically making flake outputs of things
 * `nixosConfigurations`: top level system configurations, named by machine/host name
 * `nixosModules`: same as `homeManagerModules` but related to system configuration modules
+* `pkgs`: my own package definitions which aren't available upstream
 * `users`: common user definitions that can be reused across system configurations.
 Normally this directory would have a `default.nix` module which defines user groups,
 home directories, etc., and a `home.nix` module which contains the root of the

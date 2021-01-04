@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, myPkgs, ... }:
 {
   imports = [
     # Alacritty is the default terminal in the config,
@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     mako # notification daemon
+    myPkgs.swaynagmode
     waybar # status bar
     wofi # launcher
 

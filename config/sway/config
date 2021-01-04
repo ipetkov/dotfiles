@@ -26,9 +26,18 @@ set $right l
 
 set $bgfile ~/Pictures/road.jpg
 set $term alacritty
-
 set $lockcmd 'swaylock -f -i $bgfile --indicator-idle-visible'
-set $exit swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+set $nag exec swaynagmode
+set $nag_cancel  $nag --exit
+set $nag_confirm $nag --confirm
+set $nag_select  $nag --select
+
+set $exit $nag -t warning -m 'Exit sway?' -b 'Exit' 'swaymsg exit'
+
+# -R is recommended for swaynag_command so that, upon a syntax error in your sway config, the
+# 'Reload Sway' option will be initially selected instead of the 'Exit Sway' option
+swaynag_command $nag -R
 
 # Using drun here to limit launcher to desktop applications since
 # other aribtrary commands should probably be launched in a terminal
@@ -201,6 +210,24 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+mode "nag" {
+    bindsym Ctrl+d mode "default"
+
+    bindsym Ctrl+c    $nag_cancel
+    bindsym q         $nag_cancel
+    bindsym Escape    $nag_cancel
+
+    bindsym Return    $nag_confirm
+
+    bindsym Tab       $nag_select prev
+    bindsym Right     $nag_select prev
+    bindsym $right    $nag_select prev
+
+    bindsym Shift+Tab $nag_select next
+    bindsym Left      $nag_select next
+    bindsym $left     $nag_select next
+}
 
 #
 # Volume

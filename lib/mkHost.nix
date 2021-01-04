@@ -1,4 +1,4 @@
-{ lib, inputs }:
+{ lib, inputs, myPkgs }:
 
 { rootConfig
 , system
@@ -9,6 +9,7 @@ let
   # Allows our flake inputs to appear as an argument in all of our modules.
   specialArgs = {
     inherit inputs;
+    myPkgs = myPkgs."${system}";
   };
 
   homeManagerModule = lib.attrsets.optionalAttrs useHomeManager {

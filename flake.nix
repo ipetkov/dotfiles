@@ -31,10 +31,23 @@
     #
     # We will still use the nixpkgs branch for home manager and
     # other packages installed through there...
-    inherit (nixos) lib;
+    inherit (nixos) lib legacyPackages;
+
     myLib = import ./lib {
       inherit inputs lib;
+      myPkgs = self.packages;
     };
+
+    # The default set of systems for which we want to declare
+    # modules/packages/etc.
+    defaultSystems = [
+      "x86_64-darwin"
+      "x86_64-linux"
+    ];
+
+    # Create an attr set for each default system where the key
+    # is the system name and the value is the result of the operation
+    forAllSystems = f: lib.genAttrs defaultSystems f;
   in
   {
     homeManagerModules = myLib.findNixModules ./homeManagerModules;
@@ -45,5 +58,11 @@
       system = "x86_64-linux";
       nixosConfigurationsDir = ./nixosConfigurations;
     };
+
+    packages = forAllSystems (system:
+      lib.filterAttrs
+        (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
+        (import ./pkgs { pkgs = legacyPackages.${system}; })
+    );
   };
 }
