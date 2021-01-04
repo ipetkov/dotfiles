@@ -23,5 +23,6 @@
   home.packages = with pkgs; [
     discord
     firefox-wayland
+    xdg_utils # for xdg-open, make links clickable from outside firefox
   ];
 }
