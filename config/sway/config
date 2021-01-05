@@ -250,4 +250,23 @@ bar {
   swaybar_command waybar
 }
 
+#
+# Assignments
+#
+assign [app_id="firefox"] workspace 2
+assign [class="discord"] workspace 3
+
+# It appears that windows created by discord (or probably electron)'
+# get their class filled in after creation, so a regular assignment
+# doesn't work, but having this workaround appears to work
+for_window [class="discord"] move container to workspace 3
+
+#
+# Start up programs
+#
+exec "Discord"
+
+#
+# Systemd hook
+#
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
