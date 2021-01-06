@@ -109,15 +109,15 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1609229781,
-        "narHash": "sha256-hLTWHQYkpUVcLCCtuBQ+pWwB+cgNQR3i8V2jkkBhb/Y=",
-        "owner": "mjlbach",
+        "lastModified": 1609834905,
+        "narHash": "sha256-L8ezpshfMOE3aOJYdXo/G01aSgDA1o1d6EYrlqGckHU=",
+        "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "b56f54f82db2d3d7bd358f6610aa783e3474af9a",
+        "rev": "f8948947f70e6c971dfc85a2ceebd66223fa0d45",
         "type": "github"
       },
       "original": {
-        "owner": "mjlbach",
+        "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
         "type": "github"
       }

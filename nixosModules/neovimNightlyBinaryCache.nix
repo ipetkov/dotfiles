@@ -23,8 +23,8 @@ in
 {
   config = lib.mkIf neovimNightlyUsed {
     nix = {
-      binaryCaches = ["https://mjlbach.cachix.org"];
-      binaryCachePublicKeys = ["mjlbach.cachix.org-1:dR0V90mvaPbXuYria5mXvnDtFibKYqYc2gtl9MWSkqI="];
+      binaryCaches = ["https://nix-community.cachix.org"];
+      binaryCachePublicKeys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
     };
   };
 }

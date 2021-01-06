@@ -31,7 +31,7 @@
       #inputs.nixpkgs.follows = "nixos";
     };
 
-    neovim-nightly-overlay.url = "github:mjlbach/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs@{ self, nixos, ... }:
