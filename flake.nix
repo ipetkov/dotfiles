@@ -12,10 +12,23 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      # make sure the same version of nixpkgs is used by home-manager
-      # in this case we'll track the nixos branch since that's the
-      # one we use for generating our actual machine configs
-      inputs.nixpkgs.follows = "nixos";
+      # NB: since we're using homemanager as a nixos module it is NOT
+      # necessary to force it's nixpkgs input to follow ours! Its
+      # nixos modules accept pkgs by argument, meaning whatever version
+      # of nixpkgs we use when calling `lib.nixosSystem` will be used
+      # for both nixos and home-manager modules. (but if we use use
+      # any other outputs from home-manager, like `hm` or its
+      # `lib.homeManagerConfiguration` then that *will* use whatever
+      # version the flake picks, which may or may not be the same one
+      # as our intput...)
+      # 
+      # Normally making it follow our input would be no big deal, except
+      # currently flake follows inputs are interpreted at the top-most level
+      # meaning it doesn't play "well" with nested flakes (i.e. if *another*
+      # flake was to use us as an input, nix would search for an input
+      # named nixos at *that* flake rather than making our home-manager
+      # input use *our* nixos input. clear as mud?)
+      #inputs.nixpkgs.follows = "nixos";
     };
 
     neovim-nightly-overlay.url = "github:mjlbach/neovim-nightly-overlay";
