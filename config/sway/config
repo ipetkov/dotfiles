@@ -243,6 +243,11 @@ bindsym XF86MonBrightnessDown exec "brightnessctl set 2%-"
 bindsym XF86MonBrightnessUp exec "brightnessctl set +2%"
 
 #
+# GTK settings
+#
+exec_always ~/.config/gtk-3.0/import-gsettings.sh
+
+#
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -262,11 +267,12 @@ assign [class="discord"] workspace 3
 for_window [class="discord"] move container to workspace 3
 
 #
-# Start up programs
-#
-exec "Discord"
-
-#
 # Systemd hook
 #
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
+#
+# Start up programs
+#
+exec "firefox"
+exec "Discord"

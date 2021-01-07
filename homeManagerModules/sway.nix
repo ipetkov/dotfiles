@@ -4,22 +4,20 @@
     # Alacritty is the default terminal in the config,
     # so ensure our config is pulled in
     ./alacritty.nix
+
+    # Pull in GTK themes for wofi and just about everything else.
+    ./gtk.nix
   ];
 
   xdg.configFile."mako/config".source = ../config/mako/config;
   xdg.configFile."sway/config".source = ../config/sway/config;
   xdg.configFile."waybar/config".source = ../config/waybar/config;
 
-
   home.packages = with pkgs; [
     mako # notification daemon
     myPkgs.swaynagmode
     waybar # status bar
     wofi # launcher
-
-    # Default GTK themes, required by wofi
-    hicolor-icon-theme
-    gnome3.adwaita-icon-theme
   ];
 
   # Allow starting up sway (which should exec a systemd call that
