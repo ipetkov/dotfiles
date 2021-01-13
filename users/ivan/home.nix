@@ -7,6 +7,7 @@
     ../../homeManagerModules/fonts.nix
     ../../homeManagerModules/fzf.nix
     ../../homeManagerModules/git.nix
+    ../../homeManagerModules/gpg.nix
     ../../homeManagerModules/gtk.nix
     ../../homeManagerModules/nvim.nix
     ../../homeManagerModules/rust.nix
