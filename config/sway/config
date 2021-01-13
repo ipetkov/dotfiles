@@ -75,7 +75,7 @@ exec swayidle -w \
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+q mode "kill"
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -227,6 +227,17 @@ mode "nag" {
     bindsym Shift+Tab $nag_select next
     bindsym Left      $nag_select next
     bindsym $left     $nag_select next
+}
+
+# A mode for "killing" apps, basically acting as a confirmation
+# before executing the kill
+mode "kill" {
+    bindsym Return kill, mode "default"
+
+    # Return to default mode
+    bindsym Escape mode "default"
+    bindsym Ctrl+c mode "default"
+    bindsym q      mode "default"
 }
 
 #
