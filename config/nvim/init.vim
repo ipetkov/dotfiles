@@ -106,6 +106,9 @@ augroup auto_cmds
   autocmd Filetype * setlocal formatoptions-=ro
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
+  autocmd Filetype markdown setlocal spell
+  autocmd Filetype gitcommit setlocal spell
+
   " Show diagnostic popup on cursor hold
   autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
   " Enable type inlay hints
