@@ -1,9 +1,7 @@
-{ lib, inputs, myPkgs }:
+{ lib, myPkgs }:
 
-{ rootConfig
-, system
-, useHomeManager ? true
-}:
+# Make a new nixosSystem configuration with the provided arguments.
+{ system, inputs, rootConfig }:
 
 let
   # Allows our flake inputs to appear as an argument in all of our modules.
@@ -12,7 +10,7 @@ let
     myPkgs = myPkgs."${system}";
   };
 
-  homeManagerModule = lib.attrsets.optionalAttrs useHomeManager {
+  homeManagerModule = {
     imports = [ inputs.home-manager.nixosModules.home-manager ];
 
     options = {

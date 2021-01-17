@@ -2,10 +2,15 @@
 { lib, inputs, myPkgs }:
 
 let
-  # Make a new nixosSystem configuration for a host
-  mkHost = import ./mkHost.nix {
-    inherit lib inputs myPkgs;
+  mkNixosSystem = import ./mkNixosSystem.nix {
+    inherit lib myPkgs;
   };
+
+  mkAppendConfig = import ./mkAppendConfig.nix {
+    inherit mkNixosSystem;
+  };
+
+  mkHost = args: mkAppendConfig ({ inherit inputs; } // args);
 in
 {
   # Find all nix modules at a directory.
