@@ -69,7 +69,11 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull; # For bluetooth support
+  };
 
   environment.systemPackages = with pkgs; [
     bash

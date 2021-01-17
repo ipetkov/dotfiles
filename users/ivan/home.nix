@@ -23,6 +23,7 @@
   };
 
   home.packages = with pkgs; [
+    blueberry # bluetooth configuration
     discord
     firefox-wayland
     xdg_utils # for xdg-open, make links clickable from outside firefox
