@@ -46,6 +46,28 @@
   #   keyMap = "us";
   # };
 
+  location = {
+    provider = "manual";
+    latitude = 47.6;
+    longitude = -122.3;
+  };
+
+  services.redshift = {
+    enable = true;
+    brightness = {
+      # Note the string values below.
+      day = "1";
+      night = "1";
+    };
+    temperature = {
+      day = 4200;
+      night = 2900;
+    };
+
+    package = pkgs.gammastep;
+    executable = "/bin/gammastep";
+  };
+
   # Desktop/window management
   programs.sway = {
     enable = true;
