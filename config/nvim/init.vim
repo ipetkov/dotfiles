@@ -21,6 +21,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" Spell settings
+execute 'set spellfile=' . stdpath("config") . '/spell.utf8.add'
+
 " Even though alacritty sets $COLORINFO = 'truecolor' neovim doesn't
 " seem to turn on gui colors, so we do it manually here
 if $TERM == 'alacritty'
