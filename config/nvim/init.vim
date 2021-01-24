@@ -21,6 +21,8 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+set textwidth=100
+
 " Spell settings
 execute 'set spellfile=' . stdpath("config") . '/spell.utf8.add'
 
@@ -109,8 +111,9 @@ augroup auto_cmds
   autocmd Filetype * setlocal formatoptions-=ro
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
-  autocmd Filetype markdown setlocal spell
-  autocmd Filetype gitcommit setlocal spell
+  " Turn on spell checking and auto wrap text
+  autocmd Filetype markdown setlocal spell textwidth=80
+  autocmd Filetype gitcommit setlocal spell textwidth=72
 
   " Show diagnostic popup on cursor hold
   autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
