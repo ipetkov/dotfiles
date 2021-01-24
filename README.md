@@ -25,3 +25,6 @@ directories and automatically making flake outputs of things
 Normally this directory would have a `default.nix` module which defines user groups,
 home directories, etc., and a `home.nix` module which contains the root of the
 home-manager configurations for this user.
+
+## Additional Documentation
+* [Machine initialization](./docs/machine_init.md) - How to prepare a machine for NixOS installation
