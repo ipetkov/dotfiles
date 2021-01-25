@@ -16,6 +16,11 @@
       nixpkgs.flake = inputs.nixpkgs;
     };
 
+    binaryCaches = ["https://ipetkov.cachix.org"];
+    binaryCachePublicKeys = [
+      "ipetkov.cachix.org-1:xK9taxnomX0ZVyDmobpZB5AQvuZ+L3q4u7IlRvEtomg="
+    ];
+
     gc = {
       automatic = true;
       dates = "monthly";
