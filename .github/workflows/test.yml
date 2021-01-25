@@ -5,6 +5,7 @@ on:
     branches-ignore:
       # Don't run twice on automation updates, rely on pull_request hook
       - 'automation/*'
+      - 'dependabot/*'
 jobs:
   tests:
     strategy:
