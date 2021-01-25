@@ -28,7 +28,9 @@ jobs:
       with:
         name: ipetkov
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-        # Only needed for private caches
-        #authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build -f ci/packages.nix
-    - run: nix build -f ci/systems.nix
+    - name: add nix-community cache
+      run: cachix use nix-community
+    - name: build package definitions
+      run: nix run nixpkgs#nix-build-uncached -- ./ci/packages.nix
+    - name: build system definitions
+      run: nix run nixpkgs#nix-build-uncached -- ./ci/systems.nix
