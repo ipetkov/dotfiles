@@ -1,0 +1,37 @@
+name: Update flake dependencies
+
+on:
+  schedule:
+    - cron: '0 16 * * 5'
+
+jobs:
+  update-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: cachix/install-nix-action@v12
+      with:
+        install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210122_b7bfc7e/install
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+    - uses: cachix/cachix-action@v8
+      with:
+        name: ipetkov
+        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+    - name: add nix-community cache
+      run: cachix use nix-community
+    - name: update flake.lock
+      run: nix flake update --recreate-lock-file
+    # Use custom app token to be more secure
+    - uses: tibdex/github-app-token@v1
+      id: generate-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ steps.generate-token.outputs.token }}
+        commit-message: "flake: update dependencies"
+        title: "[automation] update flake dependencies"
+        branch: "automation/update-flake-dependencies"
