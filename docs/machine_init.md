@@ -48,7 +48,7 @@ The disk has four partitions, and here is the final result:
    to make this partition large enough to handle any LUKS upgrades or extra
    key configurations, and I have space to spare (I think the LUKS2 max header
    size is 4 MiB, and most people recommend having a partition about this big
-   + some space for the actual key).
+   plus some space for the actual key).
 1. A 32 GiB swap partition because this machine has 16 GiB of RAM and I left
    some headroom in case I upgrade it. I don't plan on enabling swap (to avoid
    wearing out my SSD), but I made the partition anyway in case I change my
