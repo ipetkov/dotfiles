@@ -6,6 +6,7 @@
   };
 
   home.packages = with pkgs; [
+    binutils
     cargo-outdated
     cargo-update
     clang # Provides `cc` for any *-sys crates
