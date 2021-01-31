@@ -3,6 +3,7 @@
   imports = [
     ../../homeManagerModules/alacritty.nix
     ../../homeManagerModules/common.nix
+    ../../homeManagerModules/direnv.nix
     ../../homeManagerModules/fish.nix
     ../../homeManagerModules/fonts.nix
     ../../homeManagerModules/fzf.nix
