@@ -26,13 +26,6 @@
     # NB: allow nvim to create its own alias/symlink if enabled
     shellInit = "set -x EDITOR vim";
 
-    loginShellInit = ''
-      if test -z "$DISPLAY"; and test (tty) = "/dev/tty1"
-        # Use systemd-cat here to capture sway logs
-        exec systemd-cat --identifier=sway sway
-      end
-    '';
-
     shellAliases = {
       ll = "exa -la";
       cat = "bat";

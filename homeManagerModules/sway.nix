@@ -1,4 +1,7 @@
-{ pkgs, myPkgs, ... }:
+{ config, lib, pkgs, myPkgs, ... }:
+let
+  fishcfg = config.programs.fish;
+in
 {
   imports = [
     # Alacritty is the default terminal in the config,
@@ -32,4 +35,11 @@
       After = [ "graphical-session-pre.target" ];
     };
   };
+
+  programs.fish.loginShellInit = lib.mkIf fishcfg.enable ''
+      if test -z "$DISPLAY"; and test (tty) = "/dev/tty1"
+        # Use systemd-cat here to capture sway logs
+        exec systemd-cat --identifier=sway sway
+      end
+  '';
 }
