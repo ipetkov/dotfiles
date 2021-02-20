@@ -5,6 +5,11 @@
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     nixos.url = "nixpkgs/nixos-unstable";
 
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
     bass = {
       url = "github:edc/bass";
       flake = false;
