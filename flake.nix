@@ -51,9 +51,10 @@
     # other packages installed through there...
     inherit (nixos) lib legacyPackages;
 
+    myPkgs = self.packages;
+
     myLib = import ./lib {
-      inherit inputs lib;
-      myPkgs = self.packages;
+      inherit inputs lib myPkgs;
     };
 
     # The default set of systems for which we want to declare
@@ -68,7 +69,21 @@
     forAllSystems = f: lib.genAttrs defaultSystems f;
   in
   {
-    homeManagerModules = myLib.findNixModules ./homeManagerModules;
+    homeManagerModules = {
+      alacritty   = import ./homeManagerModules/alacritty.nix;
+      common      = import ./homeManagerModules/common.nix;
+      direnv      = import ./homeManagerModules/direnv.nix;
+      fish        = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/fish.nix) (args // { inherit inputs; });
+      fonts       = import ./homeManagerModules/fonts.nix;
+      fzf         = import ./homeManagerModules/fzf.nix;
+      git         = import ./homeManagerModules/git.nix;
+      gpg         = import ./homeManagerModules/gpg.nix;
+      gtk         = import ./homeManagerModules/gtk.nix;
+      nvim        = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });
+      rust        = import ./homeManagerModules/rust.nix;
+      sway        = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/sway.nix) (args // { inherit myPkgs; });
+      taskwarrior = import ./homeManagerModules/taskwarrior.nix;
+    };
 
     nixosModules = myLib.findNixModules ./nixosModules;
 
