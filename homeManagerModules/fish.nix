@@ -3,12 +3,6 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = ''
-      function fish_greeting
-        ${lib.strings.optionalString config.programs.taskwarrior.enable "task"}
-      end
-    '';
-
     promptInit = ''
       if test -n "$IN_NIX_SHELL"
         set --global nix_shell_info "<nix-shell> "

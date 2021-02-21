@@ -31,6 +31,14 @@
     };
   };
 
+  programs.fish = {
+    # NB: don't define greeting in the common module. home-manager will happily concat
+    # all function definitions together which is bound to cause havoc...
+    functions = {
+      fish_greeting = "task";
+    };
+  };
+
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     XDG_CURRENT_DESKTOP = "sway";
