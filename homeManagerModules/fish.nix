@@ -17,9 +17,6 @@
       end
     '';
 
-    # NB: allow nvim to create its own alias/symlink if enabled
-    shellInit = "set -x EDITOR vim";
-
     shellAliases = {
       ll = "exa -la";
       cat = "bat";

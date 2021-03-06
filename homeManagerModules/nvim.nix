@@ -5,6 +5,10 @@
 
   nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
 
+  home.sessionVariables = {
+    EDITOR = "vim";
+  };
+
   programs.neovim = {
     enable = true;
     vimAlias = true;
