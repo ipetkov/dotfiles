@@ -3,6 +3,7 @@
   programs.fzf = {
     enable = true;
     defaultCommand = "rg --files --hidden --glob !.git";
+    fileWidgetCommand = "rg --files --hidden --glob !.git";
   };
 
   home.packages = with pkgs; [
