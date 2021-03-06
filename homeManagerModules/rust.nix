@@ -8,8 +8,10 @@
   home.packages = with pkgs; [
     cargo-outdated
     cargo-update
-    clang # Provides `cc` for any *-sys crates
     rust-analyzer
     rustup
-  ] ++ lib.lists.optional pkgs.stdenv.isLinux pkgs.binutils; # For some reason conflicts on darwin
+  ] ++ lib.lists.optionals pkgs.stdenv.isLinux (with pkgs; [
+    binutils # For some reason conflicts on darwin
+    clang # Provides `cc` for any *-sys crates
+  ]);
  }
