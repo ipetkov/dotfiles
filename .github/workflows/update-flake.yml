@@ -15,7 +15,7 @@ jobs:
         install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210122_b7bfc7e/install
         extra_nix_config: |
           experimental-features = nix-command flakes
-    - uses: cachix/cachix-action@v9
+    - uses: cachix/cachix-action@v8
       with:
         name: ipetkov
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
