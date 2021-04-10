@@ -31,8 +31,8 @@ jobs:
     - name: add nix-community cache
       run: cachix use nix-community
     - name: build package definitions
-      run: nix run nixpkgs#nix-build-uncached -- ./ci/packages.nix
+      run: nix run .#my-nix-build-uncached -- ./ci/packages.nix
     - name: build home-manager configurations
-      run: nix run nixpkgs#nix-build-uncached -- ./ci/homeManagerConfigurations.nix
+      run: nix run .#my-nix-build-uncached -- ./ci/homeManagerConfigurations.nix
     - name: build system definitions
-      run: nix run nixpkgs#nix-build-uncached -- ./ci/systems.nix
+      run: nix run .#my-nix-build-uncached -- ./ci/systems.nix
