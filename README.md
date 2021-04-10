@@ -13,6 +13,10 @@ things are structured as follows:
 * `config`: contents which might represent the `~/.config` directory. Basically
 "literal" configs and definitions which get linked/incorporated through home-manager
 * `docs`: additional documentation files, mostly for myself, but may be useful to others
+* `homeManagerConfigurations`: top-level fully instantiated home-manager
+  configurations. Useful for having the CI cache the artifacts and make sure
+  that everything builds. Also includes a `module` attribute which allows for
+  importing/overriding the definition as needed.
 * `homeManagerModules`: a collection of "common" home-manager modules which could be used
 in other dependent flakes. They're definitely tailored to my own preferences though, and lack
 robust options (like how home-manager might lay things out)!
