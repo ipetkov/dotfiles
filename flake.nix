@@ -85,6 +85,18 @@
       taskwarrior = import ./homeManagerModules/taskwarrior.nix;
     };
 
+    homeManagerConfigurations = {
+      mac-mini = inputs.home-manager.lib.homeManagerConfiguration {
+        system = "x86_64-darwin";
+        username = "ivan";
+        homeDirectory = "/Users/ivan";
+        pkgs = legacyPackages.x86_64-darwin;
+        configuration = import ./homeManagerConfigurations/mac-mini.nix {
+          inherit (self) homeManagerModules;
+        };
+      };
+    };
+
     nixosModules = myLib.findNixModules ./nixosModules;
 
     nixosConfigurations = myLib.findNixosConfigurations {

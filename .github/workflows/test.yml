@@ -12,8 +12,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          # TODO: enable if we ever add any darwin supported packages
-          # - macos-latest
+          - macos-10.15
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
@@ -33,5 +32,7 @@ jobs:
       run: cachix use nix-community
     - name: build package definitions
       run: nix run nixpkgs#nix-build-uncached -- ./ci/packages.nix
+    - name: build home-manager configurations
+      run: nix run nixpkgs#nix-build-uncached -- ./ci/homeManagerConfigurations.nix
     - name: build system definitions
       run: nix run nixpkgs#nix-build-uncached -- ./ci/systems.nix
