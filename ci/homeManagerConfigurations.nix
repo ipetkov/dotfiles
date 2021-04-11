@@ -1,7 +1,7 @@
 let
+  inherit (import ./common.nix) flake;
+  inherit (flake.inputs.nixpkgs) lib;
   system = builtins.currentSystem;
-  flake = builtins.getFlake (toString ./..);
-  lib = flake.inputs.nixpkgs.lib;
   allHomeManagerConfigs = lib.attrsets.mapAttrs
     (_: hmConfig: hmConfig.activationPackage)
     flake.homeManagerConfigurations;
