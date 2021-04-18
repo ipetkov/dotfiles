@@ -1,10 +1,17 @@
-{ inputs, legacyPackages, homeManagerModules }:
+{ inputs, legacyPackages, legacyPackagesDarwinPin, homeManagerModules }:
 let
   mkHmConfig = { system, username, homeDirectory, configuration }:
     let
       hmConfig = inputs.home-manager.lib.homeManagerConfiguration {
         inherit system username homeDirectory;
-        pkgs = legacyPackages.${system};
+
+        # Currently there is a build issue on darwin, temporarily pinning
+        # to a darwin-specific input until it is resolved.
+        # See https://github.com/NixOS/nixpkgs/issues/118195
+        pkgs = if "x86_64-darwin" == system
+          then legacyPackagesDarwinPin.${system}
+          else legacyPackages.${system};
+
         configuration = import configuration {
           inherit homeManagerModules;
         };

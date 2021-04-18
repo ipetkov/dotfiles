@@ -5,6 +5,11 @@
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     nixos.url = "nixpkgs/nixos-unstable";
 
+    # Currently there is a build issue on darwin, temporarily pinning
+    # to a darwin-specific input until it is resolved.
+    # See https://github.com/NixOS/nixpkgs/issues/118195
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e";
+
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -88,6 +93,8 @@
     homeManagerConfigurations = import ./homeManagerConfigurations {
       inherit inputs legacyPackages;
       inherit (self) homeManagerModules;
+
+      legacyPackagesDarwinPin = inputs.nixpkgs-darwin.legacyPackages;
     };
 
     nixosModules = myLib.findNixModules ./nixosModules;

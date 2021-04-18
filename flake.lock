@@ -165,6 +165,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-darwin": {
+      "locked": {
+        "lastModified": 1616670887,
+        "narHash": "sha256-wn+l9qJfR5sj5Gq4DheJHAcBDfOs9K2p9seW2f35xzs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c0e881852006b132236cbf0301bd1939bb50867e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c0e881852006b132236cbf0301bd1939bb50867e",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1616670887,
@@ -219,7 +235,8 @@
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos": "nixos",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "nixpkgs-darwin": "nixpkgs-darwin"
       }
     }
   },
