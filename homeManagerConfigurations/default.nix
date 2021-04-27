@@ -1,9 +1,9 @@
 { inputs, legacyPackages, legacyPackagesDarwinPin, homeManagerModules }:
 let
-  mkHmConfig = { system, username, homeDirectory, configuration }:
+  mkHmConfig = { system, username, homeDirectory, configuration, stateVersion }:
     let
       hmConfig = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit system username homeDirectory;
+        inherit system username homeDirectory stateVersion;
 
         # Currently there is a build issue on darwin, temporarily pinning
         # to a darwin-specific input until it is resolved.
@@ -27,5 +27,6 @@ in
     username = "ivan";
     homeDirectory = "/Users/ivan";
     configuration = ./mac-mini.nix;
+    stateVersion = "21.03";
   };
 }
