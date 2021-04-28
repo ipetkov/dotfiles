@@ -8,7 +8,8 @@
     # Currently there is a build issue on darwin, temporarily pinning
     # to a darwin-specific input until it is resolved.
     # See https://github.com/NixOS/nixpkgs/issues/118195
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e";
+    # See https://github.com/NixOS/nixpkgs/issues/119866
+    nixpkgs-darwin-topgrade-pin.url = "github:nixos/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -62,11 +63,14 @@
       inherit inputs lib myPkgs;
     };
 
+    systemDarwin = "x86_64-darwin";
+    systemLinux = "x86_64-linux";
+
     # The default set of systems for which we want to declare
     # modules/packages/etc.
     defaultSystems = [
-      "x86_64-darwin"
-      "x86_64-linux"
+      systemDarwin
+      systemLinux
     ];
 
     # Create an attr set for each default system where the key
@@ -91,16 +95,22 @@
     };
 
     homeManagerConfigurations = import ./homeManagerConfigurations {
-      inherit inputs legacyPackages;
+      inherit (inputs) home-manager;
       inherit (self) homeManagerModules;
 
-      legacyPackagesDarwinPin = inputs.nixpkgs-darwin.legacyPackages;
+      pkgs = import nixos {};
+      pkgs-darwin = import nixos {
+        system = systemDarwin;
+        overlays = [(final: prev: {
+          topgrade = inputs.nixpkgs-darwin-topgrade-pin.legacyPackages.${systemDarwin}.topgrade;
+        })];
+      };
     };
 
     nixosModules = myLib.findNixModules ./nixosModules;
 
     nixosConfigurations = myLib.findNixosConfigurations {
-      system = "x86_64-linux";
+      system = systemLinux;
       nixosConfigurationsDir = ./nixosConfigurations;
     };
 

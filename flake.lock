@@ -153,7 +153,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-darwin": {
+    "nixpkgs-darwin-topgrade-pin": {
       "locked": {
         "lastModified": 1616670887,
         "narHash": "sha256-wn+l9qJfR5sj5Gq4DheJHAcBDfOs9K2p9seW2f35xzs=",
@@ -208,7 +208,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-darwin": "nixpkgs-darwin"
+        "nixpkgs-darwin-topgrade-pin": "nixpkgs-darwin-topgrade-pin"
       }
     }
   },
