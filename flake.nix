@@ -98,8 +98,8 @@
       inherit (inputs) home-manager;
       inherit (self) homeManagerModules;
 
-      pkgs = import nixos {};
-      pkgs-darwin = import nixos {
+      pkgs = import inputs.nixpkgs {};
+      pkgs-darwin = import inputs.nixpkgs {
         system = systemDarwin;
         overlays = [(final: prev: {
           topgrade = inputs.nixpkgs-darwin-topgrade-pin.legacyPackages.${systemDarwin}.topgrade;
