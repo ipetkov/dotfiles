@@ -5,12 +5,6 @@
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     nixos.url = "nixpkgs/nixos-unstable";
 
-    # Currently there is a build issue on darwin, temporarily pinning
-    # to a darwin-specific input until it is resolved.
-    # See https://github.com/NixOS/nixpkgs/issues/118195
-    # See https://github.com/NixOS/nixpkgs/issues/119866
-    nixpkgs-darwin-topgrade-pin.url = "github:nixos/nixpkgs/c0e881852006b132236cbf0301bd1939bb50867e";
-
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -99,12 +93,6 @@
       inherit (self) homeManagerModules;
 
       pkgs = import inputs.nixpkgs {};
-      pkgs-darwin = import inputs.nixpkgs {
-        system = systemDarwin;
-        overlays = [(final: prev: {
-          topgrade = inputs.nixpkgs-darwin-topgrade-pin.legacyPackages.${systemDarwin}.topgrade;
-        })];
-      };
     };
 
     nixosModules = myLib.findNixModules ./nixosModules;
