@@ -1,13 +1,15 @@
 let
   inherit (import ./common.nix) flake;
   inherit (flake.inputs.nixpkgs) lib;
-  system = builtins.currentSystem;
-  allHomeManagerConfigs = lib.attrsets.mapAttrs
-    (_: hmConfig: hmConfig.activationPackage)
+
+  homeManagerConfigsForSystem = lib.attrByPath
+    [builtins.currentSystem]
+    {}
     flake.homeManagerConfigurations;
-  filteredHomeManagerActivationPackages = lib.attrsets.filterAttrs
-    (_: cfg: cfg.system == system)
-    allHomeManagerConfigs;
+
+  homeManagerActivationPackages = lib.attrsets.mapAttrs
+    (_: hmConfig: hmConfig.activationPackage)
+    homeManagerConfigsForSystem;
 in
   # Return all home-manager configuration derivations matching the current system
-  filteredHomeManagerActivationPackages
+  homeManagerActivationPackages

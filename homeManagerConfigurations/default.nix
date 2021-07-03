@@ -15,11 +15,13 @@ let
     hmConfig // { module = configuration; };
 in
 {
-  mac-mini = mkHmConfig {
-    system = "x86_64-darwin";
-    username = "ivan";
-    homeDirectory = "/Users/ivan";
-    configuration = ./mac-mini.nix;
-    stateVersion = "21.03";
+  "x86_64-darwin" = {
+    mac-mini = mkHmConfig {
+      system = "x86_64-darwin";
+      username = "ivan";
+      homeDirectory = "/Users/ivan";
+      configuration = ./mac-mini.nix;
+      stateVersion = "21.03";
+    };
   };
 }
