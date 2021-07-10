@@ -1,9 +1,7 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   # Ensure we pull in fzf for our fzf plugin below
   imports = [ ./fzf.nix ];
-
-  nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
 
   home.sessionVariables = {
     EDITOR = "vim";
@@ -13,8 +11,6 @@
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-
-    package = pkgs.neovim-nightly;
 
     plugins = with pkgs.vimPlugins; [
       # Git

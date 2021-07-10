@@ -35,8 +35,6 @@
       # input use *our* nixos input. clear as mud?)
       #inputs.nixpkgs.follows = "nixos";
     };
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs@{ self, nixos, ... }:
