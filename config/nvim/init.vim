@@ -116,7 +116,7 @@ augroup auto_cmds
   autocmd Filetype gitcommit setlocal spell textwidth=72
 
   " Show diagnostic popup on cursor hold
-  autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+  autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
   " Enable type inlay hints
   autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
     \ lua require'lsp_extensions'.inlay_hints{ prefix = '» ', highlight = "Comment" }
