@@ -102,6 +102,7 @@
     bash
     fish
     git
+    htop
     pavucontrol
     vim
   ];
