@@ -15,8 +15,8 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.kernelParams = [ "elevator=none" ]; # Because ZFS doesn't have the whole disk
 
-  # Pin to 5.10 kernel (zfs compat) until https://github.com/NixOS/nixpkgs/pull/126980 lands
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  # Use the latest kernel which is compatible with stable ZFS
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   networking = {
     hostName = "tartarus"; # Define your hostname.
