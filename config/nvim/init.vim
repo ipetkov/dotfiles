@@ -1,3 +1,5 @@
+filetype plugin indent on
+
 syntax on                                 " enable syntax processing
 set backspace=indent,eol,start            " get around backspace defaults, behave as expected in other apps
 set completeopt=menuone,noinsert,noselect " Set completeopt to have a better completion experience
@@ -110,7 +112,7 @@ augroup auto_cmds
   autocmd BufEnter crontab* setlocal backupcopy=yes
 
   autocmd Filetype help wincmd H
-  autocmd BufWinEnter * setlocal formatoptions-=o
+  autocmd Filetype * set formatoptions-=ro
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
   " Turn on spell checking and auto wrap text
