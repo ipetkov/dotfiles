@@ -48,7 +48,7 @@ highlight GitGutterDelete ctermfg=12 guifg=#ff2222
 let mapleader="\<Space>"
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>t :tabe<CR>
-nnoremap <leader>s :Gstatus<CR>
+nnoremap <leader>s :Git<CR>
 nnoremap <leader>n :GitGutterNextHunk<CR>
 nnoremap <leader>p :GitGutterPrevHunk<CR>
 nnoremap <leader>h :set hlsearch!<CR>
