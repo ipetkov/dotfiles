@@ -47,6 +47,11 @@
   #   keyMap = "us";
   # };
 
+  programs.dconf.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+  };
+
   location = {
     provider = "manual";
     latitude = 47.6;
@@ -105,6 +110,7 @@
     htop
     pavucontrol
     vim
+    virt-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

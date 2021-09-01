@@ -19,6 +19,7 @@ in
       "video"
       "networkmanager"
       "systemd-journal"
+      "libvirtd"
     ];
   };
 }
