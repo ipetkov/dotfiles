@@ -11,4 +11,18 @@ in
     home = "/home/${userName}";
     shell = pkgs.fish;
   };
+
+  home-manager.users."${userName}" = {
+    home.stateVersion = "21.03";
+
+    imports = [
+      ../homeManagerModules/direnv.nix
+    ];
+
+    programs.fish = {
+      shellAliases = {
+        ll = "ls -la";
+      };
+    };
+  };
 }
