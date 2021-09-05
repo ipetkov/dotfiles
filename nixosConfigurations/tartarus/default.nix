@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ../../users/ivan/default.nix
+      ../../users/ops.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
