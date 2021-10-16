@@ -8,11 +8,11 @@
     # Use our inputs as defaults for nixpkgs/nixos so everything (like nix-env)
     # moves in lockstep. (Note adding a channel will take precedence over this).
     nixPath = [
-      "nixos=${inputs.nixos}"
+      "nixos=${inputs.nixpkgs}"
       "nixpkgs=${inputs.nixpkgs}"
     ];
     registry = {
-      nixos.flake = inputs.nixos;
+      nixos.flake = inputs.nixpkgs;
       nixpkgs.flake = inputs.nixpkgs;
     };
 

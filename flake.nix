@@ -2,8 +2,12 @@
   description = "ippetkov's nixos configs";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
-    nixos.url = "nixpkgs/nixos-unstable";
+    # Use the nixos-unstable channel for all of our configurations, even on non-NixOS
+    # systems. The nixpkgs-unstable branch tends to break a bit more often than
+    # nixos-unstable, so trying this out to see if things are a bit smoother. Also, it is
+    # nice having the exact same application versions across all machines rather than
+    # mixing and matching branches.
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -37,17 +41,9 @@
     };
   };
 
-  outputs = inputs@{ self, nixos, ... }:
+  outputs = inputs@{ self, ... }:
   let
-    # NB: use nixos for building our actual system configuration
-    # by using the lib from that branch. This branch is gated on
-    # desktop tests (e.g. desktop environments passing etc.) which
-    # nixpkgs is not gated on. This will also give us better binary
-    # cache hits when rebuilding the system, kernel modules, etc.
-    #
-    # We will still use the nixpkgs branch for home manager and
-    # other packages installed through there...
-    inherit (nixos) lib legacyPackages;
+    inherit (inputs.nixpkgs) lib legacyPackages;
 
     myPkgs = self.packages;
 
