@@ -34,7 +34,9 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1634543124,
@@ -51,20 +53,6 @@
       }
     },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1634662205,
-        "narHash": "sha256-DxlM54z+0p7zpTuo4gVGaBlKjEwieqlyOYwT0M23RC4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ef64a9a4fce0f2e482899de68323c27751ba97a3",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1634436779,
         "narHash": "sha256-D/nrXTWpe1bPIjFy85sgiLHYqu+AeaC6v5/+KlA9PRg=",
@@ -84,7 +72,7 @@
         "bass": "bass",
         "flake-compat": "flake-compat",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
