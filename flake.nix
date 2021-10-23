@@ -35,6 +35,8 @@
       inherit inputs lib myPkgs;
     };
 
+    inherit (myLib) mkHost;
+
     systemDarwin = "x86_64-darwin";
     systemLinux = "x86_64-linux";
 
@@ -79,9 +81,11 @@
       tailscale = import ./nixosModules/tailscale.nix;
     };
 
-    nixosConfigurations = myLib.findNixosConfigurations {
-      system = systemLinux;
-      nixosConfigurationsDir = ./nixosConfigurations;
+    nixosConfigurations = {
+      tartarus = mkHost {
+        system = systemLinux;
+        rootConfig = ./nixosConfigurations/tartarus;
+      };
     };
 
     packages = forAllSystems (system:
