@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../../nixosModules/tailscale.nix
       ../../users/ivan/default.nix
       ../../users/ops.nix
     ];
@@ -134,19 +135,6 @@
   services.zfs.trim.enable = true;
 
   services.tailscale.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  networking.firewall.allowedUDPPorts = [
-    config.services.tailscale.port
-  ];
-  networking.firewall.trustedInterfaces = [
-    # Needed for taildrop to work, may need to be revisited in the future
-    # https://forum.tailscale.com/t/taildrop-not-working-when-sending-a-file-from-iphone-to-a-nixos-machine/633/7
-    config.services.tailscale.interfaceName
-  ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   users.groups.ops.members = [
     "ivan"

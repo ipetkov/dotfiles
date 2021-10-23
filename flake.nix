@@ -73,7 +73,10 @@
       pkgs = import inputs.nixpkgs {};
     };
 
-    nixosModules = myLib.findNixModules ./nixosModules;
+    nixosModules = {
+      nixConfig = import ./nixosModules/nixConfig.nix;
+      tailscale = import ./nixosModules/tailscale.nix;
+    };
 
     nixosConfigurations = myLib.findNixosConfigurations {
       system = systemLinux;

@@ -13,11 +13,6 @@ let
   mkHost = args: mkAppendConfig ({ inherit inputs; } // args);
 in
 {
-  # Find all nix modules at a directory.
-  findNixModules = import ./findNixModules.nix {
-    inherit lib;
-  };
-
   # Find nixosConfiguration files, which are either nix expressions
   # within the root of the folder, or an expression named `default.nix`
   # which is at most one directory deep.
