@@ -25,11 +25,9 @@
       automatic = true;
       dates = "monthly";
       options = "--delete-older-than 30d";
+      persistent = true;
     };
-  };
 
-  # Make our nix store cleanup persistent, meaning if the timer is missed
-  # (e.g. because the computer was shut down at the time), then it will
-  # be fired at the next start up
-  systemd.timers."nix-gc".timerConfig.Persistent = true;
+    optimise.dates = ["monthly"];
+  };
 }
