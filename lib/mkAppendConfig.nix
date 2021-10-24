@@ -16,9 +16,15 @@ let
     let
       origRes = mkNixosSystem origArgs;
 
-      mergeArgs = { system ? origArgs.system, inputs ? {}, rootConfig }: origArgs // {
-        inherit system;
+      mergeArgs = newArgs@{
+        inputs ? {},
+        rootConfig,
+        ...
+      }: origArgs // newArgs // {
+        # Ensure we don't "lose" any previous inputs
         inputs = origArgs.inputs // inputs;
+
+        # Ensure we keep the old rootConfig around
         rootConfig = {
           imports = [
             origArgs.rootConfig

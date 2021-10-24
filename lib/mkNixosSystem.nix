@@ -1,7 +1,13 @@
 { lib, myPkgs }:
 
 # Make a new nixosSystem configuration with the provided arguments.
-{ system, inputs, rootConfig }:
+{ system
+, inputs
+, rootConfig
+  # The specific version of nixpkgs we should use for instantiating the system,
+  # allowing downstream consumers to change it if necessary.
+, nixpkgs ? inputs.nixpkgs
+}:
 
 let
   # Allows our flake inputs to appear as an argument in all of our modules.
@@ -32,7 +38,7 @@ let
     };
   };
 in
-lib.nixosSystem {
+nixpkgs.lib.nixosSystem {
   inherit system specialArgs;
 
   modules = [
