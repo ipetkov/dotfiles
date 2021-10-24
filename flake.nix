@@ -75,6 +75,7 @@
 
     nixosModules = {
       nixConfig = import ./nixosModules/nixConfig.nix;
+      pihole = import ./nixosModules/pihole.nix;
       tailscale = import ./nixosModules/tailscale.nix;
     };
 
