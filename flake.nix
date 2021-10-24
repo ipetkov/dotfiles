@@ -39,6 +39,7 @@
 
     systemDarwin = "x86_64-darwin";
     systemLinux = "x86_64-linux";
+    systemLinuxArm = "aarch64-linux";
 
     # The default set of systems for which we want to declare
     # modules/packages/etc.
@@ -82,6 +83,11 @@
     };
 
     nixosConfigurations = {
+      rpi = mkHost {
+        system = systemLinuxArm;
+        rootConfig = ./nixosConfigurations/rpi;
+      };
+
       tartarus = mkHost {
         system = systemLinux;
         rootConfig = ./nixosConfigurations/tartarus;
