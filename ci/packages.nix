@@ -2,6 +2,10 @@
 
 let
   inherit (import ./common.nix) flake;
+  inherit (flake.inputs.nixpkgs) lib;
 in
   # Return all declared packages matching the current system
-  flake.packages.${system}
+  lib.attrByPath
+    [system]
+    {}
+    flake.packages
