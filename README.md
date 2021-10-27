@@ -32,3 +32,20 @@ home-manager configurations for this user.
 
 ## Additional Documentation
 * [Machine initialization](./docs/machine_init.md) - How to prepare a machine for NixOS installation
+
+## Applying configuration changes
+
+Applying configuration changes on a local machine can be done as follows:
+
+```sh
+cd ~/dotfiles
+sudo nixos-rebuild switch --flake .
+# This will automatically pick the configuration name based on the hostname
+```
+
+Applying configuration changes to a remote machine can be done as follows:
+
+```sh
+cd ~/dotfiles
+nixos-rebuild switch --flake .#nameOfMachine --build-host localhost --target-host machineToSshInto --use-remote-sudo
+```
