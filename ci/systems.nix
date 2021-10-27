@@ -1,7 +1,8 @@
+{ system ? builtins.currentSystem }:
+
 let
   inherit (import ./common.nix) flake;
   inherit (flake.inputs.nixpkgs) lib;
-  system = builtins.currentSystem;
   allSystemDefs = lib.attrsets.mapAttrs
     (_: systemConfig: systemConfig.config.system.build.toplevel)
     flake.nixosConfigurations;

@@ -10,29 +10,48 @@ jobs:
   tests:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-10.15
+        include:
+          - os: macos-10.15
+          - os: ubuntu-latest
+          - os: ubuntu-latest
+            qemuPlatforms: "arm64"
+            systemOverride: "--argstr system aarch64-linux"
+            extraPlatforms: "aarch64-linux"
+
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
       with:
         # Nix Flakes doesn't work on shallow clones
         fetch-depth: 0
+
     - uses: cachix/install-nix-action@v14
       with:
         install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.5pre20211008_6bd74a6/install
         extra_nix_config: |
           experimental-features = nix-command flakes
+          extra-platforms = ${{ matrix.extraPlatforms }}
+
     - uses: cachix/cachix-action@v10
       with:
         name: ipetkov
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+
     - name: add nix-community cache
       run: cachix use nix-community
+
+    - name: install QEMU/binfmt
+      if: ${{ matrix.qemuPlatforms != '' }}
+      uses: docker/setup-qemu-action@v1
+      with:
+        image: tonistiigi/binfmt:latest
+        platforms: ${{ matrix.qemuPlatforms }}
+
     - name: build package definitions
-      run: nix run .#my-nix-build-uncached -- ./ci/packages.nix
+      run: nix run .#my-nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/packages.nix
+
     - name: build home-manager configurations
-      run: nix run .#my-nix-build-uncached -- ./ci/homeManagerConfigurations.nix
+      run: nix run .#my-nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/homeManagerConfigurations.nix
+
     - name: build system definitions
-      run: nix run .#my-nix-build-uncached -- ./ci/systems.nix
+      run: nix run .#my-nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/systems.nix

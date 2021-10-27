@@ -1,9 +1,11 @@
+{ system ? builtins.currentSystem }:
+
 let
   inherit (import ./common.nix) flake;
   inherit (flake.inputs.nixpkgs) lib;
 
   homeManagerConfigsForSystem = lib.attrByPath
-    [builtins.currentSystem]
+    [system]
     {}
     flake.homeManagerConfigurations;
 
