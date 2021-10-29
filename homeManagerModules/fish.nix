@@ -3,7 +3,7 @@
   programs.fish = {
     enable = true;
 
-    promptInit = ''
+    interactiveShellInit = ''
       if test -n "$IN_NIX_SHELL"
         set --global nix_shell_info "<nix-shell> "
       else
