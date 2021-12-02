@@ -108,20 +108,15 @@
       };
 
     packages = forAllSystems (system:
-      lib.filterAttrs
-        (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
-        (import ./pkgs { pkgs = legacyPackages.${system}; })
-    );
-
-    apps = forAllSystems (system: {
-      # Allow for "pinning" which version of nix-build-uncached is used by the CI
-      # (avoids getting rate-limited by the Github API on macOS builders since we can load a
-      # particular commit of nixpkgs (which may be in the cache) instead of hitting the repo HEAD
-      # every time).
-      my-nix-build-uncached = {
-        type = "app";
-        program = "${legacyPackages.${system}.nix-build-uncached}/bin/nix-build-uncached";
+    let
+      nixpkgs = legacyPackages.${system};
+      filter = _: pkg: builtins.any (x: x == system) pkg.meta.platforms;
+      allPkgs = import ./pkgs {
+        pkgs = nixpkgs;
       };
-    });
+      systemPkgs = lib.filterAttrs filter allPkgs;
+    in
+      systemPkgs // { inherit (nixpkgs) nix-build-uncached; }
+    );
   };
 }

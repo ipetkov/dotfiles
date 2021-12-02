@@ -46,10 +46,10 @@ jobs:
         platforms: ${{ matrix.qemuPlatforms }}
 
     - name: build package definitions
-      run: nix run .#my-nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/packages.nix
+      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/packages.nix
 
     - name: build home-manager configurations
-      run: nix run .#my-nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/homeManagerConfigurations.nix
+      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/homeManagerConfigurations.nix
 
     - name: build system definitions
-      run: nix run .#my-nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/systems.nix
+      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/systems.nix
