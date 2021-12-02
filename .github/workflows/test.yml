@@ -4,8 +4,8 @@ on:
   push:
     branches-ignore:
       # Don't run twice on automation updates, rely on pull_request hook
-      - 'automation/*'
-      - 'dependabot/*'
+      - 'automation/**'
+      - 'dependabot/**'
 jobs:
   tests:
     strategy:
