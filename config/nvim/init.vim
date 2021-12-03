@@ -55,6 +55,10 @@ nnoremap <leader>h :set hlsearch!<CR>
 nnoremap <leader>rc :vsplit $MYVIMRC<CR>
 nnoremap <Leader>l :lclose<CR>
 
+" Bring back (old) Y -> yy behavior
+" old habits die hard...
+nnoremap Y yy
+
 " Make <Esc> work in terminal mode
 tnoremap <Esc> <C-\><C-n>
 
