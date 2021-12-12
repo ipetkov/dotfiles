@@ -12,6 +12,9 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    withPython3 = false;
+    withRuby = false;
+
     plugins = with pkgs.vimPlugins; [
       # Git
       vim-gitgutter
