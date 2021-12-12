@@ -8,7 +8,7 @@ set incsearch                             " start search while typing
 set laststatus=2                          " always display the statusline
 set lazyredraw                            " redraw only when needed, get speedup from not redrawing during macros
 set sessionoptions-=options               " Don't save options, see if this fixes problems with session restoration
-set shortmess                             " Avoid showing extra messages when using completion
+set shortmess+=c                          " Avoid showing extra messages when using completion
 set showcmd                               " show the (currently pending) command at bottom right
 set smartcase                             " sensitive if pattern contains uppercase letter, and insensitive otherwise
 set statusline=%f\ %l:%c\ %m              " show: <filename> <line>:<col> <pending changes>
@@ -86,21 +86,15 @@ nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 nnoremap <silent> <leader>] <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <a-cr> <cmd>lua vim.lsp.buf.code_action()<CR>
-
-" Trigger completion with <Tab>
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ completion#trigger_completion()
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -125,33 +119,73 @@ augroup auto_cmds
 
   " Show diagnostic popup on cursor hold
   autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
-  " Enable type inlay hints
-  autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-    \ lua require'lsp_extensions'.inlay_hints{ prefix = '» ', highlight = "Comment" }
 augroup END
 
-" Configure LSP
-" https://github.com/neovim/nvim-lspconfig#rust-analyzer
-lua <<EOF
-
-local lspconfig = require'lspconfig'
-
--- function to attach completion and diagnostics
--- when setting up lsp
-local on_attach = function(client)
-    require'completion'.on_attach(client)
-end
-
--- Enable rust_analyzer
-lspconfig.rust_analyzer.setup({ on_attach=on_attach })
-
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      prefix = '»',
+" https://sharksforarms.dev/posts/neovim-rust/
+lua<<EOF
+-- Configure LSP through rust-tools.nvim plugin.
+-- rust-tools will configure and enable certain LSP features for us.
+-- See https://github.com/simrat39/rust-tools.nvim#configuration
+local rust_tools = require'rust-tools'
+rust_tools.setup({
+    tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = true,
+            other_hints_prefix = "» ",
+        },
     },
-    update_in_insert = false,
-  }
-)
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    server = {
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        }
+    },
+})
+
+-- Setup Completion
+-- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+local cmp = require'cmp'
+cmp.setup({
+  -- Enable LSP snippets
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+
+  -- Installed sources
+  sources = {
+    { name = 'buffer' },
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+    { name = 'vsnip' },
+  },
+})
 EOF

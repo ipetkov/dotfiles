@@ -25,9 +25,14 @@
       vim-toml
 
       # LSP plugins
-      nvim-lspconfig # Collection of common configurations for the Nvim LSP client
-      lsp_extensions-nvim # Extensions to built-in LSP, for example, providing type inlay hints
-      completion-nvim #" Autocompletion framework for built-in LSP
+      nvim-lspconfig  # Collection of common configurations for the Nvim LSP client
+      rust-tools-nvim # To enable more of the features of rust-analyzer, such as inlay hints and more!
+      nvim-cmp        # Completion framework
+      cmp-buffer      # completion source for buffer words
+      cmp-nvim-lsp    # completion source for builtin lsp
+      cmp-path        # completion source for paths
+      cmp-vsnip       # completion source for snippets
+      vim-vsnip       # snippet engine (required...)
 
       # Code/syntax completers/linters
       fzf-vim
