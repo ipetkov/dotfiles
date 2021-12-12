@@ -297,7 +297,8 @@ schemes:
 
     # Cursor colors
     cursor:
-      text:   '0xf9e7c4'
+      # text:   '0xf9e7c4'
+      text:   '0x06183b'
       cursor: '0xf9e7c4'
 
     # Normal colors
