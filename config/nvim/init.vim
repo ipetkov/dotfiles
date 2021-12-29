@@ -110,7 +110,7 @@ augroup auto_cmds
   autocmd BufEnter crontab* setlocal backupcopy=yes
 
   autocmd Filetype help wincmd H
-  autocmd Filetype * set formatoptions-=ro
+  autocmd Filetype * set formatoptions-=tro
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
   " Turn on spell checking and auto wrap text
