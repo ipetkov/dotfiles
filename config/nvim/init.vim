@@ -81,8 +81,8 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 nnoremap <silent> <leader>] <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
@@ -118,7 +118,7 @@ augroup auto_cmds
   autocmd Filetype gitcommit setlocal spell textwidth=72
 
   " Show diagnostic popup on cursor hold
-  autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
+  autocmd CursorHold * lua vim.diagnostic.open_float({focusable = false})
 augroup END
 
 " https://sharksforarms.dev/posts/neovim-rust/
