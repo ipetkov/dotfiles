@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   dnsPort = 53;
@@ -20,6 +20,13 @@ in
       type = lib.types.str;
       default = "9.9.9.9";
       description = "a backup DNS server for the container in case DNSMasq has problems starting";
+    };
+
+    pullAt = lib.mkOption {
+      type = lib.types.str;
+      # Pihole images are updated monthly, so run half way through the month
+      default = "*-*-15 00:00:00";
+      description = "a systemd.time(7) compatible option for how often the image should be pulled";
     };
 
     serverIP = lib.mkOption {
@@ -65,6 +72,27 @@ in
         "--dns=127.0.0.1"
         "--dns=${cfg.containerBackupDns}"
       ];
+    };
+
+    systemd.services.pihole-update-image = {
+      script = ''
+        set -e
+        ${pkgs.docker}/bin/docker pull pihole/pihole:latest
+        systemctl restart docker-pihole.service
+      '';
+
+      serviceConfig = {
+        Type = "oneshot";
+      };
+    };
+
+    systemd.timers.pihole-update-image = {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "pihole-update-image.service" ];
+      timerConfig = {
+        Persistent = true;
+        OnCalendar = cfg.pullAt;
+      };
     };
 
     networking.firewall.allowedUDPPorts = [ dnsPort ];
