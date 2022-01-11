@@ -18,6 +18,5 @@
     fd
     icdiff
     ripgrep
-    topgrade
   ];
 }

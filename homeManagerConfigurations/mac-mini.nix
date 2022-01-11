@@ -32,6 +32,8 @@
     };
   };
 
+  programs.topgrade.enabled = true;
+
   home.packages = with pkgs; [
     awscli2
     cachix
