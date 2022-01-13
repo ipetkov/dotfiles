@@ -9,6 +9,8 @@
     # mixing and matching branches.
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
+    nixos-stable.url = "nixpkgs/nixos-21.11";
+
     # For pinning our SD image installer to a known good commit.
     # Feel free to bump this to a newer commit if things still seem to keep working!
     nixpkgs-sd-image.url = "nixpkgs/34ad3ffe08adfca17fcb4e4a47bb5f3b113687be";
@@ -90,6 +92,7 @@
       rpi = mkHost {
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/rpi;
+        nixpkgs = inputs.nixos-stable;
       };
 
       tartarus = mkHost {
