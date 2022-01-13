@@ -43,7 +43,7 @@ highlight Search guifg=#ffffff guibg=#2050d0 ctermfg=white ctermbg=darkblue
 
 " "Correct" the GitGutterDelete color since jellybeans sets
 " a really dark (almost black) color for it
-highlight GitGutterDelete ctermfg=12 guifg=#ff2222
+highlight GitGutterDelete ctermfg=9 guifg=#ff2222
 
 let mapleader="\<Space>"
 nnoremap <leader>v :vsplit<CR>
