@@ -106,17 +106,19 @@ command! W w
 
 augroup auto_cmds
   autocmd!
+  " NB: hooks run in the order they were defined
+  " NB: need to split the option changes like this or else it doesn't seem to work correctly
+  autocmd Filetype * setlocal formatoptions-=t formatoptions-=r formatoptions-=o
+
   " Crontabs must usually be edited in place
   autocmd BufEnter crontab* setlocal backupcopy=yes
 
   autocmd Filetype help wincmd H
-  " NB: need to split the option changes like this or else it doesn't seem to work correctly
-  autocmd Filetype * setlocal formatoptions-=t formatoptions-=r formatoptions-=o
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
   " Turn on spell checking and auto wrap text
   autocmd Filetype markdown setlocal spell textwidth=80
-  autocmd Filetype gitcommit setlocal spell textwidth=72
+  autocmd Filetype gitcommit setlocal spell textwidth=72 formatoptions+=t
 
   " Show diagnostic popup on cursor hold
   autocmd CursorHold * lua vim.diagnostic.open_float({focusable = false})
