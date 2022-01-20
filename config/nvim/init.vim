@@ -150,6 +150,9 @@ rust_tools.setup({
                 checkOnSave = {
                     command = "clippy"
                 },
+                diagnostics = {
+                  disabled = {"inactive-code"}
+                },
             }
         }
     },
