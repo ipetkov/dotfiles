@@ -34,6 +34,7 @@ set $nag_confirm $nag --confirm
 set $nag_select  $nag --select
 
 set $exit $nag -t warning -m 'Exit sway?' -b 'Exit' 'swaymsg exit'
+set $suspend $nag -t warning -m 'Suspend?' -b 'Suspend' 'systemctl suspend'
 
 # -R is recommended for swaynag_command so that, upon a syntax error in your sway config, the
 # 'Reload Sway' option will be initially selected instead of the 'Exit Sway' option
@@ -92,6 +93,8 @@ exec swayidle -w \
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec $exit
+
+    bindsym $mod+Shift+s exec $suspend
 
 #
 # Moving around:
