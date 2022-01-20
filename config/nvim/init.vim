@@ -110,7 +110,8 @@ augroup auto_cmds
   autocmd BufEnter crontab* setlocal backupcopy=yes
 
   autocmd Filetype help wincmd H
-  autocmd Filetype * set formatoptions-=tro
+  " NB: need to split the option changes like this or else it doesn't seem to work correctly
+  autocmd Filetype * setlocal formatoptions-=t formatoptions-=r formatoptions-=o
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
   " Turn on spell checking and auto wrap text
