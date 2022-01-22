@@ -117,7 +117,7 @@ augroup auto_cmds
   autocmd BufRead,BufNewFile *.md set filetype=markdown syntax=markdown
 
   " Turn on spell checking and auto wrap text
-  autocmd Filetype markdown setlocal spell textwidth=80
+  autocmd Filetype markdown setlocal spell textwidth=80 formatoptions+=t
   autocmd Filetype gitcommit setlocal spell textwidth=72 formatoptions+=t
 
   " Show diagnostic popup on cursor hold
