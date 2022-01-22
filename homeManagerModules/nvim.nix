@@ -15,6 +15,10 @@
     withPython3 = false;
     withRuby = false;
 
+    extraPackages = with pkgs; [
+      rnix-lsp
+    ];
+
     plugins = with pkgs.vimPlugins; [
       # Git
       vim-gitgutter
