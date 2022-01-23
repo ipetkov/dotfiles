@@ -198,4 +198,13 @@ cmp.setup({
     { name = 'vsnip' },
   },
 })
+
+require('dressing').setup({
+  input = {
+    enabled = true,
+  },
+  select = {
+    enabled = true,
+  },
+})
 EOF

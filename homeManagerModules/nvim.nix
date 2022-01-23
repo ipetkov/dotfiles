@@ -43,6 +43,7 @@
 
       # Code/syntax completers/linters
       fzf-vim
+      dressing-nvim
 
       # Misc
       vim-commentary
