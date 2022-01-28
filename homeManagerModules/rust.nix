@@ -11,7 +11,8 @@
     rust-analyzer
     rustup
   ] ++ lib.lists.optionals pkgs.stdenv.isLinux (with pkgs; [
-    binutils # For some reason conflicts on darwin
+    # binutils now conflicts with clang as well, turning this off for now...
+    # binutils # For some reason conflicts on darwin
     clang # Provides `cc` for any *-sys crates
   ]);
  }
