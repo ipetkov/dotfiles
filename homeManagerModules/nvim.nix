@@ -44,6 +44,7 @@
       # Code/syntax completers/linters
       fzf-vim
       dressing-nvim
+      fidget-nvim
 
       # Misc
       vim-commentary

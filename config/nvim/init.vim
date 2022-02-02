@@ -207,4 +207,10 @@ require('dressing').setup({
     enabled = true,
   },
 })
+
+require('fidget').setup({
+  text = {
+    spinner = "moon",
+  }
+})
 EOF
