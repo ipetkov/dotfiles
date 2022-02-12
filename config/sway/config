@@ -154,10 +154,11 @@ exec swayidle -w \
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # NB: these are "inverted" if your mental model is coming from vim:
+    # for example, a horizontal split makes two windows side by side
+    # with each other (even though the division between them goes vertically)
+    bindsym $mod+b splitv
+    bindsym $mod+v splith
     bindsym $mod+z split none
 
     # Switch the current container between different layout styles
