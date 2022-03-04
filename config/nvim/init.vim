@@ -168,6 +168,9 @@ local lspconfig = require'lspconfig'
 lspconfig.rnix.setup({
 })
 
+lspconfig.tsserver.setup({
+})
+
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
 local cmp = require'cmp'

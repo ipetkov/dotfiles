@@ -17,6 +17,7 @@
 
     extraPackages = with pkgs; [
       rnix-lsp
+      nodePackages.typescript-language-server
     ];
 
     plugins = with pkgs.vimPlugins; [
