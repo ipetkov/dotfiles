@@ -54,6 +54,7 @@
   programs.dconf.enable = true;
   virtualisation.libvirtd = {
     enable = true;
+    onShutdown = "shutdown";
   };
 
   location = {
