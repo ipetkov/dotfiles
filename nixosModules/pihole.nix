@@ -15,7 +15,7 @@ in
     enable = lib.mkEnableOption "pihole service";
 
     niceness = lib.mkOption {
-      type = lib.types.ints.between -20 19;
+      type = lib.types.ints.between (-20) 19;
       default = -15;
       description = "the niceness level of the process: https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Nice=";
     };
@@ -56,6 +56,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    systemd.services."docker-pihole".serviceConfig.Nice = cfg.niceness;
     virtualisation.oci-containers.containers.pihole = {
       image = "pihole/pihole:latest";
       ports = [
