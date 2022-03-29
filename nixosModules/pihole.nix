@@ -14,6 +14,12 @@ in
   options.services.pihole = {
     enable = lib.mkEnableOption "pihole service";
 
+    niceness = lib.mkOption {
+      type = lib.types.ints.between -20 19;
+      default = -15;
+      description = "the niceness level of the process: https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Nice=";
+    };
+
     enableDHCPCap = lib.mkEnableOption "grant network capabilities for DHCP changes";
 
     containerBackupDns = lib.mkOption {
