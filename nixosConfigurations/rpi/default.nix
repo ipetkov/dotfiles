@@ -149,10 +149,10 @@
     pihole.enable = true;
     tailscale.enable = true;
 
-    # Limit the journal size to 512 MB or last 30 days of logs
+    # Limit the journal size to X MB or last Y days of logs
     journald.extraConfig = ''
-      SystemMaxUse=512M
-      MaxFileSec=30day
+      SystemMaxUse=1536M
+      MaxFileSec=60day
     '';
   };
 }
