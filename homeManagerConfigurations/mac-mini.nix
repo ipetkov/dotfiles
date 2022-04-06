@@ -32,7 +32,8 @@
     };
   };
 
-  programs.topgrade.enable = true;
+  # 8.3.0 seems broken on darwin :/
+  #programs.topgrade.enable = true;
 
   home.packages = with pkgs; [
     awscli2
