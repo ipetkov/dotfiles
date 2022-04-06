@@ -76,10 +76,8 @@
     };
 
     homeManagerConfigurations = import ./homeManagerConfigurations {
-      inherit (inputs) home-manager;
+      inherit (inputs) home-manager nixpkgs;
       inherit (self) homeManagerModules;
-
-      pkgs = import inputs.nixpkgs {};
     };
 
     nixosModules = {

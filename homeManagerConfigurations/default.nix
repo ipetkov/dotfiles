@@ -1,9 +1,13 @@
-{ pkgs, home-manager, homeManagerModules }:
+{ nixpkgs, home-manager, homeManagerModules }:
 let
   mkHmConfig = { system, username, homeDirectory, configuration, stateVersion }:
     let
       hmConfig = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs system username homeDirectory stateVersion;
+        inherit system username homeDirectory stateVersion;
+
+        pkgs = import nixpkgs {
+          inherit system;
+        };
 
         configuration = import configuration {
           inherit homeManagerModules;
