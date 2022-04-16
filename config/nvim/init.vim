@@ -53,7 +53,7 @@ nnoremap <leader>n :GitGutterNextHunk<CR>
 nnoremap <leader>p :GitGutterPrevHunk<CR>
 nnoremap <leader>h :set hlsearch!<CR>
 nnoremap <leader>rc :vsplit $MYVIMRC<CR>
-nnoremap <Leader>l :lclose<CR>
+nnoremap <Leader>l :lclose<CR>:cclose<CR>
 
 " Bring back (old) Y -> yy behavior
 " old habits die hard...
