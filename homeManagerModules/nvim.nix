@@ -44,10 +44,7 @@ in
 
           # Color themes/syntax highlighting
           jellybeans-vim
-          rust-vim
-          vim-fish
-          vim-nix
-          vim-toml
+          rust-vim # Also makes things work like formatting and cargo integration
 
           # LSP plugins
           nvim-lspconfig  # Collection of common configurations for the Nvim LSP client
@@ -67,6 +64,40 @@ in
           # Misc
           vim-commentary
           vim-easy-align
+
+          (nvim-treesitter.withPlugins (plugins: with pkgs.tree-sitter-grammars; [
+            tree-sitter-bash
+            tree-sitter-c
+            tree-sitter-comment
+            tree-sitter-cpp
+            tree-sitter-css
+            tree-sitter-dockerfile
+            tree-sitter-dot
+            tree-sitter-fish
+            tree-sitter-go
+            tree-sitter-gomod
+            tree-sitter-html
+            tree-sitter-http
+            tree-sitter-java
+            tree-sitter-javascript
+            tree-sitter-jsdoc
+            tree-sitter-json
+            tree-sitter-json5
+            tree-sitter-kotlin
+            tree-sitter-lua
+            tree-sitter-make
+            tree-sitter-markdown
+            tree-sitter-nix
+            tree-sitter-python
+            tree-sitter-regex
+            tree-sitter-rust
+            tree-sitter-scss
+            tree-sitter-swift
+            tree-sitter-toml
+            tree-sitter-typescript
+            tree-sitter-vim
+            tree-sitter-yaml
+          ]))
         ];
 
         extraConfig = builtins.readFile ../config/nvim/init.vim;
