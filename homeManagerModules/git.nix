@@ -1,8 +1,16 @@
 { pkgs, ... }:
+let
+  inherit (pkgs) git stdenv;
+  inherit (stdenv) isDarwin;
+in
 {
   programs.git = {
     enable = true;
-    package = pkgs.gitFull;
+    package = git.override {
+      guiSupport = !isDarwin; # Tcl/tk stuff is currently broken on darwin
+      withSsh = !isDarwin; # Use Apple specific ssh build on darwin (e.g. keychain support etc.)
+      withLibsecret = !isDarwin;
+    };
 
     ignores = [
       "*~"
