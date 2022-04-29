@@ -111,7 +111,7 @@
   environment.systemPackages = with pkgs; [
     bash
     fish
-    git
+    gitMinimal
     htop
     pavucontrol
     vim
