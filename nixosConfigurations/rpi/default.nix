@@ -88,7 +88,7 @@
   environment.systemPackages = with pkgs; [
     bash
     fish
-    git
+    gitMinimal
     htop
     vim
   ];
