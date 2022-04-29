@@ -45,7 +45,7 @@ jobs:
       run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/packages.nix
 
     - name: build home-manager configurations
-      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/homeManagerConfigurations.nix
+      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/homeConfigurations.nix
 
     - name: build system definitions
       run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/systems.nix

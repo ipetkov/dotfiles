@@ -81,7 +81,7 @@
       taskwarrior = import ./homeManagerModules/taskwarrior.nix;
     };
 
-    homeManagerConfigurations = import ./homeManagerConfigurations {
+    homeConfigurations = import ./homeConfigurations {
       inherit (inputs) home-manager nixpkgs;
       inherit (self) homeManagerModules;
     };
