@@ -45,6 +45,7 @@
   # Allows "wheel" users to not need to type a password to get sudo.
   # Useful for doing remote deployments without having an ssh key for root.
   security.sudo.wheelNeedsPassword = false;
+  security.polkit.enable = false; # Unused, trim some fat
 
   nix = {
     optimise.automatic = true;
@@ -148,6 +149,7 @@
     openssh.enable = true;
     pihole.enable = true;
     tailscale.enable = true;
+    udisks2.enable = false; # Unused, trim some fat
 
     # Limit the journal size to X MB or last Y days of logs
     journald.extraConfig = ''
