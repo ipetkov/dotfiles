@@ -36,7 +36,7 @@ jobs:
 
     - name: install QEMU/binfmt
       if: ${{ matrix.qemuPlatforms != '' }}
-      uses: docker/setup-qemu-action@v1
+      uses: docker/setup-qemu-action@v2
       with:
         image: tonistiigi/binfmt:latest
         platforms: ${{ matrix.qemuPlatforms }}
