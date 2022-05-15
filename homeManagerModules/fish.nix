@@ -19,7 +19,6 @@
 
     shellAliases = {
       ll = "exa -la";
-      cat = "bat";
     };
 
     plugins = [
