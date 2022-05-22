@@ -83,7 +83,7 @@ in
             tree-sitter-jsdoc
             tree-sitter-json
             tree-sitter-json5
-            tree-sitter-kotlin
+            /* tree-sitter-kotlin */
             tree-sitter-lua
             tree-sitter-make
             tree-sitter-markdown
@@ -92,7 +92,7 @@ in
             tree-sitter-regex
             tree-sitter-rust
             tree-sitter-scss
-            tree-sitter-swift
+            /* tree-sitter-swift */
             tree-sitter-toml
             tree-sitter-typescript
             tree-sitter-vim
