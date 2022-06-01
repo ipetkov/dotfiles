@@ -173,6 +173,11 @@ rust_tools.setup({
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
+        before_init = function(initialize_params, config)
+          -- Override clippy to run in its own directory to avoid clobbering caches
+          local target_dir = config.root_dir .. "/target/ide-clippy";
+          table.insert(config.settings["rust-analyzer"].checkOnSave.extraArgs, "--target-dir=" .. target_dir);
+        end,
         settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -183,7 +188,8 @@ rust_tools.setup({
                 -- enable clippy on save
                 checkOnSave = {
                     allTargets = true,
-                    command = "clippy"
+                    command = "clippy",
+                    extraArgs = {},
                 },
                 diagnostics = {
                   disabled = {"inactive-code"}
