@@ -36,7 +36,7 @@
   #programs.topgrade.enable = true;
 
   home.packages = with pkgs; [
-    awscli2
+    /* awscli2 */
     cachix
     fortune
     watch
