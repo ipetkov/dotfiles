@@ -9,6 +9,8 @@ on:
 jobs:
   tests:
     strategy:
+      # Allow other jobs to finish building and cache properly before bailing
+      fail-fast: false
       matrix:
         include:
           - os: macos-10.15
