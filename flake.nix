@@ -9,7 +9,7 @@
     # mixing and matching branches.
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
-    nixos-stable.url = "nixpkgs/nixos-21.11";
+    nixos-stable.url = "nixpkgs/nixos-22.05";
 
     # For pinning our SD image installer to a known good commit.
     # Feel free to bump this to a newer commit if things still seem to keep working!
