@@ -56,12 +56,13 @@ in
           cmp-vsnip       # completion source for snippets
           vim-vsnip       # snippet engine (required...)
 
-          # Code/syntax completers/linters
-          fzf-vim
+          # Diagnostics
           dressing-nvim
+          trouble-nvim
           fidget-nvim
 
           # Misc
+          fzf-vim
           vim-commentary
           vim-easy-align
 
