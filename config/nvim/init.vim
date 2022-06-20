@@ -85,8 +85,7 @@ nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
 
 nnoremap <silent> <leader>q <cmd>lua vim.diagnostic.setqflist()<CR>
-" nnoremap <silent> <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <leader>f :RustFmt<CR>
+nnoremap <silent> <leader>f <cmd>lua vim.lsp.buf.formatting()<CR>
 
 nnoremap <silent> <leader>] <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
