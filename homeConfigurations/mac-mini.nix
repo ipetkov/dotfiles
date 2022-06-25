@@ -36,8 +36,9 @@
   #programs.topgrade.enable = true;
 
   home.packages = with pkgs; [
+    # Broken on darwin atm :(
     /* awscli2 */
-    cachix
+    /* cachix */
     fortune
     watch
   ];
@@ -45,6 +46,9 @@
   home.sessionVariables = {
     HOMEBREW_NO_ANALYTICS = "1";
   };
+
+  # Build deps require ghc which is broken on darwin atm
+  programs.exa.enable = false;
 
   programs.fish = {
     shellInit = ''
