@@ -1,22 +1,21 @@
 { nixpkgs, home-manager, homeManagerModules }:
 let
-  mkHmConfig = { system, username, homeDirectory, configuration, stateVersion }:
-    let
-      hmConfig = home-manager.lib.homeManagerConfiguration {
-        inherit system username homeDirectory stateVersion;
+  mkHmConfig = { system, username, homeDirectory, configuration, stateVersion }: home-manager.lib.homeManagerConfiguration {
+    pkgs = import nixpkgs {
+      inherit system;
+    };
 
-        pkgs = import nixpkgs {
-          inherit system;
+    modules = [
+      (import configuration {
+        inherit homeManagerModules;
+      })
+      {
+        home = {
+          inherit homeDirectory stateVersion username;
         };
-
-        configuration = import configuration {
-          inherit homeManagerModules;
-        };
-      };
-    in 
-    # Append the original configuration so others can
-    # potentially inherit/override it
-    hmConfig // { module = configuration; };
+      }
+    ];
+  };
 in
 {
   mac-mini = mkHmConfig {
