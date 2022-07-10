@@ -24,6 +24,7 @@ in
     };
 
     extraConfig = {
+      blame.ignoreRevsFile = ".git-blame-ignore-revs";
       core.autoctrlf = "input";
       merge.conflictstyle = "diff3";
       pull.ff = "only";
