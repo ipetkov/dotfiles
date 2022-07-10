@@ -128,6 +128,7 @@
 
   # Stop additional documentation, etc. from being generated
   documentation.enable = false; # Man cache takes forever to build
+  documentation.man.enable = false; # Man cache takes forever to build
   documentation.doc.enable = false;
   documentation.info.enable = false;
   documentation.nixos.enable = false;
