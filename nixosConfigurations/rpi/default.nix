@@ -91,7 +91,6 @@
 
   environment.systemPackages = with pkgs; [
     bash
-    fish
     gitMinimal
     htop
     vim
@@ -105,18 +104,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
 
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      function fish_greeting
-      end
-    '';
-  };
-
   users.users.ivan = {
     isNormalUser = true;
     home = "/home/ivan";
-    shell = pkgs.fish;
     extraGroups = [
       "wheel" # Enable sudo
       "disk"
