@@ -47,6 +47,9 @@
   security.sudo.wheelNeedsPassword = false;
   security.polkit.enable = false; # Unused, trim some fat
 
+  # Copying nixpkgs-source causes a big I/O penalty on SD card writes, so skip it
+  dotfiles.nix.enableSetNixPathAndFlakeRegistry = false;
+
   nix = {
     optimise.automatic = true;
 
