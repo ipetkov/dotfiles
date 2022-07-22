@@ -7,6 +7,7 @@
   # The specific version of nixpkgs we should use for instantiating the system,
   # allowing downstream consumers to change it if necessary.
 , nixpkgs ? inputs.nixpkgs
+, includeHomeManager ? true
 }:
 
 let
@@ -43,7 +44,6 @@ nixpkgs.lib.nixosSystem {
 
   modules = [
     ../nixosModules/nixConfig.nix
-    homeManagerModule
     rootConfig
-  ];
+  ] ++ lib.lists.optional includeHomeManager homeManagerModule;
 }
