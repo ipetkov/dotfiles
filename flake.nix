@@ -97,6 +97,7 @@
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/rpi;
         nixpkgs = inputs.nixos-stable;
+        includeHomeManager = false;
       };
 
       tartarus = mkHost {
