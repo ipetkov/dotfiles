@@ -7,6 +7,7 @@ set ignorecase                            " when smartcase and ignore case are b
 set incsearch                             " start search while typing
 set laststatus=2                          " always display the statusline
 set lazyredraw                            " redraw only when needed, get speedup from not redrawing during macros
+set mouse=""                              " Set the old mouse behavior I'm used to
 set sessionoptions-=options               " Don't save options, see if this fixes problems with session restoration
 set shortmess+=c                          " Avoid showing extra messages when using completion
 set showcmd                               " show the (currently pending) command at bottom right
