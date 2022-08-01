@@ -115,6 +115,7 @@ endfunction
 
 " Treat :W as :w for when typos happen
 command! W w
+command! Wa wa
 
 augroup auto_cmds
   autocmd!
