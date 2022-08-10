@@ -102,11 +102,11 @@ nnoremap <silent> <a-cr> <cmd>lua vim.lsp.buf.code_action()<CR>
 
 " Trouble keybinds
 nnoremap <leader>xx <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
-nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+nnoremap <leader>xw <cmd>Trouble workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>Trouble document_diagnostics<cr>
+nnoremap <leader>xq <cmd>Trouble quickfix<cr>
+nnoremap <leader>xl <cmd>Trouble loclist<cr>
+nnoremap gR <cmd>Trouble lsp_references<cr>
 
 function! s:check_back_space() abort
     let col = col('.') - 1
