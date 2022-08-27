@@ -171,7 +171,6 @@ local rust_tools = require'rust-tools'
 rust_tools.setup({
     tools = {
         autoSetHints = true,
-        hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = true,
             other_hints_prefix = "» ",
