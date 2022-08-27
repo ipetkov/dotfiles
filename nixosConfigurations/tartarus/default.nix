@@ -9,7 +9,7 @@
       ../../users/ops.nix
     ];
 
-   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -131,9 +131,14 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoSnapshot.enable = true;
-  services.zfs.trim.enable = true;
+  services.zfs = {
+    autoScrub = {
+      enable = true;
+      interval = "monthly";
+    };
+    autoSnapshot.enable = true;
+    trim.enable = true;
+  };
 
   services.tailscale.enable = true;
 
