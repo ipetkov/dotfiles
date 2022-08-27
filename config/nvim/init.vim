@@ -183,8 +183,25 @@ rust_tools.setup({
     server = {
         before_init = function(initialize_params, config)
           -- Override clippy to run in its own directory to avoid clobbering caches
+          -- but only if target-dir isn't already set in either the command or the extraArgs
+          local checkOnSave = config.settings["rust-analyzer"].checkOnSave;
+
+          -- Lua apparently interprets `-` as a pattern and writing `%-` escapes it(!)
+          local needle = "%-%-target%-dir";
+
+          if string.find(checkOnSave.command, needle) then
+            return
+          end
+
+          local extraArgs = checkOnSave.extraArgs;
+          for k, v in pairs(extraArgs) do
+            if string.find(v, needle) then
+              return
+            end
+          end
+
           local target_dir = config.root_dir .. "/target/ide-clippy";
-          table.insert(config.settings["rust-analyzer"].checkOnSave.extraArgs, "--target-dir=" .. target_dir);
+          table.insert(extraArgs, "--target-dir=" .. target_dir);
         end,
         settings = {
             -- to enable rust-analyzer settings visit:
