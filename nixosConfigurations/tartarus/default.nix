@@ -6,7 +6,6 @@
       ./hardware-configuration.nix
       ../../nixosModules/tailscale.nix
       ../../users/ivan/default.nix
-      ../../users/ops.nix
     ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -141,11 +140,6 @@
   };
 
   services.tailscale.enable = true;
-
-  users.groups.ops.members = [
-    "ivan"
-    "ops"
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
