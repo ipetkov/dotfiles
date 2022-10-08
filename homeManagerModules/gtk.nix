@@ -7,7 +7,7 @@
     gtk3 # for managing settings
 
     hicolor-icon-theme # base icons
-    gnome3.adwaita-icon-theme # standard default theme
+    gnome.adwaita-icon-theme # standard default theme
     nordic # popular dark theme
   ];
 }
