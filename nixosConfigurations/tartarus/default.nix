@@ -109,6 +109,7 @@
 
   environment.systemPackages = with pkgs; [
     bash
+    dnsutils
     fish
     gitMinimal
     htop
