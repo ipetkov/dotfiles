@@ -10,6 +10,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nixos-stable.url = "nixpkgs/nixos-22.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # For pinning our SD image installer to a known good commit.
     # Feel free to bump this to a newer commit if things still seem to keep working!
@@ -93,6 +94,13 @@
     };
 
     nixosConfigurations = {
+      asphodel = mkHost {
+        system = systemLinuxArm;
+        nixpkgs = inputs.nixos-stable;
+        rootConfig = ./nixosConfigurations/asphodel;
+        includeHomeManager = false;
+      };
+
       rpi = mkHost {
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/rpi;

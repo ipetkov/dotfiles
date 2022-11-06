@@ -40,7 +40,10 @@ in
           persistent = true;
         };
 
-        optimise.dates = [ "monthly" ];
+        optimise = {
+          automatic = true;
+          dates = [ "monthly" ];
+        };
       };
     })
 

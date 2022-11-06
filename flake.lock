@@ -116,6 +116,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1667585378,
+        "narHash": "sha256-cvOwucrjBaAkaGk3FunG+MQiwiSBeIVTtO5n/YavpC0=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "6b35a59c19ddbbeb229fcd1d3dcd422dcc0fa927",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixos-stable": {
       "locked": {
         "lastModified": 1669249876,
@@ -167,6 +182,7 @@
         "flake-compat": "flake-compat",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nixos-hardware": "nixos-hardware",
         "nixos-stable": "nixos-stable",
         "nixpkgs": "nixpkgs",
         "nixpkgs-sd-image": "nixpkgs-sd-image"

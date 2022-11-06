@@ -63,7 +63,7 @@ The disk has four partitions, and here is the final result:
      blocks by moving writes around. But if the drive fills up, the speed and
      health of the drive will decrease. By never mounting this dataset, and
      asking ZFS to ensure there is always 100 GiB available for it, I'm
-     effecitvely capping the disk at 90%).
+     effectively capping the disk at 90%).
    * `/system` - dataset for mounting `/root` and `/var`. This dataset is
      regularly snapshotted so I can rollback in case something catastrophic
      happens. I have not yet decided to [erase my
