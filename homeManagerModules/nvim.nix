@@ -67,7 +67,7 @@ in
           vim-easy-align
 
           (nvim-treesitter.withPlugins (plugins: with pkgs.tree-sitter-grammars; [
-            tree-sitter-bash
+            /* tree-sitter-bash */
             tree-sitter-c
             tree-sitter-comment
             tree-sitter-cpp
