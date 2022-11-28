@@ -36,6 +36,10 @@
     };
   };
 
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    cryptsetup close cryptkey
+  '';
+
   fileSystems."/" =
     { device = "nvme-pool/system/root";
       fsType = "zfs";
