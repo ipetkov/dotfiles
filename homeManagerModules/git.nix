@@ -26,6 +26,7 @@ in
     extraConfig = {
       blame.ignoreRevsFile = ".git-blame-ignore-revs";
       core.autoctrlf = "input";
+      init.defaultBranch = "main";
       merge.conflictstyle = "diff3";
       pull.ff = "only";
       push.default = "matching";
