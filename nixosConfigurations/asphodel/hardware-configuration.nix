@@ -36,6 +36,19 @@
         cryptsetup close cryptkey
         zfs rollback -r phlegethon/local/root@blank && echo blanked out root
       '';
+
+      # Support remote unlock
+      network = {
+        enable = true;
+        ssh = {
+          enable = true;
+          authorizedKeys = config.users.users.ivan.openssh.authorizedKeys.keys;
+          hostKeys = [
+            # Note this file lives on the host itself, and isn't passed in by the deployer
+            "/persist/etc/ssh/initrd_ssh_host_ed25519_key"
+          ];
+        };
+      };
     };
 
     loader = {
@@ -64,6 +77,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/0F92-BECC";
       fsType = "vfat";
+      options = [ "noatime" ];
     };
 
     "/home/ivan" = {
