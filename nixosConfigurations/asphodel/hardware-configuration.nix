@@ -49,7 +49,9 @@
           ];
 
           # Nice little reminder to ourselves on how to unlock
-          extraConfig = ["Banner Run `cryptsetup-askpass` to unlock"];
+          extraConfig = ''
+            Banner Run `cryptsetup-askpass` to unlock
+          '';
         };
       };
     };
