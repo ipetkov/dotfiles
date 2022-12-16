@@ -47,6 +47,9 @@
             # Note this file lives on the host itself, and isn't passed in by the deployer
             "/persist/etc/ssh/initrd_ssh_host_ed25519_key"
           ];
+
+          # Nice little reminder to ourselves on how to unlock
+          extraConfig = ["Banner Run `cryptsetup-askpass` to unlock"];
         };
       };
     };
