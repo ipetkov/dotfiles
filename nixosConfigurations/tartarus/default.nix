@@ -51,10 +51,10 @@
   # };
 
   programs.dconf.enable = true;
-  virtualisation.libvirtd = {
-    enable = true;
-    onShutdown = "shutdown";
-  };
+  /* virtualisation.libvirtd = { */
+  /*   enable = true; */
+  /*   onShutdown = "shutdown"; */
+  /* }; */
 
   location = {
     provider = "manual";
@@ -115,7 +115,7 @@
     htop
     pavucontrol
     vim
-    virt-manager
+    /* virt-manager */
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
