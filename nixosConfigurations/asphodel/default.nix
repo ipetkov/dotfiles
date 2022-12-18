@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
+    ../../nixosModules/photoprism.nix
     ../../nixosModules/tailscale.nix
   ];
 
@@ -33,7 +34,15 @@
   ];
 
   services = {
+    nginx.enable = true;
     openssh.enable = true;
+
+    photoprism = {
+      enable = true;
+      additionalHardwareDevices = [ "/dev/video11" ];
+      ffmpegEncoder = "raspberry";
+    };
+
     tailscale.enable = true;
     zfs = {
       autoScrub = {

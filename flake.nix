@@ -89,6 +89,7 @@
 
     nixosModules = {
       nixConfig = import ./nixosModules/nixConfig.nix;
+      photoprism = import ./nixosModules/photoprism.nix;
       pihole = import ./nixosModules/pihole.nix;
       tailscale = import ./nixosModules/tailscale.nix;
     };
