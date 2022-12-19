@@ -8,6 +8,7 @@
     "sway/window"
   ],
   "modules-right": [
+    "tray",
     "idle_inhibitor",
     "pulseaudio",
     "cpu",
@@ -64,6 +65,9 @@
       ]
     },
     "on-click": "pavucontrol"
+  },
+  "tray": {
+    "spacing": 10
   },
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
