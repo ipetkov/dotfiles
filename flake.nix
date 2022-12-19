@@ -88,6 +88,7 @@
     };
 
     nixosModules = {
+      _1password = import ./nixosModules/_1password.nix;
       nixConfig = import ./nixosModules/nixConfig.nix;
       photoprism = import ./nixosModules/photoprism.nix;
       pihole = import ./nixosModules/pihole.nix;

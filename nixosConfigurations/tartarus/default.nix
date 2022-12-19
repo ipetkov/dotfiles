@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../../nixosModules/_1password.nix
       ../../nixosModules/tailscale.nix
       ../../users/ivan/default.nix
     ];

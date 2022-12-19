@@ -296,3 +296,5 @@ exec "systemctl --user import-environment; systemctl --user start sway-session.t
 #
 exec "firefox"
 exec "Discord"
+
+@polkit_agent_start@

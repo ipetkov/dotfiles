@@ -13,7 +13,10 @@ in
   ];
 
   xdg.configFile."mako/config".source = ../config/mako/config;
-  xdg.configFile."sway/config".source = ../config/sway/config;
+  xdg.configFile."sway/config".source = pkgs.runCommand "swayconfig" { } ''
+    export polkit_agent_start="exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+    substituteAll ${../config/sway/config} $out
+  '';
   xdg.configFile."waybar/config".source = ../config/waybar/config;
 
   home.packages = with pkgs; [
