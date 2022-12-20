@@ -181,9 +181,10 @@ in
             # Indexing photos can take a while, raise the timeout here so
             # the client doesn't think the upload has failed
             proxy_read_timeout 30m;
-            # Turn off enforcing max payload size, otherwise large photos
-            # can fail to upload
-            client_max_body_size 0;
+
+            # Extra settings from https://docs.photoprism.app/getting-started/advanced/nginx-proxy-setup/
+            client_max_body_size 500M;
+            proxy_buffering off;
           '';
         };
       };
