@@ -43,7 +43,7 @@ in
           vim-fugitive
 
           # Color themes/syntax highlighting
-          jellybeans-vim
+          kanagawa-nvim
           rust-vim # Also makes things work like formatting and cargo integration
 
           # LSP plugins
