@@ -37,13 +37,6 @@ endif
 
 highlight clear SignColumn " NB: enforce this *after* color scheme
 
-" Borrow the search hilight from the darkblue theme
-highlight Search guifg=#ffffff guibg=#2050d0 ctermfg=white ctermbg=darkblue
-
-" "Correct" the GitGutterDelete color since jellybeans sets
-" a really dark (almost black) color for it
-highlight GitGutterDelete ctermfg=9 guifg=#ff2222
-
 let mapleader="\<Space>"
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>t :tabe<CR>
