@@ -39,7 +39,7 @@
     };
   };
 
-  programs.neovim.useNightly = true;
+  programs.neovim.useNightly = false;
   programs.topgrade.enable = true;
 
   home.sessionVariables = {
