@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  dnsPort = 53;
+  defaultDnsPort = 53;
   httpDefaultPort = 80;
   cfg = config.services.pihole;
 
@@ -26,6 +26,15 @@ in
       type = lib.types.str;
       default = "9.9.9.9";
       description = "a backup DNS server for the container in case DNSMasq has problems starting";
+    };
+
+    hostDnsPort = lib.mkOption {
+      type = lib.types.port;
+      default = defaultDnsPort;
+      defaultText = toString defaultDnsPort;
+      description = ''
+        the (host) port that will be mapped to the docker image's DNS port
+      '';
     };
 
     pullAt = lib.mkOption {
@@ -60,8 +69,8 @@ in
     virtualisation.oci-containers.containers.pihole = {
       image = "pihole/pihole:latest";
       ports = [
-        "${toString dnsPort}:${toString dnsPort}/udp"
-        "${toString dnsPort}:${toString dnsPort}/tcp"
+        "${toString cfg.hostDnsPort}:${toString defaultDnsPort}/udp"
+        "${toString cfg.hostDnsPort}:${toString defaultDnsPort}/tcp"
         "${toString cfg.webPort}:${toString cfg.webPort}/tcp"
       ];
       volumes = [
@@ -73,12 +82,11 @@ in
         WEB_PORT = "${toString cfg.webPort}";
       };
       extraOptions = [
-        # Allocate a port in the host's network space so ports opened in the firewall work
-        "--network=host"
         "--cap-add=${networkCapability}"
-        "--dns=127.0.0.1"
         "--dns=${cfg.containerBackupDns}"
-      ];
+      ]
+      # Allocate a port in the host's network space so ports opened in the firewall work
+      ++ (lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) "--network=host");
     };
 
     systemd.services.pihole-update-image = {
@@ -102,8 +110,13 @@ in
       };
     };
 
-    networking.firewall.allowedUDPPorts = [ dnsPort ];
-    networking.firewall.allowedTCPPorts = [ dnsPort ]
+    # Only open up the hostDnsPort if it's the default DNS port
+    # otherwise let the caller sort it out
+    networking.firewall.allowedUDPPorts =
+      lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) cfg.hostDnsPort;
+    networking.firewall.allowedTCPPorts =
+      (lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) cfg.hostDnsPort)
+
       # Only open up the web port if its the default HTTP port. Otherwise
       # if a different port has been configured, leave it up to the caller if
       # they want to expose the port directly (or use a reverse proxy, etc.).
