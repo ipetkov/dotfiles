@@ -36,8 +36,7 @@
   #programs.topgrade.enable = true;
 
   home.packages = with pkgs; [
-    # Broken on darwin atm :(
-    /* awscli2 */
+    awscli2
     /* cachix */
     fortune
     watch
