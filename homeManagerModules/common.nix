@@ -16,7 +16,6 @@
 
   home.packages = with pkgs; [
     fd
-    icdiff
     ripgrep
   ];
 }
