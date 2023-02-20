@@ -16,25 +16,41 @@
     # Feel free to bump this to a newer commit if things still seem to keep working!
     nixpkgs-sd-image.url = "nixpkgs/34ad3ffe08adfca17fcb4e4a47bb5f3b113687be";
 
-    flake-compat = {
-      url = "github:edolstra/flake-compat";
-      flake = false;
-    };
-
     bass = {
       url = "github:edc/bass";
       flake = false;
     };
 
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.flake-compat.follows = "flake-compat";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-pibox = {
+      url = "github:ipetkov/nixos-pibox";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+        flake-utils.follows = "flake-utils";
+      };
     };
   };
 

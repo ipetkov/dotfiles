@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -6,7 +6,14 @@
     ./persist.nix
     ../../nixosModules/photoprism.nix
     ../../nixosModules/tailscale.nix
+    inputs.nixos-pibox.nixosModules.default
   ];
+
+  nixpkgs = {
+    overlays = [
+      inputs.nixos-pibox.overlays.default
+    ];
+  };
 
   networking = {
     hostName = "asphodel";
@@ -49,6 +56,9 @@
       additionalHardwareDevices = [ "/dev/video11" ];
       ffmpegEncoder = "raspberry";
     };
+
+    piboxPwmFan.enable = true;
+    piboxFramebuffer.enable = true;
 
     tailscale.enable = true;
     zfs = {

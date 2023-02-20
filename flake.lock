@@ -34,6 +34,21 @@
     },
     "flake-utils": {
       "locked": {
+        "lastModified": 1676283394,
+        "narHash": "sha256-XX2f9c3iySLCw54rJ/CZs+ZK6IQy7GXNY4nSOyu2QG4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "3db36a8b464d0c4532ba1c7dda728f4576d6d073",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "locked": {
         "lastModified": 1667395993,
         "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
         "owner": "numtide",
@@ -52,7 +67,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "utils": "utils"
+        "utils": [
+          "flake-utils"
+        ]
       },
       "locked": {
         "lastModified": 1676367705,
@@ -70,7 +87,7 @@
     },
     "neovim-flake": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "neovim-nightly-overlay",
           "nixpkgs"
@@ -131,6 +148,34 @@
         "type": "github"
       }
     },
+    "nixos-pibox": {
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pibox-framebuffer": "pibox-framebuffer",
+        "pibox-os": "pibox-os"
+      },
+      "locked": {
+        "lastModified": 1676514012,
+        "narHash": "sha256-E7yfys/6NAgek8Q+94zm5NNeQpr2O40v7QwGVME0XNQ=",
+        "owner": "ipetkov",
+        "repo": "nixos-pibox",
+        "rev": "ec0bcc9d3f27153861e1ebd28e956606b9f3c5a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "nixos-pibox",
+        "type": "github"
+      }
+    },
     "nixos-stable": {
       "locked": {
         "lastModified": 1676546582,
@@ -176,31 +221,50 @@
         "type": "indirect"
       }
     },
+    "pibox-framebuffer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665542891,
+        "narHash": "sha256-EasNizKF+WyOCu2c3biwsPBgMdVXZ5TxtVPOzn1B6ms=",
+        "owner": "kubesail",
+        "repo": "pibox-framebuffer",
+        "rev": "aa6cddd67553c2ac63360a03943fd0b4b11394d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kubesail",
+        "repo": "pibox-framebuffer",
+        "type": "github"
+      }
+    },
+    "pibox-os": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670762146,
+        "narHash": "sha256-u/yqTwt7eJ8entHSXBKHDO512PuR0Wf8s4QO4FKy7uo=",
+        "owner": "kubesail",
+        "repo": "pibox-os",
+        "rev": "d6f693f1ceb13168392b9b20cbe7d15efff1ebac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kubesail",
+        "repo": "pibox-os",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "bass": "bass",
         "flake-compat": "flake-compat",
+        "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",
+        "nixos-pibox": "nixos-pibox",
         "nixos-stable": "nixos-stable",
         "nixpkgs": "nixpkgs",
         "nixpkgs-sd-image": "nixpkgs-sd-image"
-      }
-    },
-    "utils": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
       }
     }
   },
