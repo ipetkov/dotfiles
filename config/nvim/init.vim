@@ -210,6 +210,9 @@ rust_tools.setup({
                 diagnostics = {
                   disabled = {"inactive-code"}
                 },
+                procMacro = {
+                    enable = true,
+                },
             }
         }
     },
