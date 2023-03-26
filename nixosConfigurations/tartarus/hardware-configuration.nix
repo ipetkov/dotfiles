@@ -64,6 +64,8 @@
 
   swapDevices = [ ];
 
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
+  # Bring back previous font look: https://github.com/NixOS/nixpkgs/issues/222805
+  fonts.fonts = [
+    pkgs.xorg.fontmiscmisc
+  ];
 }
