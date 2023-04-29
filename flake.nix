@@ -106,7 +106,6 @@
     nixosModules = {
       _1password = import ./nixosModules/_1password.nix;
       nixConfig = import ./nixosModules/nixConfig.nix;
-      photoprism = import ./nixosModules/photoprism.nix;
       pihole = import ./nixosModules/pihole.nix;
       tailscale = import ./nixosModules/tailscale.nix;
     };
@@ -114,7 +113,6 @@
     nixosConfigurations = {
       asphodel = mkHost {
         system = systemLinuxArm;
-        nixpkgs = inputs.nixos-stable;
         rootConfig = ./nixosConfigurations/asphodel;
         includeHomeManager = false;
       };

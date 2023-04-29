@@ -106,11 +106,6 @@
       fsType = "zfs";
       neededForBoot = true;
     };
-
-    "/var/lib/private/photoprism" = {
-      device = "phlegethon/persist/photoprism";
-      fsType = "zfs";
-    };
   };
 
   swapDevices = [

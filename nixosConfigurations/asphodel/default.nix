@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
-    ../../nixosModules/photoprism.nix
     ../../nixosModules/tailscale.nix
     inputs.nixos-pibox.nixosModules.default
   ];
@@ -50,12 +49,6 @@
     };
 
     openssh.enable = true;
-
-    photoprism = {
-      enable = true;
-      additionalHardwareDevices = [ "/dev/video11" ];
-      ffmpegEncoder = "raspberry";
-    };
 
     piboxPwmFan.enable = true;
     piboxFramebuffer.enable = true;
