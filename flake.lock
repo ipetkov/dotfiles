@@ -143,21 +143,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-sd-image": {
-      "locked": {
-        "lastModified": 1634782485,
-        "narHash": "sha256-psfh4OQSokGXG0lpq3zKFbhOo3QfoeudRcaUnwMRkQo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "34ad3ffe08adfca17fcb4e4a47bb5f3b113687be",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "rev": "34ad3ffe08adfca17fcb4e4a47bb5f3b113687be",
-        "type": "indirect"
-      }
-    },
     "pibox-framebuffer": {
       "flake": false,
       "locked": {
@@ -199,8 +184,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-pibox": "nixos-pibox",
         "nixos-stable": "nixos-stable",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-sd-image": "nixpkgs-sd-image"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
