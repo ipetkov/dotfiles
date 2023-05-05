@@ -37,12 +37,6 @@
       };
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-pibox = {
       url = "github:ipetkov/nixos-pibox";
       inputs = {

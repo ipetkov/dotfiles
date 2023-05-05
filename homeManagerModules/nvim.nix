@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkIf mkMerge mkEnableOption;
   cfg = config.programs.neovim;
@@ -7,18 +7,7 @@ in
   # Ensure we pull in fzf for our fzf plugin below
   imports = [ ./fzf.nix ];
 
-  options = {
-    programs.neovim.useNightly = lib.mkEnableOption {
-      description = "use neovim-nightly build";
-    };
-  };
-
   config = mkMerge [
-    (mkIf cfg.useNightly {
-      nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
-      programs.neovim.package = pkgs.neovim-nightly;
-    })
-
     ({
       home.sessionVariables = {
         EDITOR = "vim";
