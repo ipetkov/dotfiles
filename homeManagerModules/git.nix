@@ -6,11 +6,6 @@ in
 {
   programs.git = {
     enable = true;
-    package = git.override {
-      guiSupport = !isDarwin; # Tcl/tk stuff is currently broken on darwin
-      withSsh = !isDarwin; # Use Apple specific ssh build on darwin (e.g. keychain support etc.)
-      withLibsecret = !isDarwin;
-    };
 
     ignores = [
       "*~"
