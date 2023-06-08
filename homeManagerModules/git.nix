@@ -1,11 +1,12 @@
 { pkgs, ... }:
 let
-  inherit (pkgs) git stdenv;
+  inherit (pkgs) git gitFull stdenv;
   inherit (stdenv) isDarwin;
 in
 {
   programs.git = {
     enable = true;
+    package = if isDarwin then git else gitFull;
 
     ignores = [
       "*~"
