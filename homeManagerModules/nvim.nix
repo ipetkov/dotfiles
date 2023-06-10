@@ -58,7 +58,7 @@ in
           (nvim-treesitter.withPlugins (plugins: with pkgs.tree-sitter-grammars; [
             /* tree-sitter-bash */
             tree-sitter-c
-            tree-sitter-comment
+            /* tree-sitter-comment */
             tree-sitter-cpp
             tree-sitter-css
             tree-sitter-dockerfile
