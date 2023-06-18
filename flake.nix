@@ -10,7 +10,12 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     nixos-stable.url = "nixpkgs/nixos-22.11";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # Pinned to before the rpi-kernel version >= 6.1 assertion was added
+    nixos-hardware.url = "github:NixOS/nixos-hardware/fb1317948339713afa82a775a8274a91334f6182";
+    # Kernel and firmware were updated to 6.1 in https://github.com/NixOS/nixpkgs/pull/229947
+    # but something about the new kernel makes the pibox screen display not work (sitronix driver
+    # might be broken?)
+    nixpkgs-linux-5-15.url = "github:NixOS/nixpkgs/29339c1529b2c3d650d9cf529d7318ed997c149f";
 
     bass = {
       url = "github:edc/bass";
