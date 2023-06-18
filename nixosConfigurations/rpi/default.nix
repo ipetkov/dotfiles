@@ -24,7 +24,7 @@
   ];
 
   boot.enableContainers = false;
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   hardware.enableRedistributableFirmware = true;
 

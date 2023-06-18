@@ -8,14 +8,14 @@
     # nice having the exact same application versions across all machines rather than
     # mixing and matching branches.
     nixpkgs.url = "nixpkgs/nixos-unstable";
-
-    nixos-stable.url = "nixpkgs/nixos-22.11";
-    # Pinned to before the rpi-kernel version >= 6.1 assertion was added
-    nixos-hardware.url = "github:NixOS/nixos-hardware/fb1317948339713afa82a775a8274a91334f6182";
+    # Pinned because deploying to rpi is slow as molasses due to SD card I/O being crap
+    nixpkgs-for-rpi.url = "github:NixOS/nixpkgs/572d26930456132e7f2035340e3d88b36a5e9b6e";
     # Kernel and firmware were updated to 6.1 in https://github.com/NixOS/nixpkgs/pull/229947
     # but something about the new kernel makes the pibox screen display not work (sitronix driver
     # might be broken?)
     nixpkgs-linux-5-15.url = "github:NixOS/nixpkgs/29339c1529b2c3d650d9cf529d7318ed997c149f";
+    # Pinned to before the rpi-kernel version >= 6.1 assertion was added
+    nixos-hardware.url = "github:NixOS/nixos-hardware/fb1317948339713afa82a775a8274a91334f6182";
 
     bass = {
       url = "github:edc/bass";
@@ -114,7 +114,7 @@
       rpi = mkHost {
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/rpi;
-        nixpkgs = inputs.nixos-stable;
+        nixpkgs = inputs.nixpkgs-for-rpi;
         includeHomeManager = false;
       };
 
