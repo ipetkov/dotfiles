@@ -55,7 +55,7 @@
       efi.canTouchEfiVariables = true;
       generic-extlinux-compatible.enable = false;
       systemd-boot.enable = true;
-      timeout = 10; # seconds
+      timeout = 3; # seconds
     };
 
     kernelParams = [
