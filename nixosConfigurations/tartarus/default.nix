@@ -114,6 +114,7 @@
     fish
     gitMinimal
     htop
+    lsof
     pavucontrol
     vim
     /* virt-manager */
