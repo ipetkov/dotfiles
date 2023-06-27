@@ -91,7 +91,7 @@
 
   environment.systemPackages = with pkgs; [
     bash
-    gitMinimal
+    git
     htop
     vim
   ];
