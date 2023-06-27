@@ -41,7 +41,7 @@
     bash
     dnsutils
     fish
-    gitMinimal
+    git
     htop
     vim
   ];
