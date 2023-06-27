@@ -112,7 +112,7 @@
     bash
     dnsutils
     fish
-    gitMinimal
+    git
     htop
     lsof
     pavucontrol
