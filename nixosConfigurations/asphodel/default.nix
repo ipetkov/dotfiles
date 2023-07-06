@@ -17,6 +17,10 @@
           raspberrypifw
           raspberrypiWirelessFirmware
           linuxKernel;
+
+        # https://github.com/NixOS/nixpkgs/pull/239658#issuecomment-1622748163
+        compressFirmwareXz = firmware: prev.compressFirmwareXz
+          (builtins.removeAttrs firmware [ "meta" ]);
       })
     ];
   };
