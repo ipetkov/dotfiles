@@ -145,22 +145,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-linux-5-15": {
-      "locked": {
-        "lastModified": 1683222161,
-        "narHash": "sha256-yp1o+2qSZueDdlBTvup2w+4pnSxwKq+qh1+3eLRz/Zk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "29339c1529b2c3d650d9cf529d7318ed997c149f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "29339c1529b2c3d650d9cf529d7318ed997c149f",
-        "type": "github"
-      }
-    },
     "pibox-framebuffer": {
       "flake": false,
       "locked": {
@@ -202,8 +186,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-pibox": "nixos-pibox",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-for-rpi": "nixpkgs-for-rpi",
-        "nixpkgs-linux-5-15": "nixpkgs-linux-5-15"
+        "nixpkgs-for-rpi": "nixpkgs-for-rpi"
       }
     },
     "systems": {

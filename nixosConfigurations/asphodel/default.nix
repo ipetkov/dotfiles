@@ -12,12 +12,6 @@
     overlays = [
       inputs.nixos-pibox.overlays.default
       (final: prev: {
-        # Pin to Linux 5.15, something about the sitronix driver is broken with 6.1
-        inherit (import inputs.nixpkgs-linux-5-15 { system = "aarch64-linux"; })
-          raspberrypifw
-          raspberrypiWirelessFirmware
-          linuxKernel;
-
         # https://github.com/NixOS/nixpkgs/pull/239658#issuecomment-1622748163
         compressFirmwareXz = firmware: prev.compressFirmwareXz
           (builtins.removeAttrs firmware [ "meta" ]);
@@ -62,7 +56,8 @@
     openssh.enable = true;
 
     piboxPwmFan.enable = true;
-    piboxFramebuffer.enable = true;
+    # Broken on Linux 6.1 the sitronix driver doesn't seem to work
+    #piboxFramebuffer.enable = true;
 
     tailscale.enable = true;
     zfs = {
