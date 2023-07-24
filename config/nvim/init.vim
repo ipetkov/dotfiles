@@ -172,6 +172,8 @@ rust_tools.setup({
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
+        cmd = { '@rustAnalyzer@/bin/rust-analyzer' },
+
         before_init = function(initialize_params, config)
           -- Override clippy to run in its own directory to avoid clobbering caches
           -- but only if target-dir isn't already set in either the command or the extraArgs

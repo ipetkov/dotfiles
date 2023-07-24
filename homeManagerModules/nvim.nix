@@ -90,7 +90,10 @@ in
           ]))
         ];
 
-        extraConfig = builtins.readFile ../config/nvim/init.vim;
+        extraConfig = builtins.replaceStrings
+          [ "@rustAnalyzer@" ]
+          [ "${pkgs.rust-analyzer}" ]
+          (builtins.readFile ../config/nvim/init.vim);
       };
     })
   ];
