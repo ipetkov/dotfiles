@@ -177,16 +177,12 @@ rust_tools.setup({
         before_init = function(initialize_params, config)
           -- Override clippy to run in its own directory to avoid clobbering caches
           -- but only if target-dir isn't already set in either the command or the extraArgs
-          local checkOnSave = config.settings["rust-analyzer"].checkOnSave;
+          local cargo = config.settings["rust-analyzer"].cargo;
 
           -- Lua apparently interprets `-` as a pattern and writing `%-` escapes it(!)
           local needle = "%-%-target%-dir";
 
-          if string.find(checkOnSave.command, needle) then
-            return
-          end
-
-          local extraArgs = checkOnSave.extraArgs;
+          local extraArgs = cargo.extraArgs;
           for k, v in pairs(extraArgs) do
             if string.find(v, needle) then
               return
@@ -202,12 +198,14 @@ rust_tools.setup({
             ["rust-analyzer"] = {
                 cargo = {
                     allFeatures = true,
+                    extraArgs = {
+                      -- --target-dir injected above
+                    },
                 },
                 -- enable clippy on save
-                checkOnSave = {
+                check = {
                     allTargets = true,
                     command = "clippy",
-                    extraArgs = {},
                 },
                 diagnostics = {
                   disabled = {"inactive-code"}
