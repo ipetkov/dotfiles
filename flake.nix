@@ -13,11 +13,6 @@
     # Pinned to before the rpi-kernel version >= 6.1 assertion was added
     nixos-hardware.url = "github:NixOS/nixos-hardware/fb1317948339713afa82a775a8274a91334f6182";
 
-    bass = {
-      url = "github:edc/bass";
-      flake = false;
-    };
-
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;

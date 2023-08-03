@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "bass": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1682309832,
-        "narHash": "sha256-3mFlFiqGfQ+GfNshwKfhQ39AuNMdt8Nv2Vgb7bBV7L4=",
-        "owner": "edc",
-        "repo": "bass",
-        "rev": "f3a547b0239cf8529d35c1922dd242bacf751d3b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edc",
-        "repo": "bass",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -179,7 +163,6 @@
     },
     "root": {
       "inputs": {
-        "bass": "bass",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",

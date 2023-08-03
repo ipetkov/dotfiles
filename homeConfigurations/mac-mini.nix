@@ -52,7 +52,7 @@
   programs.fish = {
     shellInit = ''
       # Load nix configurations/paths etc.
-      bass source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
     '';
 
     functions = {
