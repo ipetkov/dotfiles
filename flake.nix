@@ -102,6 +102,12 @@
         includeHomeManager = false;
       };
 
+      elysium = mkHost {
+        system = systemLinux;
+        rootConfig = ./nixosConfigurations/elysium;
+        includeHomeManager = false;
+      };
+
       rpi = mkHost {
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/rpi;
