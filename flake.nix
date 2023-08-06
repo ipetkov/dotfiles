@@ -90,6 +90,7 @@
 
     nixosModules = {
       _1password = import ./nixosModules/_1password.nix;
+      default = import ./nixosModules/default.nix;
       nixConfig = import ./nixosModules/nixConfig.nix;
       pihole = import ./nixosModules/pihole.nix;
       tailscale = import ./nixosModules/tailscale.nix;

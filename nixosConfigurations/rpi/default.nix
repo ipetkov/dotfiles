@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ../../nixosModules/pihole.nix
-    ../../nixosModules/tailscale.nix
   ];
 
   # NixOS wants to enable GRUB by default
@@ -48,7 +46,10 @@
   security.polkit.enable = false; # Unused, trim some fat
 
   # Copying nixpkgs-source causes a big I/O penalty on SD card writes, so skip it
-  dotfiles.nix.enableSetNixPathAndFlakeRegistry = false;
+  dotfiles = {
+    nix.enableSetNixPathAndFlakeRegistry = false;
+    services.pihole.enable = true;
+  };
 
   nix = {
     optimise.automatic = true;
@@ -141,7 +142,6 @@
 
   services = {
     openssh.enable = true;
-    pihole.enable = true;
     tailscale.enable = true;
     udisks2.enable = false; # Unused, trim some fat
 

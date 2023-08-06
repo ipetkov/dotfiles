@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
-    ../../nixosModules/tailscale.nix
   ];
 
   networking = {

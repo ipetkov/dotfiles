@@ -43,7 +43,7 @@ nixpkgs.lib.nixosSystem {
   inherit system specialArgs;
 
   modules = [
-    ../nixosModules/nixConfig.nix
+    ../nixosModules/default.nix
     rootConfig
   ] ++ lib.lists.optional includeHomeManager homeManagerModule;
 }

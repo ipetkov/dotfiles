@@ -3,7 +3,7 @@
 let
   defaultDnsPort = 53;
   httpDefaultPort = 80;
-  cfg = config.services.pihole;
+  cfg = config.dotfiles.services.pihole;
 
   # NET_ADMIN allows for full network control (including making network changes
   # for DHCP broadcasting stuff). NET_BIND_SERVICE simply allows grabbing
@@ -11,7 +11,7 @@ let
   networkCapability = if cfg.enableDHCPCap then "NET_ADMIN" else "NET_BIND_SERVICE";
 in
 {
-  options.services.pihole = {
+  options.dotfiles.services.pihole = {
     enable = lib.mkEnableOption "pihole service";
 
     niceness = lib.mkOption {

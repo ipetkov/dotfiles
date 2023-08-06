@@ -4,8 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../../nixosModules/_1password.nix
-      ../../nixosModules/tailscale.nix
       ../../users/ivan/default.nix
     ];
 
@@ -153,4 +151,6 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
   programs.command-not-found.enable = false;
+
+  dotfiles._1password.enable = true;
 }
