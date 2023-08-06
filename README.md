@@ -13,7 +13,7 @@ things are structured as follows:
 * `config`: contents which might represent the `~/.config` directory. Basically
 "literal" configs and definitions which get linked/incorporated through home-manager
 * `docs`: additional documentation files, mostly for myself, but may be useful to others
-* `homeManagerConfigurations`: top-level fully instantiated home-manager
+* `homeConfigurations`: top-level fully instantiated home-manager
   configurations. Useful for having the CI cache the artifacts and make sure
   that everything builds. Also includes a `module` attribute which allows for
   importing/overriding the definition as needed.
@@ -47,5 +47,5 @@ Applying configuration changes to a remote machine can be done as follows:
 
 ```sh
 cd ~/dotfiles
-nixos-rebuild switch --flake .#nameOfMachine --build-host localhost --target-host machineToSshInto --use-remote-sudo
+nixos-rebuild switch --flake .#nameOfMachine --target-host machineToSshInto --use-remote-sudo
 ```
