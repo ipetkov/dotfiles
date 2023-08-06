@@ -7,7 +7,7 @@
   # The specific version of nixpkgs we should use for instantiating the system,
   # allowing downstream consumers to change it if necessary.
 , nixpkgs ? inputs.nixpkgs
-, includeHomeManager ? true
+, includeHomeManager ? false
 }:
 
 let

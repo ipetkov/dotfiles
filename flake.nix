@@ -100,25 +100,23 @@
       asphodel = mkHost {
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/asphodel;
-        includeHomeManager = false;
       };
 
       elysium = mkHost {
         system = systemLinux;
         rootConfig = ./nixosConfigurations/elysium;
-        includeHomeManager = false;
       };
 
       rpi = mkHost {
         system = systemLinuxArm;
         rootConfig = ./nixosConfigurations/rpi;
         nixpkgs = inputs.nixpkgs-for-rpi;
-        includeHomeManager = false;
       };
 
       tartarus = mkHost {
         system = systemLinux;
         rootConfig = ./nixosConfigurations/tartarus;
+        includeHomeManager = true;
       };
     };
 
