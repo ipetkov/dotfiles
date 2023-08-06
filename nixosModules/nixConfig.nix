@@ -39,14 +39,18 @@ in
 
         gc = {
           automatic = true;
-          dates = "monthly";
+          # Run on the 7th of the month: could take up a lot of I/O, so avoid
+          # running at the same time as other "monthly" jobs
+          dates = "*-7";
           options = "--delete-older-than 30d";
           persistent = true;
         };
 
         optimise = {
           automatic = true;
-          dates = [ "monthly" ];
+          # Run on the 21st of the month: offset this a bit from the `gc` job
+          # so they don't try to run at the same time
+          dates = [ "*-21" ];
         };
       };
     })
