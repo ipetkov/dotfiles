@@ -35,6 +35,52 @@
   services = {
     openssh.enable = true;
 
+    syncoid = {
+      enable = true;
+
+      # Ten mins after the top of the hour, give snapshots a chance to settle before we pull
+      interval = "*:10:00";
+      commonArgs = [
+        "--create-bookmark"
+        "--no-clone-handling"
+        "--no-sync-snap"
+        "--use-hold"
+        "--skip-parent"
+      ];
+      commands = {
+        # Local
+        "acheron/persist" = {
+          recursive = true;
+          target = "lethe/backups/acheron";
+        };
+
+        # Remote
+        "syncoid@asphodel:phlegethon/persist" = {
+          recursive = true;
+          target = "lethe/backups/phlegethon";
+        };
+      };
+
+      localSourceAllow = [
+        "bookmark"
+        "hold"
+        "send"
+        "release"
+      ];
+
+      localTargetAllow = [
+        "bookmark"
+        "compression"
+        "create"
+        "hold"
+        "mount"
+        "mountpoint"
+        "receive"
+        "release"
+        "rollback"
+      ];
+    };
+
     tailscale.enable = true;
     zfs = {
       autoScrub = {
