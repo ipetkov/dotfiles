@@ -39,7 +39,7 @@
     zfs = {
       autoScrub = {
         enable = true;
-        interval = "monthly";
+        interval = "Mon *-*-* 03:00:00";
       };
       autoSnapshot.enable = true;
       trim.enable = true;
