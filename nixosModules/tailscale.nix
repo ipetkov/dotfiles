@@ -6,7 +6,7 @@ in
 {
   options = {
     services.tailscale.initKey = mkOption {
-      type = types.nullOr types.string;
+      type = types.nullOr types.str;
       default = null;
       description = ''
         a tailscale authkey for initialization.
