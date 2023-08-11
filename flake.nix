@@ -94,6 +94,7 @@
       nixConfig = import ./nixosModules/nixConfig.nix;
       pihole = import ./nixosModules/pihole.nix;
       tailscale = import ./nixosModules/tailscale.nix;
+      zfs-send = import ./nixosModules/zfs-send.nix;
     };
 
     nixosConfigurations = {

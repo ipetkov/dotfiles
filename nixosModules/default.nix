@@ -6,5 +6,6 @@
     ./nixConfig.nix
     ./pihole.nix
     ./tailscale.nix
+    ./zfs-send.nix
   ];
 }

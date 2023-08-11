@@ -43,6 +43,11 @@
     vim
   ];
 
+  dotfiles.zfs-send = {
+    enable = true;
+    rootPool = "phlegethon";
+  };
+
   services = {
     nginx = {
       enable = true;
