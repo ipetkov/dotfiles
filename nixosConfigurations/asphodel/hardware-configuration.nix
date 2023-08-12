@@ -24,6 +24,13 @@
           keyFileSize = 8192;
         };
 
+        cryptroot2 = {
+          allowDiscards = true;
+          device = "/dev/disk/by-uuid/00eafab2-09b4-4fab-acf6-3a10b9aa6cb6";
+          keyFile = "/dev/mapper/cryptkey";
+          keyFileSize = 8192;
+        };
+
         cryptswap = {
           allowDiscards = true;
           device = "/dev/disk/by-uuid/b6e946d7-27b9-48f6-99ff-6ab9d355b644";
