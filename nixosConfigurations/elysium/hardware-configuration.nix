@@ -15,12 +15,17 @@
     # whatever you name them, come after cryptkey.
     initrd = {
       availableKernelModules = [
-        "nvme"
-        "xhci_pci"
         "ahci"
+        "amdgpu"
+        "ccp"
+        "cryptd"
+        "nvme"
+        "r8169"
+        "rtw89_8852be"
+        "sd_mod"
         "usbhid"
         "usb_storage"
-        "sd_mod"
+        "xhci_pci"
       ];
 
       luks.devices = {
