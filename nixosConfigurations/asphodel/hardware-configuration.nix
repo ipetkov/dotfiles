@@ -109,7 +109,7 @@
     };
 
     "/var/log/journal" = {
-      device = "phlegethon/persist/journal";
+      device = "phlegethon/local/journal";
       fsType = "zfs";
       neededForBoot = true;
     };
