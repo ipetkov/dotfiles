@@ -110,7 +110,7 @@
     };
 
     "/var/log/journal" = {
-      device = "acheron/persist/journal";
+      device = "acheron/local/journal";
       fsType = "zfs";
       neededForBoot = true;
     };
