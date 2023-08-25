@@ -74,6 +74,8 @@
 
     supportedFilesystems = [ "zfs" ];
     zfs.extraPools = [ "lethe" ];
+    # Turn this off once the latest supported kernel is 6.4 or higher
+    zfs.enableUnstable = true;
   };
 
   fileSystems = {
