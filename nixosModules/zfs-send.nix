@@ -33,14 +33,14 @@ in
     # When disabled, strip any previous permissions we may have granted
     (lib.mkIf (!cfg.enable) {
       users.users.syncoid.useDefaultShell = false; # Do NOT permit login
-      system.activationScripts.zfs-unallow-syncoid = {
-        deps = [ "users" ];
-        text = lib.optionalString hasZfs ''
-          echo 'removing delegated zfs permissions for sending snapshots'
-          /run/booted-system/sw/bin/zfs list -H -o name -d 0 | \
-            xargs -n1 /run/booted-system/sw/bin/zfs unallow -r -u ${escapeShellArg config.users.users.syncoid.name}
-        '';
-      };
+      #system.activationScripts.zfs-unallow-syncoid = {
+      #  deps = [ "users" ];
+      #  text = lib.optionalString hasZfs ''
+      #    echo 'removing delegated zfs permissions for sending snapshots'
+      #    /run/booted-system/sw/bin/zfs list -H -o name -d 0 | \
+      #      xargs -n1 /run/booted-system/sw/bin/zfs unallow -r -u ${escapeShellArg config.users.users.syncoid.name}
+      #  '';
+      #};
     })
 
     (lib.mkIf cfg.enable {
