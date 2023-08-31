@@ -87,7 +87,10 @@
         enable = true;
         interval = "Mon *-*-* 03:00:00";
       };
-      autoSnapshot.enable = true;
+      autoSnapshot = {
+        enable = true;
+        flags = "-p"; # Disable -k so empty snapshots do not linger
+      };
       trim.enable = true;
     };
   };
