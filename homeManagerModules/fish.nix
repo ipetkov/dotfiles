@@ -37,11 +37,11 @@
     end
     '';
 
-    shellAliases = lib.optionalAttrs config.programs.exa.enable {
-      ll = "exa -la";
+    shellAliases = lib.optionalAttrs config.programs.eza.enable {
+      ll = "eza -la";
     };
   };
 
   programs.bat.enable = true;
-  programs.exa.enable = lib.mkDefault true;
+  programs.eza.enable = lib.mkDefault true;
 }
