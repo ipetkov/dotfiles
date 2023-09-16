@@ -4,7 +4,7 @@
     source = "/persist/etc/NetworkManager/system-connections/";
   };
 
-  users.users.root.passwordFile = "/persist/root/passwordfile";
+  users.users.root.hashedPasswordFile = "/persist/root/passwordfile";
 
   services.openssh.hostKeys = [
     {
