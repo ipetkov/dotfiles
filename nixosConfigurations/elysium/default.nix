@@ -15,7 +15,8 @@
     useDHCP = false;
     interfaces = {
       eno1.useDHCP = true;
-      wlp8s0.useDHCP = true;
+      # FIXME: enable once kernel is 6.4 or higher
+      #wlp8s0.useDHCP = true;
     };
   };
 
