@@ -37,8 +37,6 @@
 
   home.packages = with pkgs; [
     awscli2
-    /* cachix */
-    fortune
     watch
   ];
 
@@ -57,9 +55,6 @@
     functions = {
       gitk = "command gitk $argv &";
       fish_greeting = ''
-        echo
-        fortune -a
-        echo
         task
       '';
     };
