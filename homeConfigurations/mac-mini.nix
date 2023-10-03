@@ -12,7 +12,6 @@
     fzf
     git
     nvim
-    rust
     taskwarrior
   ];
 
