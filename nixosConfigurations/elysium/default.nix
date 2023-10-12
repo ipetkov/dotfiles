@@ -42,6 +42,7 @@
       # Ten mins after the top of the hour, give snapshots a chance to settle before we pull
       interval = "*:10:00";
       commonArgs = [
+        "--create-bookmark"
         "--no-clone-handling"
         "--no-sync-snap"
         "--use-hold"
@@ -62,12 +63,14 @@
       };
 
       localSourceAllow = [
+        "bookmark"
         "hold"
         "send"
         "release"
       ];
 
       localTargetAllow = [
+        "bookmark"
         "compression"
         "create"
         "hold"
