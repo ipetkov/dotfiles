@@ -7,8 +7,16 @@ on:
       - 'automation/**'
       - 'dependabot/**'
 jobs:
-  tests:
+  tests-pass:
     name: all systems go
+    runs-on: ubuntu-latest
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    steps:
+      - run: exit 1
+    needs:
+      - tests
+
+  tests:
     strategy:
       # Allow other jobs to finish building and cache properly before bailing
       fail-fast: false
