@@ -5,8 +5,11 @@ on:
     - cron: '0 16 * * 5'
   workflow_dispatch: # for allowing manual triggers of the workflow
 
+permissions:
+  contents: read
+
 jobs:
-  update-dependencies:
+  update-and-push-deps:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -17,18 +20,18 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
     - name: add nix-community cache
       run: cachix use nix-community
-    - name: update flake.lock
-      run: nix flake update
-    # Use custom app token to be more secure
-    - uses: tibdex/github-app-token@v2
-      id: generate-token
+    - name: Update flake.lock
+      id: flakeupdate
+      uses: DeterminateSystems/update-flake-lock@v20
       with:
-        app_id: ${{ secrets.APP_ID }}
-        private_key: ${{ secrets.APP_PRIVATE_KEY }}
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ steps.generate-token.outputs.token }}
-        commit-message: "flake: update dependencies"
-        title: "[automation] update flake dependencies"
-        branch: "automation/update-flake-dependencies"
+        token: ${{ secrets.PAT_FLAKE_UPDATE }}
+        branch: "automation/flake-update"
+        pr-title: "Update flake.lock"
+        pr-labels: |
+          automated
+          dependencies
+          flake update
+    - name: Enable Pull Request Automerge
+      run: gh pr merge --squash --delete-branch --auto ${{ steps.flakeupdate.outputs.pull-request-number }}
+      env:
+        GH_TOKEN: ${{ secrets.PAT_FLAKE_UPDATE }}
