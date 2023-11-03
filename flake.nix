@@ -40,93 +40,93 @@
   };
 
   outputs = inputs@{ self, ... }:
-  let
-    inherit (inputs.nixpkgs) lib legacyPackages;
-
-    myPkgs = self.packages;
-
-    myLib = import ./lib {
-      inherit inputs lib myPkgs;
-    };
-
-    inherit (myLib) mkHost;
-
-    systemDarwin = "x86_64-darwin";
-    systemLinux = "x86_64-linux";
-    systemLinuxArm = "aarch64-linux";
-
-    # The default set of systems for which we want to declare
-    # modules/packages/etc.
-    supportedSystems = [
-      systemDarwin
-      systemLinux
-    ];
-  in
-  {
-    homeManagerModules = {
-      alacritty   = import ./homeManagerModules/alacritty.nix;
-      common      = import ./homeManagerModules/common.nix;
-      direnv      = import ./homeManagerModules/direnv.nix;
-      fish        = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/fish.nix) (args // { inherit inputs; });
-      fonts       = import ./homeManagerModules/fonts.nix;
-      fzf         = import ./homeManagerModules/fzf.nix;
-      git         = import ./homeManagerModules/git.nix;
-      gpg         = import ./homeManagerModules/gpg.nix;
-      gtk         = import ./homeManagerModules/gtk.nix;
-      nvim        = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });
-      rust        = import ./homeManagerModules/rust.nix;
-      sway        = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/sway.nix) (args // { inherit myPkgs; });
-      taskwarrior = import ./homeManagerModules/taskwarrior.nix;
-    };
-
-    homeConfigurations = import ./homeConfigurations {
-      inherit (inputs) home-manager nixpkgs;
-      inherit (self) homeManagerModules;
-    };
-
-    nixosModules = {
-      _1password = import ./nixosModules/_1password.nix;
-      default = import ./nixosModules/default.nix;
-      nixConfig = import ./nixosModules/nixConfig.nix;
-      pihole = import ./nixosModules/pihole.nix;
-      tailscale = import ./nixosModules/tailscale.nix;
-      zfs-send = import ./nixosModules/zfs-send.nix;
-    };
-
-    nixosConfigurations = {
-      asphodel = mkHost {
-        system = systemLinuxArm;
-        rootConfig = ./nixosConfigurations/asphodel;
-      };
-
-      elysium = mkHost {
-        system = systemLinux;
-        rootConfig = ./nixosConfigurations/elysium;
-      };
-
-      rpi = mkHost {
-        system = systemLinuxArm;
-        rootConfig = ./nixosConfigurations/rpi;
-        nixpkgs = inputs.nixpkgs-for-rpi;
-      };
-
-      tartarus = mkHost {
-        system = systemLinux;
-        rootConfig = ./nixosConfigurations/tartarus;
-        includeHomeManager = true;
-      };
-    };
-  } // inputs.flake-utils.lib.eachSystem supportedSystems (system:
     let
-      pkgs = legacyPackages.${system};
+      inherit (inputs.nixpkgs) lib legacyPackages;
 
-      packages = lib.filterAttrs
-        (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
-        (import ./pkgs { inherit pkgs; });
+      myPkgs = self.packages;
+
+      myLib = import ./lib {
+        inherit inputs lib myPkgs;
+      };
+
+      inherit (myLib) mkHost;
+
+      systemDarwin = "x86_64-darwin";
+      systemLinux = "x86_64-linux";
+      systemLinuxArm = "aarch64-linux";
+
+      # The default set of systems for which we want to declare
+      # modules/packages/etc.
+      supportedSystems = [
+        systemDarwin
+        systemLinux
+      ];
     in
     {
-      inherit packages;
+      homeManagerModules = {
+        alacritty = import ./homeManagerModules/alacritty.nix;
+        common = import ./homeManagerModules/common.nix;
+        direnv = import ./homeManagerModules/direnv.nix;
+        fish = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/fish.nix) (args // { inherit inputs; });
+        fonts = import ./homeManagerModules/fonts.nix;
+        fzf = import ./homeManagerModules/fzf.nix;
+        git = import ./homeManagerModules/git.nix;
+        gpg = import ./homeManagerModules/gpg.nix;
+        gtk = import ./homeManagerModules/gtk.nix;
+        nvim = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });
+        rust = import ./homeManagerModules/rust.nix;
+        sway = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/sway.nix) (args // { inherit myPkgs; });
+        taskwarrior = import ./homeManagerModules/taskwarrior.nix;
+      };
 
-      checks = packages;
-    });
+      homeConfigurations = import ./homeConfigurations {
+        inherit (inputs) home-manager nixpkgs;
+        inherit (self) homeManagerModules;
+      };
+
+      nixosModules = {
+        _1password = import ./nixosModules/_1password.nix;
+        default = import ./nixosModules/default.nix;
+        nixConfig = import ./nixosModules/nixConfig.nix;
+        pihole = import ./nixosModules/pihole.nix;
+        tailscale = import ./nixosModules/tailscale.nix;
+        zfs-send = import ./nixosModules/zfs-send.nix;
+      };
+
+      nixosConfigurations = {
+        asphodel = mkHost {
+          system = systemLinuxArm;
+          rootConfig = ./nixosConfigurations/asphodel;
+        };
+
+        elysium = mkHost {
+          system = systemLinux;
+          rootConfig = ./nixosConfigurations/elysium;
+        };
+
+        rpi = mkHost {
+          system = systemLinuxArm;
+          rootConfig = ./nixosConfigurations/rpi;
+          nixpkgs = inputs.nixpkgs-for-rpi;
+        };
+
+        tartarus = mkHost {
+          system = systemLinux;
+          rootConfig = ./nixosConfigurations/tartarus;
+          includeHomeManager = true;
+        };
+      };
+    } // inputs.flake-utils.lib.eachSystem supportedSystems (system:
+      let
+        pkgs = legacyPackages.${system};
+
+        packages = lib.filterAttrs
+          (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
+          (import ./pkgs { inherit pkgs; });
+      in
+      {
+        inherit packages;
+
+        checks = packages;
+      });
 }
