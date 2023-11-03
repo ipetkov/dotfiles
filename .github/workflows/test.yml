@@ -8,6 +8,7 @@ on:
       - 'dependabot/**'
 jobs:
   tests:
+    name: all systems go
     strategy:
       # Allow other jobs to finish building and cache properly before bailing
       fail-fast: false
