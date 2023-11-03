@@ -54,13 +54,6 @@
       systemDarwin = "x86_64-darwin";
       systemLinux = "x86_64-linux";
       systemLinuxArm = "aarch64-linux";
-
-      # The default set of systems for which we want to declare
-      # modules/packages/etc.
-      supportedSystems = [
-        systemDarwin
-        systemLinux
-      ];
     in
     {
       homeManagerModules = {
@@ -116,17 +109,27 @@
           includeHomeManager = true;
         };
       };
-    } // inputs.flake-utils.lib.eachSystem supportedSystems (system:
+    } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = legacyPackages.${system};
 
         packages = lib.filterAttrs
           (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
           (import ./pkgs { inherit pkgs; });
+
+        checksForConfigs = configs: extract: lib.attrsets.filterAttrs
+          (_: p: p.system == system)
+          (lib.attrsets.mapAttrs (_: extract) configs);
       in
       {
         inherit packages;
 
-        checks = packages;
+        checks = lib.lists.foldl
+          lib.attrsets.unionOfDisjoint
+          packages
+          [
+            (checksForConfigs self.homeConfigurations (hm: hm.activationPackage))
+            (checksForConfigs self.nixosConfigurations (c: c.config.system.build.toplevel))
+          ];
       });
 }
