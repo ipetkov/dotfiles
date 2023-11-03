@@ -73,6 +73,7 @@
         "bookmark"
         "compression"
         "create"
+        "destroy" # For aborting partial/interrupted receives
         "hold"
         "mount"
         "mountpoint"
