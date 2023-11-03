@@ -46,8 +46,7 @@
     HOMEBREW_NO_ANALYTICS = "1";
   };
 
-  # Build deps require ghc which is broken on darwin atm
-  programs.exa.enable = false;
+  programs.eza.enable = false;
 
   programs.fish = {
     shellInit = ''
