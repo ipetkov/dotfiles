@@ -57,14 +57,10 @@
 
     # The default set of systems for which we want to declare
     # modules/packages/etc.
-    defaultSystems = [
+    supportedSystems = [
       systemDarwin
       systemLinux
     ];
-
-    # Create an attr set for each default system where the key
-    # is the system name and the value is the result of the operation
-    forAllSystems = f: lib.genAttrs defaultSystems f;
   in
   {
     homeManagerModules = {
@@ -120,17 +116,17 @@
         includeHomeManager = true;
       };
     };
-
-    packages = forAllSystems (system:
+  } // inputs.flake-utils.lib.eachSystem supportedSystems (system:
     let
-      nixpkgs = legacyPackages.${system};
-      filter = _: pkg: builtins.any (x: x == system) pkg.meta.platforms;
-      allPkgs = import ./pkgs {
-        pkgs = nixpkgs;
-      };
-      systemPkgs = lib.filterAttrs filter allPkgs;
+      pkgs = legacyPackages.${system};
+
+      packages = lib.filterAttrs
+        (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
+        (import ./pkgs { inherit pkgs; });
     in
-      systemPkgs // { inherit (nixpkgs) nix-build-uncached; }
-    );
-  };
+    {
+      inherit packages;
+
+      checks = packages;
+    });
 }
