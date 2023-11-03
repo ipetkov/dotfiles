@@ -24,9 +24,10 @@ jobs:
         include:
           #- os: macos-12
           - os: ubuntu-latest
+            system: "x86_64-linux"
           - os: ubuntu-latest
             qemuPlatforms: "arm64"
-            systemOverride: "--argstr system aarch64-linux"
+            system: "aarch64-linux"
             extraPlatforms: "aarch64-linux"
 
     runs-on: ${{ matrix.os }}
@@ -52,11 +53,5 @@ jobs:
         image: tonistiigi/binfmt:latest
         platforms: ${{ matrix.qemuPlatforms }}
 
-    - name: build package definitions
-      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/packages.nix
-
-    - name: build home-manager configurations
-      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/homeConfigurations.nix
-
-    - name: build system definitions
-      run: nix run .#nix-build-uncached -- ${{ matrix.systemOverride }} ./ci/systems.nix
+    - name: build all definitions
+      run: nix run github:Mic92/nix-fast-build -L -- --skip-cached --no-download --flake .#checks.${{ matrix.system }}
