@@ -136,10 +136,7 @@
       enable = true;
       interval = "monthly";
     };
-    autoSnapshot = {
-      enable = true;
-      flags = "-p"; # Disable -k so empty snapshots do not linger
-    };
+    autoSnapshot.enable = true;
     trim.enable = true;
   };
 
