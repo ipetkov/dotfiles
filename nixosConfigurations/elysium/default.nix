@@ -81,6 +81,9 @@
         "release"
         "rollback"
       ];
+
+      # https://github.com/NixOS/nixpkgs/issues/264071
+      service.serviceConfig.PrivateUsers = lib.mkForce false;
     };
 
     tailscale.enable = true;
