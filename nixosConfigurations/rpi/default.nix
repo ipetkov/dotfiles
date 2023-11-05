@@ -6,9 +6,7 @@
 
   # NixOS wants to enable GRUB by default
   boot.loader.grub.enable = false;
-  boot.loader.raspberryPi.enable = true;
-  boot.loader.raspberryPi.version = 3;
-  boot.loader.raspberryPi.uboot.enable = true;
+  boot.loader.generic-extlinux-compatible.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages; # Use LTS kernel
   boot.kernelParams = [
