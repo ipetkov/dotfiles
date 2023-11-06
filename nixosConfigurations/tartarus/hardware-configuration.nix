@@ -57,6 +57,10 @@
     { device = "nvme-pool/local/nix";
       fsType = "zfs";
     };
+  fileSystems."/scratch" =
+    { device = "nvme-pool/local/scratch";
+      fsType = "zfs";
+    };
   fileSystems."/var" =
     { device = "nvme-pool/system/var";
       fsType = "zfs";
