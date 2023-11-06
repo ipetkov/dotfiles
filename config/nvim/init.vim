@@ -173,34 +173,12 @@ rust_tools.setup({
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
         cmd = { '@rustAnalyzer@/bin/rust-analyzer' },
-
-        before_init = function(initialize_params, config)
-          -- Override clippy to run in its own directory to avoid clobbering caches
-          -- but only if target-dir isn't already set in either the command or the extraArgs
-          local cargo = config.settings["rust-analyzer"].cargo;
-
-          -- Lua apparently interprets `-` as a pattern and writing `%-` escapes it(!)
-          local needle = "%-%-target%-dir";
-
-          local extraArgs = cargo.extraArgs;
-          for k, v in pairs(extraArgs) do
-            if string.find(v, needle) then
-              return
-            end
-          end
-
-          local target_dir = config.root_dir .. "/target/ide-clippy";
-          table.insert(extraArgs, "--target-dir=" .. target_dir);
-        end,
         settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
                 cargo = {
                     allFeatures = true,
-                    extraArgs = {
-                      -- --target-dir injected above
-                    },
                 },
                 -- enable clippy on save
                 check = {
@@ -212,6 +190,9 @@ rust_tools.setup({
                 },
                 procMacro = {
                     enable = true,
+                },
+                rust = {
+                    analyzerTargetDir = true,
                 },
             }
         }
