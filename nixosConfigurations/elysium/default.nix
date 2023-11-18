@@ -98,18 +98,27 @@
   };
 
   users.mutableUsers = false;
-  users.users.ivan = {
-    isNormalUser = true;
-    home = "/home/ivan";
-    extraGroups = [
-      "wheel" # Enable sudo
-      "disk"
-      "systemd-journal"
-    ];
+  users.groups.syncoid-tartarus = { };
+  users.users = {
+    ivan = {
+      isNormalUser = true;
+      home = "/home/ivan";
+      extraGroups = [
+        "wheel" # Enable sudo
+        "disk"
+        "systemd-journal"
+      ];
 
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKRVRlSZLcDEdJ13GjfJigN/KT3/Q1odIS4pf+hbmz+Z"
-    ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKRVRlSZLcDEdJ13GjfJigN/KT3/Q1odIS4pf+hbmz+Z"
+      ];
+    };
+
+    syncoid-tartarus = {
+      group = "syncoid-tartarus";
+      isSystemUser = true;
+      useDefaultShell = true; # Do permit login
+    };
   };
 
   # This value determines the NixOS release from which the default
