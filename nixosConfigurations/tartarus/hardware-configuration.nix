@@ -4,9 +4,9 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "cryptd" "amdgpu" ];
   boot.initrd.kernelModules = [ ];
@@ -40,31 +40,37 @@
     cryptsetup close cryptkey
   '';
 
-  fileSystems."/" =
-    { device = "nvme-pool/local/root";
+  fileSystems = {
+    "/" = {
+      device = "nvme-pool/local/root";
       fsType = "zfs";
     };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2100-01FF";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/2100-01FF";
       fsType = "vfat";
     };
-  fileSystems."/home/ivan" =
-    { device = "nvme-pool/persist/user/ivan";
+    "/home/ivan" = {
+      device = "nvme-pool/persist/user/ivan";
       fsType = "zfs";
     };
-  fileSystems."/nix" =
-    { device = "nvme-pool/local/nix";
+    "/nix" = {
+      device = "nvme-pool/local/nix";
       fsType = "zfs";
     };
-  fileSystems."/scratch" =
-    { device = "nvme-pool/local/scratch";
+    "/persist" = {
+      device = "nvme-pool/persist";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+    "/scratch" = {
+      device = "nvme-pool/local/scratch";
       fsType = "zfs";
     };
-  fileSystems."/var" =
-    { device = "nvme-pool/persist/var";
+    "/var" = {
+      device = "nvme-pool/persist/var";
       fsType = "zfs";
     };
+  };
 
   swapDevices = [ ];
 
