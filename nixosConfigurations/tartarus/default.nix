@@ -135,6 +135,18 @@
     # enableSSHSupport = true;
   };
 
+  services.prometheus.exporters = {
+    node = {
+      enable = true;
+      enabledCollectors = [ "systemd" ];
+      port = 9100;
+    };
+    zfs = {
+      enable = true;
+      port = 9134;
+    };
+  };
+
   services.syncoid = {
     enable = true;
 
