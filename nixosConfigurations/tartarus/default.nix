@@ -120,14 +120,59 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.ssh.startAgent = true;
+  programs.ssh = {
+    startAgent = true;
+    knownHosts = {
+      "elysium" = {
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOWd8Xzy1H1PwwCYzAypTsnAnybhEXwX0RtWWI8LqcxL";
+      };
+    };
+  };
+
   programs.gnupg.agent = {
     pinentryFlavor = "curses";
     enable = true;
     # enableSSHSupport = true;
   };
 
-  # List services that you want to enable:
+  services.syncoid = {
+    enable = true;
+
+    interval = "*:50:00";
+    commonArgs = [
+      "--sshkey"
+      "%d/sshKey"
+      "--create-bookmark"
+      "--no-clone-handling"
+      "--no-sync-snap"
+      "--use-hold"
+      "--skip-parent"
+    ];
+
+    commands = {
+      "nvme-pool/persist" = {
+        recursive = true;
+        target = "syncoid-tartarus@elysium:lethe/backups/nvme-pool";
+      };
+    };
+
+    localSourceAllow = [
+      "bookmark"
+      "hold"
+      "send"
+      "release"
+    ];
+
+    # NB: remember to run the following on elysium:
+    # zfs allow -u syncoid-tartarus \
+    #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,release,rollback \
+    # lethe/backups/nvme-pool
+
+    service.serviceConfig = {
+      LoadCredential = "sshKey:/persist/syncoid-zfs-send-id_ed25519";
+    };
+  };
+  systemd.timers."syncoid-nvme-pool-persist".timerConfig.Persistent = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
