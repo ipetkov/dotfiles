@@ -41,7 +41,7 @@
   '';
 
   fileSystems."/" =
-    { device = "nvme-pool/system/root";
+    { device = "nvme-pool/local/root";
       fsType = "zfs";
     };
 
@@ -50,7 +50,7 @@
       fsType = "vfat";
     };
   fileSystems."/home/ivan" =
-    { device = "nvme-pool/user/home/ivan";
+    { device = "nvme-pool/persist/user/ivan";
       fsType = "zfs";
     };
   fileSystems."/nix" =
@@ -62,7 +62,7 @@
       fsType = "zfs";
     };
   fileSystems."/var" =
-    { device = "nvme-pool/system/var";
+    { device = "nvme-pool/persist/var";
       fsType = "zfs";
     };
 
