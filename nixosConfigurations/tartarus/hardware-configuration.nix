@@ -72,7 +72,9 @@
     };
   };
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/dev/mapper/cryptswap";
+  }];
 
   # Bring back previous font look: https://github.com/NixOS/nixpkgs/issues/222805
   fonts.packages = [
