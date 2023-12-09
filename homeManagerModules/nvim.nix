@@ -80,7 +80,7 @@ in
             tree-sitter-nix
             tree-sitter-python
             tree-sitter-regex
-            tree-sitter-rust
+            /* tree-sitter-rust */
             tree-sitter-scss
             /* tree-sitter-swift */
             tree-sitter-toml
