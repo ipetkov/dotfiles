@@ -251,8 +251,10 @@ require('dressing').setup({
 })
 
 require('fidget').setup({
-  text = {
-    spinner = "moon",
+  progress = {
+    display = {
+      progress_icon = {"moon"},
+    },
   }
 })
 
