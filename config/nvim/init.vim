@@ -130,12 +130,41 @@ augroup END
 
 " https://sharksforarms.dev/posts/neovim-rust/
 lua<<EOF
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = {},
 
-  -- List of parsers to ignore installing (for "all")
-  ignore_install = "all",
+-- NB: we prepend here so our own installations take priority
+-- over the grammars which might be bundled from the nixpkgs definition
+local ts_parsers = vim.fn.stdpath("cache") .. "/ts-parsers"
+vim.opt.runtimepath:prepend(ts_parsers)
+
+require'nvim-treesitter.configs'.setup {
+  ignore_install = {},
+  parser_install_dir = ts_parsers,
+  auto_install = true,
+  sync_install = true,
+  ensure_installed = {
+    "bash",
+    "comment",
+    "diff",
+    "fish",
+    "gitattributes",
+    "gitcommit",
+    "git_config",
+    "gitignore",
+    "git_rebase",
+    "jq",
+    "json",
+    "lua",
+    "markdown",
+    "mermaid",
+    "nix",
+    "regex",
+    "rust",
+    "ssh_config",
+    "toml",
+    "vim",
+    "yaml",
+    "vimdoc",
+  },
 
   highlight = {
     -- `false` will disable the whole extension

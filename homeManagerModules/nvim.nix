@@ -13,6 +13,12 @@ in
         EDITOR = "vim";
       };
 
+      # NB: do the install inside of a nixshell with a C compiler so
+      # we can build the yaml parser
+      home.activation.tsgrammars = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD nix shell nixpkgs#gcc --command nvim --headless +TSUpdateSync +q
+      '';
+
       programs.neovim = {
         enable = true;
         vimAlias = true;
@@ -22,8 +28,9 @@ in
         withRuby = false;
 
         extraPackages = with pkgs; [
-          rnix-lsp
           nodePackages.typescript-language-server
+          rnix-lsp
+          tree-sitter
         ];
 
         plugins = with pkgs.vimPlugins; [
@@ -34,6 +41,10 @@ in
           # Color themes/syntax highlighting
           kanagawa-nvim
           rust-vim # Also makes things work like formatting and cargo integration
+          # NB: let treesitter manage its own grammars, there's something about the
+          # ones in nixpkgs makes it break from time to time. Internally it uses a
+          # lockfile for the grammars so this is still fully reproducible
+          nvim-treesitter
 
           # LSP plugins
           nvim-lspconfig  # Collection of common configurations for the Nvim LSP client
@@ -54,40 +65,6 @@ in
           fzf-vim
           vim-commentary
           vim-easy-align
-
-          (nvim-treesitter.withPlugins (plugins: with pkgs.tree-sitter-grammars; [
-            /* tree-sitter-bash */
-            tree-sitter-c
-            /* tree-sitter-comment */
-            tree-sitter-cpp
-            tree-sitter-css
-            tree-sitter-dockerfile
-            tree-sitter-dot
-            tree-sitter-fish
-            tree-sitter-go
-            tree-sitter-gomod
-            tree-sitter-html
-            tree-sitter-http
-            tree-sitter-java
-            tree-sitter-javascript
-            tree-sitter-jsdoc
-            tree-sitter-json
-            tree-sitter-json5
-            /* tree-sitter-kotlin */
-            tree-sitter-lua
-            tree-sitter-make
-            tree-sitter-markdown
-            tree-sitter-nix
-            tree-sitter-python
-            tree-sitter-regex
-            /* tree-sitter-rust */
-            tree-sitter-scss
-            /* tree-sitter-swift */
-            tree-sitter-toml
-            tree-sitter-typescript
-            tree-sitter-vim
-            tree-sitter-yaml
-          ]))
         ];
 
         extraConfig = builtins.replaceStrings
