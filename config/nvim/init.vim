@@ -154,6 +154,7 @@ require'nvim-treesitter.configs'.setup {
     "jq",
     "json",
     "lua",
+    "make",
     "markdown",
     "mermaid",
     "nix",
