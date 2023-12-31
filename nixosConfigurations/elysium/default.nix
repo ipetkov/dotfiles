@@ -53,6 +53,7 @@
         "--no-sync-snap"
         "--use-hold"
         "--skip-parent"
+        "--preserve-recordsize"
       ];
       commands = {
         # Local
