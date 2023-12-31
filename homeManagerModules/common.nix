@@ -16,6 +16,7 @@
 
   home.packages = with pkgs; [
     fd
+    nix-output-monitor
     nix-tree
     ripgrep
   ];
