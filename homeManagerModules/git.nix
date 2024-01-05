@@ -22,7 +22,7 @@ in
     extraConfig = {
       core.autoctrlf = "input";
       init.defaultBranch = "main";
-      merge.conflictstyle = "diff3";
+      merge.conflictstyle = "zdiff3";
       pull.ff = "only";
       push.default = "matching";
       rerere.enabled = "true";
