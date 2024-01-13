@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  xdg.configFile."alacritty/alacritty.yml".source = ../config/alacritty/alacritty.yml;
+  xdg.configFile."alacritty/alacritty.toml".source = ../config/alacritty/alacritty.toml;
 
   home.packages = with pkgs; [
     alacritty
