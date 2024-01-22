@@ -16,7 +16,7 @@ in
       # NB: do the install inside of a nixshell with a C compiler so
       # we can build the yaml parser
       home.activation.tsgrammars = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        $DRY_RUN_CMD nix shell nixpkgs#gcc --command nvim --headless +TSUpdateSync +q
+        $DRY_RUN_CMD nix shell ${pkgs.gcc} --command nvim --headless +TSUpdateSync +q
       '';
 
       programs.neovim = {
