@@ -28,11 +28,9 @@ in
       rerere.enabled = "true";
     };
 
-    delta = {
+    difftastic = {
       enable = true;
-      options = {
-        side-by-side = true;
-      };
+      display = "side-by-side";
     };
   };
 }
