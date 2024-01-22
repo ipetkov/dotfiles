@@ -111,11 +111,12 @@
     dnsutils
     fish
     git
+    handbrake
     htop
     lsof
     pavucontrol
     vim
-    /* virt-manager */
+    vlc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
