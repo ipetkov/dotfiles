@@ -351,7 +351,30 @@ require('kanagawa').setup({
     terminalColors = true,      -- define vim.g.terminal_color_{0,17}
     colors = {},
     overrides = function(colors)
-      return {}
+      return {
+        -- update kanagawa to handle new treesitter highlight captures
+        -- https://github.com/rebelot/kanagawa.nvim/issues/197
+        -- don't forget :KanagawaCompile
+        ["@string.regexp"] = { link = "@string.regex" },
+        ["@variable.parameter"] = { link = "@parameter" },
+        ["@exception"] = { link = "@exception" },
+        ["@string.special.symbol"] = { link = "@symbol" },
+        ["@markup.strong"] = { link = "@text.strong" },
+        ["@markup.italic"] = { link = "@text.emphasis" },
+        ["@markup.heading"] = { link = "@text.title" },
+        ["@markup.raw"] = { link = "@text.literal" },
+        ["@markup.quote"] = { link = "@text.quote" },
+        ["@markup.math"] = { link = "@text.math" },
+        ["@markup.environment"] = { link = "@text.environment" },
+        ["@markup.environment.name"] = { link = "@text.environment.name" },
+        ["@markup.link.url"] = { link = "Special" },
+        ["@markup.link.label"] = { link = "Identifier" },
+        ["@comment.note"] = { link = "@text.note" },
+        ["@comment.warning"] = { link = "@text.warning" },
+        ["@comment.danger"] = { link = "@text.danger" },
+        ["@diff.plus"] = { link = "@text.diff.add" },
+        ["@diff.minus"] = { link = "@text.diff.delete" },
+      }
     end,
     theme = "default"           -- Load "default" theme or the experimental "light" theme
 })
