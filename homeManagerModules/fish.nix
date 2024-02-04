@@ -37,6 +37,19 @@
     end
     '';
 
+    functions = {
+      nom = {
+        wraps = "nix";
+        body = ''
+          if test "$argv[1]" = flake -a "$argv[2]" = check
+            nix --log-format internal-json -v $argv 2>| command nom --json
+          else
+            command nom $argv
+          end
+        '';
+      };
+    };
+
     shellAliases = lib.optionalAttrs config.programs.eza.enable {
       ll = "eza -la";
     };
