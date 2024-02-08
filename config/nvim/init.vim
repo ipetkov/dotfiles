@@ -374,6 +374,7 @@ require('kanagawa').setup({
         ["@comment.danger"] = { link = "@text.danger" },
         ["@diff.plus"] = { link = "@text.diff.add" },
         ["@diff.minus"] = { link = "@text.diff.delete" },
+        ["@comment.todo"] = { link = "@text.todo" },
       }
     end,
     theme = "default"           -- Load "default" theme or the experimental "light" theme
