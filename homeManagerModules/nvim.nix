@@ -63,6 +63,7 @@ in
 
           # Misc
           fzf-vim
+          neoconf-nvim
           vim-commentary
           vim-easy-align
         ];
