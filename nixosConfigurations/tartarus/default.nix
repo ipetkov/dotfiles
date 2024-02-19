@@ -77,6 +77,14 @@
     executable = "/bin/gammastep";
   };
 
+  # The sway module will unconditionally import wayland-session.nix
+  # which defaults to enabling xdg.portal. That in turn adds xdg-desktop-portal-wlr
+  # which fails to startup (with pipewire and xdpw failures). Eventually things timeout
+  # and the system moves on, but it messes with the rest of my configs starting (like waybar)
+  # in a timely manner. Rather than pull a bunch of extra things I don't use, I'd rather turn
+  # desktop portals off and revisit it if I ever need them in the future.
+  xdg.portal.enable = false;
+
   # Desktop/window management
   programs.sway = {
     enable = true;
