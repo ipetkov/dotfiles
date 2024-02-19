@@ -41,7 +41,7 @@
       nom = {
         wraps = "nix";
         body = ''
-          if test "$argv[1]" = flake -a "$argv[2]" = check
+          if test x_flake_check_x = "x_$argv[1]_$argv[2]_x"
             nix --log-format internal-json -v $argv 2>| command nom --json
           else
             command nom $argv
