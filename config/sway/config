@@ -289,7 +289,7 @@ for_window [class="discord"] inhibit_idle fullscreen
 #
 # Systemd hook
 #
-exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+exec "systemctl --user import-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE; systemctl --user start sway-session.target"
 
 #
 # Start up programs
