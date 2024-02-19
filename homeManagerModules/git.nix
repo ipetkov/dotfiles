@@ -20,12 +20,17 @@ in
     };
 
     extraConfig = {
+      commit.verbose = "true";
       core.autoctrlf = "input";
+      fetch.fsckobjects = "true";
       init.defaultBranch = "main";
       merge.conflictstyle = "zdiff3";
       pull.ff = "only";
       push.default = "matching";
+      rebase.autosquash = "true";
+      receive.fsckObjects = "true";
       rerere.enabled = "true";
+      transfer.fsckobjects = "true";
     };
 
     difftastic = {
