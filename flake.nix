@@ -9,7 +9,7 @@
     # mixing and matching branches.
     nixpkgs.url = "nixpkgs/nixos-unstable";
     # Pinned because deploying to rpi is slow as molasses due to SD card I/O being crap
-    nixpkgs-for-rpi.url = "github:NixOS/nixpkgs/faf912b086576fd1a15fca610166c98d47bc667e";
+    nixpkgs-for-rpi.url = "github:NixOS/nixpkgs/3030f185ba6a4bf4f18b87f345f104e6a6961f34";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     flake-compat = {
@@ -50,7 +50,6 @@
 
       inherit (myLib) mkHost;
 
-      systemDarwin = "x86_64-darwin";
       systemLinux = "x86_64-linux";
       systemLinuxArm = "aarch64-linux";
     in
