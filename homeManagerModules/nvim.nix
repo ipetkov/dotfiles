@@ -29,7 +29,7 @@ in
 
         extraPackages = with pkgs; [
           nodePackages.typescript-language-server
-          rnix-lsp
+          nil
           tree-sitter
         ];
 

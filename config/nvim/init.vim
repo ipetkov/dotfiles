@@ -270,7 +270,7 @@ rust_tools.setup({
 })
 
 local lspconfig = require'lspconfig'
-lspconfig.rnix.setup({
+lspconfig.nil_ls.setup({
 })
 
 lspconfig.tsserver.setup({
