@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -17,8 +17,7 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.kernelParams = [ "elevator=none" ]; # Because ZFS doesn't have the whole disk
 
-  # Use the latest kernel which is compatible with stable ZFS
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  #boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   networking = {
     hostName = "tartarus"; # Define your hostname.
