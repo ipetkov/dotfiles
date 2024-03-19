@@ -11,6 +11,7 @@
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.memtest86.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   # https://nixos.wiki/wiki/NixOS_on_ZFS
   boot.loader.grub.copyKernels = true;
