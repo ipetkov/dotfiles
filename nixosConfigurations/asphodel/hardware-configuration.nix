@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, inputs, ... }:
+{ config, lib, inputs, ... }:
 
 {
   imports = [
@@ -85,6 +85,15 @@
       device = "/dev/disk/by-uuid/0F92-BECC";
       fsType = "vfat";
       options = [ "noatime" ];
+    };
+
+    "/empty/phlegethon-persist" = {
+      device = "phlegethon/persist";
+      fsType = "zfs";
+    };
+    "/empty/phlegethon-persist-user" = {
+      device = "phlegethon/persist/user";
+      fsType = "zfs";
     };
 
     "/home/ivan" = {
