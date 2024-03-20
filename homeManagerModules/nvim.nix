@@ -1,7 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 let
-  inherit (lib) mkIf mkMerge mkEnableOption;
-  cfg = config.programs.neovim;
+  inherit (lib) mkMerge;
 in
 {
   # Ensure we pull in fzf for our fzf plugin below
@@ -30,6 +29,7 @@ in
         extraPackages = with pkgs; [
           nodePackages.typescript-language-server
           nil
+          nixpkgs-fmt
           tree-sitter
         ];
 
