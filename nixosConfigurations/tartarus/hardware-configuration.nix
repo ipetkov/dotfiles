@@ -62,7 +62,7 @@
       fsType = "zfs";
     };
     "/persist" = {
-      device = "nvme-pool/persist";
+      device = "nvme-pool/persist/system";
       fsType = "zfs";
       neededForBoot = true;
     };
