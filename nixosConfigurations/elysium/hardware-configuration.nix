@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, inputs, ... }:
+{ config, lib, modulesPath, ... }:
 
 {
   imports = [
@@ -86,6 +86,11 @@
       device = "/dev/disk/by-uuid/87D1-ADFE";
       fsType = "vfat";
       options = [ "noatime" ];
+    };
+
+    "/empty/acheron-persist-user" = {
+      device = "acheron/persist/user";
+      fsType = "zfs";
     };
 
     "/home/ivan" = {
