@@ -119,7 +119,7 @@
     dnsutils
     fish
     git
-    handbrake
+    #handbrake
     htop
     lsof
     pavucontrol
