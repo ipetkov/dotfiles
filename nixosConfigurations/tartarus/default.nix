@@ -150,6 +150,10 @@
       enabledCollectors = [ "systemd" ];
       port = 9100;
     };
+    smartctl = {
+      enable = true;
+      port = 9633;
+    };
     zfs = {
       enable = true;
       port = 9134;
