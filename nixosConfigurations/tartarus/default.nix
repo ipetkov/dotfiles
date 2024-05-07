@@ -115,6 +115,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    attic-client
     bash
     dnsutils
     fish
