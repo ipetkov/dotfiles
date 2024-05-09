@@ -20,7 +20,6 @@ in
     };
 
     extraConfig = {
-      commit.verbose = "true";
       core.autoctrlf = "input";
       fetch.fsckobjects = "true";
       init.defaultBranch = "main";
