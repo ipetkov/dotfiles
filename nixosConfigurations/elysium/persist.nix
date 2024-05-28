@@ -1,7 +1,8 @@
 { ... }:
 {
-  environment.etc."NetworkManager/system-connections" = {
-    source = "/persist/etc/NetworkManager/system-connections/";
+  environment.etc = {
+    "machine-id".source = "/persist/etc/machine-id";
+    "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections/";
   };
 
   users.users.root.hashedPasswordFile = "/persist/root/passwordfile";
