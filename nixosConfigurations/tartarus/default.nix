@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
@@ -87,7 +87,7 @@
   # and the system moves on, but it messes with the rest of my configs starting (like waybar)
   # in a timely manner. Rather than pull a bunch of extra things I don't use, I'd rather turn
   # desktop portals off and revisit it if I ever need them in the future.
-  xdg.portal.enable = false;
+  xdg.portal.enable = lib.mkForce false;
 
   # Desktop/window management
   programs.sway = {
