@@ -122,6 +122,7 @@
     attic-client
     bash
     dnsutils
+    element-desktop
     fish
     git
     #handbrake
