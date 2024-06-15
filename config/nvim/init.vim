@@ -224,22 +224,13 @@ require("neoconf").setup({
   },
 })
 
--- Configure LSP through rust-tools.nvim plugin.
--- rust-tools will configure and enable certain LSP features for us.
--- See https://github.com/simrat39/rust-tools.nvim#configuration
-local rust_tools = require'rust-tools'
-rust_tools.setup({
+vim.g.rustaceanvim = {
     tools = {
-        autoSetHints = true,
-        inlay_hints = {
-            show_parameter_hints = true,
-            other_hints_prefix = "» ",
-        },
     },
 
     -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    -- these override the defaults
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server-configurations.md
     server = {
         cmd = { '@rustAnalyzer@/bin/rust-analyzer' },
         settings = {
@@ -266,7 +257,7 @@ rust_tools.setup({
             }
         }
     },
-})
+}
 
 local lspconfig = require'lspconfig'
 lspconfig.nil_ls.setup({
@@ -405,4 +396,5 @@ require('kanagawa').setup({
 -- setup must be called before loading
 vim.cmd("colorscheme kanagawa")
 
+vim.lsp.inlay_hint.enable(true)
 EOF

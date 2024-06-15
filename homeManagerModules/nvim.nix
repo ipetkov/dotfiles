@@ -48,7 +48,7 @@ in
 
           # LSP plugins
           nvim-lspconfig  # Collection of common configurations for the Nvim LSP client
-          rust-tools-nvim # To enable more of the features of rust-analyzer, such as inlay hints and more!
+          rustaceanvim   # To enable more of the features of rust-analyzer, such as inlay hints and more!
           nvim-cmp        # Completion framework
           cmp-buffer      # completion source for buffer words
           cmp-nvim-lsp    # completion source for builtin lsp
