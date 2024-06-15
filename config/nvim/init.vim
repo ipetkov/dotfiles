@@ -254,6 +254,9 @@ vim.g.rustaceanvim = {
                 rust = {
                     analyzerTargetDir = true,
                 },
+                flags = {
+                  exit_timeout = 100,
+                },
             }
         }
     },
