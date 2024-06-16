@@ -43,9 +43,6 @@ jobs:
         name: ipetkov
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
 
-    - name: add nix-community cache
-      run: cachix use nix-community
-
     - name: install QEMU/binfmt
       if: ${{ matrix.qemuPlatforms != '' }}
       uses: docker/setup-qemu-action@v3
