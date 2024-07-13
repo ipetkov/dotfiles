@@ -25,6 +25,9 @@
     hostId = "feedbeef";
   };
 
+  nix.extraOptions = ''
+    secret-key-files = /persist/tartarus-nix-store-signing-secret-key
+  '';
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
