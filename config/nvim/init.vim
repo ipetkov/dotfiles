@@ -94,7 +94,7 @@ nnoremap <silent> <a-cr> <cmd>lua vim.lsp.buf.code_action()<CR>
 " Trouble keybinds
 nnoremap <leader>xx <cmd>Trouble diagnostics toggle<cr>
 nnoremap <leader>xw <cmd>Trouble diagnostics focus=true<cr>
-nnoremap gR <cmd>Trouble lsp<cr>
+nnoremap gR <cmd>Trouble lsp focus=true<cr>
 
 function! s:check_back_space() abort
     let col = col('.') - 1
