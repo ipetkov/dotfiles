@@ -25,9 +25,6 @@
     hostId = "feedbeef";
   };
 
-  nix.settings.trusted-users = [
-    "ivan"
-  ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
