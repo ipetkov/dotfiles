@@ -26,7 +26,7 @@ in
         settings = {
           sandbox = true;
 
-          substituters = [
+          trusted-substituters = [
             "https://crane.cachix.org"
             "https://ipetkov.cachix.org"
           ];
