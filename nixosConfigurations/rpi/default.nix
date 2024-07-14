@@ -51,13 +51,6 @@
 
   nix = {
     optimise.automatic = true;
-
-    # Users allowd to import NARs into the nix store without signatures
-    # (i.e. allows us to run `nixos-rebuild switch --build-host localhost --target-host rpi`
-    # from another machine).
-    settings.trusted-users = [
-      "ivan"
-    ];
   };
 
   nixpkgs.overlays = [
