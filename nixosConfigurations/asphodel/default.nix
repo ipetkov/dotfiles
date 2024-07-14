@@ -99,15 +99,6 @@
 
   programs.command-not-found.enable = false;
 
-  nix = {
-    # Users allowd to import NARs into the nix store without signatures
-    # (i.e. allows us to run `nixos-rebuild switch --build-host localhost --target-host ...`
-    # from another machine).
-    settings.trusted-users = [
-      "ivan"
-    ];
-  };
-
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
 }
