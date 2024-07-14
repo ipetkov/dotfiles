@@ -27,6 +27,7 @@ in
           sandbox = true;
 
           trusted-substituters = [
+            "https://cache.ipetkov.dev/isc"
             "https://crane.cachix.org"
             "https://ipetkov.cachix.org"
           ];
@@ -34,6 +35,7 @@ in
           trusted-public-keys = [
             "crane.cachix.org-1:8Scfpmn9w+hGdXH/Q9tTLiYAE/2dnJYRJP7kl80GuRk="
             "ipetkov.cachix.org-1:xK9taxnomX0ZVyDmobpZB5AQvuZ+L3q4u7IlRvEtomg="
+            "isc:b6qs2oRmB0HiJ0KCePMrv40lalsp6+e8eZRQRkXrMIc="
           ];
         };
 
