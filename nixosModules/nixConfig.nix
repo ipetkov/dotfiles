@@ -16,7 +16,7 @@ in
   config = lib.mkMerge [
     ({
       nix = {
-        package = pkgs.nixVersions.stable;
+        package = pkgs.lixVersions.stable;
         extraOptions = ''
           experimental-features = nix-command flakes
           keep-outputs = true
