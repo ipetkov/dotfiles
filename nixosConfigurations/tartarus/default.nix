@@ -102,6 +102,7 @@
     # *just* in case something goes wrong with a user sway config
     extraPackages = with pkgs; [
       alacritty
+      calibre
       dmenu
       swayidle
       swaylock
