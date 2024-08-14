@@ -45,6 +45,7 @@ in
           # ones in nixpkgs makes it break from time to time. Internally it uses a
           # lockfile for the grammars so this is still fully reproducible
           nvim-treesitter
+          hmts-nvim # better language highlighting inside home-manager configs
 
           # LSP plugins
           nvim-lspconfig  # Collection of common configurations for the Nvim LSP client
