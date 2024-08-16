@@ -181,7 +181,8 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require("neoconf").setup({
+local neoconf = require("neoconf")
+neoconf.setup({
   -- name of the local settings files
   local_settings = ".neoconf.json",
   -- name of the global settings file in your Neovim config directory
@@ -253,6 +254,10 @@ vim.g.rustaceanvim = {
                 },
                 flags = {
                   exit_timeout = 100,
+                },
+                -- Make rustaceanvim effectively work with neoconf for the fields we care about
+                files = {
+                  excludeDirs = ((((neoconf.get("vscode", {}) or {})["rust-analyzer"] or {}).files or {}).excludeDirs or {}),
                 },
             }
         }
