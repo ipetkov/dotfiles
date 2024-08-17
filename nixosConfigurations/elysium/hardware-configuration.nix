@@ -85,7 +85,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/87D1-ADFE";
       fsType = "vfat";
-      options = [ "noatime" ];
+      options = [ "noatime" "umask=0077" ];
     };
 
     "/empty/acheron-persist-user" = {

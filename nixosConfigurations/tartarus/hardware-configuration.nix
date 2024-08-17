@@ -48,6 +48,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/2100-01FF";
       fsType = "vfat";
+      options = [ "noatime" "umask=0077" ];
     };
     "/empty/user" = {
       device = "nvme-pool/persist/user";

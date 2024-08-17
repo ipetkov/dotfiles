@@ -84,7 +84,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/0F92-BECC";
       fsType = "vfat";
-      options = [ "noatime" ];
+      options = [ "noatime" "umask=0077" ];
     };
 
     "/empty/phlegethon-persist" = {
