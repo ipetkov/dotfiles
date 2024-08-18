@@ -40,7 +40,7 @@ highlight clear SignColumn " NB: enforce this *after* color scheme
 let mapleader="\<Space>"
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>t :tabe<CR>
-nnoremap <leader>s :Git<CR>
+nnoremap <leader>s :vert Git<CR>
 nnoremap <leader>n :GitGutterNextHunk<CR>
 nnoremap <leader>p :GitGutterPrevHunk<CR>
 nnoremap <leader>h :set hlsearch!<CR>
