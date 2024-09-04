@@ -1,3 +1,8 @@
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Super|Shift", action = "SpawnNewInstance" }
+]
+
 [colors.primary]
 background = '#2c2b2a'
 foreground = '#f9e7c4'
