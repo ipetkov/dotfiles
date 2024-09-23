@@ -275,7 +275,7 @@ lspconfig.nil_ls.setup({
   },
 })
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
 })
 
 -- Setup Completion
