@@ -159,8 +159,19 @@
   services.prometheus.exporters = {
     node = {
       enable = true;
-      enabledCollectors = [ "systemd" ];
       port = 9100;
+      enabledCollectors = [ "systemd" ];
+      disabledCollectors = [
+        "bonding"
+        "fibrechannel"
+        "infiniband"
+        "ipvs"
+        "mdadm"
+        "nfs"
+        "nfsd"
+        "rapl"
+        "tapestats"
+      ];
     };
     smartctl = {
       enable = true;
