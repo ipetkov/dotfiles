@@ -1,6 +1,16 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   inherit (lib) mkMerge;
+
+  # https://github.com/neovim/neovim/issues/30985
+  inherit (import
+    (fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/eabc38219184cc3e04a974fe31857d8e0eac098d.tar.gz";
+      sha256 = "sha256:04ffwp2gzq0hhz7siskw6qh9ys8ragp7285vi1zh8xjksxn1msc5";
+    })
+    {
+      inherit (config.nixpkgs) system;
+    }) rust-analyzer;
 in
 {
   # Ensure we pull in fzf for our fzf plugin below
@@ -70,7 +80,7 @@ in
 
         extraConfig = builtins.replaceStrings
           [ "@rustAnalyzer@" ]
-          [ "${pkgs.rust-analyzer}" ]
+          [ "${rust-analyzer}" ]
           (builtins.readFile ../config/nvim/init.vim);
       };
     })
