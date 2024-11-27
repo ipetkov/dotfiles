@@ -5,8 +5,8 @@ let
   # https://github.com/neovim/neovim/issues/30985
   inherit (import
     (fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/eabc38219184cc3e04a974fe31857d8e0eac098d.tar.gz";
-      sha256 = "sha256:04ffwp2gzq0hhz7siskw6qh9ys8ragp7285vi1zh8xjksxn1msc5";
+      url = "https://github.com/NixOS/nixpkgs/archive/dc460ec76cbff0e66e269457d7b728432263166c.tar.gz";
+      sha256 = "sha256:0hmq3f1a5sf2cmx9zz9y0vav48g61b2kjyhsgi662vb7if7h3c1x";
     })
     {
       inherit (config.nixpkgs) system;
