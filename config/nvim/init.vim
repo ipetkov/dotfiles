@@ -237,6 +237,7 @@ vim.g.rustaceanvim = {
             ["rust-analyzer"] = {
                 cargo = {
                     allFeatures = true,
+                    targetDir = true,
                 },
                 -- enable clippy on save
                 check = {
@@ -248,9 +249,6 @@ vim.g.rustaceanvim = {
                 },
                 procMacro = {
                     enable = true,
-                },
-                rust = {
-                    analyzerTargetDir = true,
                 },
                 flags = {
                   exit_timeout = 100,
