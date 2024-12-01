@@ -77,7 +77,7 @@ in
         "/var/lib/pihole/:/etc/pihole/"
       ];
       environment = {
-        ServerIP = cfg.serverIP;
+        FTLCONF_LOCAL_IPV4 = cfg.serverIP;
         TZ = config.time.timeZone;
         WEB_PORT = "${toString cfg.webPort}";
       };
