@@ -1,5 +1,5 @@
 {
-  description = "ippetkov's nixos configs";
+  description = "ipetkov's nixos configs";
 
   inputs = {
     # Use the nixos-unstable channel for all of our configurations, even on non-NixOS
