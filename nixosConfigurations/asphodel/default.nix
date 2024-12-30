@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -43,9 +43,12 @@
     vim
   ];
 
-  dotfiles.zfs-send = {
-    enable = true;
-    rootPool = "phlegethon";
+  dotfiles = {
+    nix.distributedBuilds.enable = true;
+    zfs-send = {
+      enable = true;
+      rootPool = "phlegethon";
+    };
   };
 
   services = {

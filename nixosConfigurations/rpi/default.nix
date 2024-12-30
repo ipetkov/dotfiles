@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -45,7 +45,10 @@
 
   # Copying nixpkgs-source causes a big I/O penalty on SD card writes, so skip it
   dotfiles = {
-    nix.enableSetNixPathAndFlakeRegistry = false;
+    nix = {
+      distributedBuilds.enable = true;
+      enableSetNixPathAndFlakeRegistry = false;
+    };
     services.pihole.enable = true;
   };
 

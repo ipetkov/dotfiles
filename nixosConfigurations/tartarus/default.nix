@@ -25,27 +25,9 @@
     hostId = "feedbeef";
   };
 
-  nix = {
-    buildMachines = [{
-      hostName = "elysium";
-      maxJobs = 4;
-      protocol = "ssh-ng";
-      publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9XZDhYenkxSDFQd3dDWXpBeXBUc25BbnliaEVYd1gwUnRXV0k4THFjeEwgcm9vdEBlbHlzaXVtCg==";
-      speedFactor = 1;
-      sshKey = "/persist/elysium-nixuser-id_ed25519";
-      sshUser = "nixuser";
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-    }];
-    distributedBuilds = true;
-    extraOptions = ''
-      secret-key-files = /persist/tartarus-nix-store-signing-secret-key
-    '';
-    settings.builders-use-substitutes = true;
-  };
+  nix.extraOptions = ''
+    secret-key-files = /persist/tartarus-nix-store-signing-secret-key
+  '';
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
@@ -263,7 +245,13 @@
 
   programs.command-not-found.enable = false;
 
-  dotfiles._1password.enable = true;
+  dotfiles = {
+    _1password.enable = true;
+    nix.distributedBuilds = {
+      enable = true;
+      sshKey = "/persist/elysium-nixuser-id_ed25519";
+    };
+  };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";

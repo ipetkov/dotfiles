@@ -1,16 +1,32 @@
 { config, pkgs, lib, inputs, ... }:
 let
+  inherit (lib) mkEnableOption mkOption types;
   cfg = config.dotfiles.nix;
 in
 {
   # The nixpkgs source is kinda large (87MB at this time, but constantly growing)
   # so allow machines (i.e. non-desktops) to opt out of adding it to the NIX_PATH/flake registry
   # to avoid having to copy it over with all deployments
-  options.dotfiles.nix.enableSetNixPathAndFlakeRegistry = lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    example = true;
-    description = "Whether to add nixpkgs to nixPath and flake registry";
+  options.dotfiles.nix = {
+    enableSetNixPathAndFlakeRegistry = mkOption {
+      type = lib.types.bool;
+      default = true;
+      example = true;
+      description = "Whether to add nixpkgs to nixPath and flake registry";
+    };
+
+    distributedBuilds = mkOption {
+      default = { };
+      type = types.submodule {
+        options = {
+          enable = mkEnableOption "distributed builds";
+          sshKey = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+          };
+        };
+      };
+    };
   };
 
   config = lib.mkMerge [
@@ -36,6 +52,7 @@ in
             "crane.cachix.org-1:8Scfpmn9w+hGdXH/Q9tTLiYAE/2dnJYRJP7kl80GuRk="
             "ipetkov.cachix.org-1:xK9taxnomX0ZVyDmobpZB5AQvuZ+L3q4u7IlRvEtomg="
             "isc:b6qs2oRmB0HiJ0KCePMrv40lalsp6+e8eZRQRkXrMIc="
+            "elysium.ipetkov.dev-1:H0okpsNoJPtsge8uMtBiN6tLavSyi+l3ziMTA31CRfc="
           ];
         };
 
@@ -67,6 +84,28 @@ in
         registry = {
           nixpkgs.flake = inputs.nixpkgs;
         };
+      };
+    })
+
+    (lib.mkIf cfg.distributedBuilds.enable {
+      nix = {
+        buildMachines = [{
+          inherit (cfg.distributedBuilds) sshKey;
+
+          hostName = "elysium";
+          maxJobs = 4;
+          protocol = "ssh-ng";
+          publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9XZDhYenkxSDFQd3dDWXpBeXBUc25BbnliaEVYd1gwUnRXV0k4THFjeEwgcm9vdEBlbHlzaXVtCg==";
+          speedFactor = 1;
+          sshUser = "nixuser";
+          supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+          systems = [
+            "x86_64-linux"
+            "aarch64-linux"
+          ];
+        }];
+        distributedBuilds = true;
+        settings.builders-use-substitutes = true;
       };
     })
   ];
