@@ -3,6 +3,7 @@
 {
   imports = [
     ./_1password.nix
+    ./knownHosts.nix
     ./nixConfig.nix
     ./pihole.nix
     ./tailscale.nix
