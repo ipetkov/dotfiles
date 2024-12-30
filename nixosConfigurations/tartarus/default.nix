@@ -25,9 +25,27 @@
     hostId = "feedbeef";
   };
 
-  nix.extraOptions = ''
-    secret-key-files = /persist/tartarus-nix-store-signing-secret-key
-  '';
+  nix = {
+    buildMachines = [{
+      hostName = "elysium";
+      maxJobs = 4;
+      protocol = "ssh-ng";
+      publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9XZDhYenkxSDFQd3dDWXpBeXBUc25BbnliaEVYd1gwUnRXV0k4THFjeEwgcm9vdEBlbHlzaXVtCg==";
+      speedFactor = 1;
+      sshKey = "/persist/elysium-nixuser-id_ed25519";
+      sshUser = "nixuser";
+      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+    }];
+    distributedBuilds = true;
+    extraOptions = ''
+      secret-key-files = /persist/tartarus-nix-store-signing-secret-key
+    '';
+    settings.builders-use-substitutes = true;
+  };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
