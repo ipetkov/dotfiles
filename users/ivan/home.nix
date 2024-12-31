@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ../../homeManagerModules/alacritty.nix
@@ -10,6 +10,7 @@
     ../../homeManagerModules/git.nix
     ../../homeManagerModules/gpg.nix
     ../../homeManagerModules/gtk.nix
+    ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
     ../../homeManagerModules/rust.nix
     ../../homeManagerModules/sway.nix
@@ -37,6 +38,12 @@
     functions = {
       fish_greeting = "task";
     };
+  };
+
+  programs.jujutsu.settings.signing = {
+    inherit (config.programs.git.signing) key;
+    sign-all = true;
+    backend = "gpg";
   };
 
   programs.topgrade.enable = true;
