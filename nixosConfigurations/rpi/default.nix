@@ -22,6 +22,10 @@
   boot.enableContainers = false;
   boot.tmp.cleanOnBoot = true;
 
+  # Trim fat
+  boot.bcache.enable = false;
+  boot.swraid.enable = false;
+
   hardware.enableRedistributableFirmware = true;
 
   fileSystems = {
@@ -85,8 +89,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    bash
-    git
     htop
     vim
   ];
@@ -126,7 +128,10 @@
   i18n.supportedLocales = [ (config.i18n.defaultLocale + "/UTF-8") ];
   i18n.defaultLocale = "en_US.UTF-8";
 
-  programs.command-not-found.enable = false;
+  programs = {
+    command-not-found.enable = false;
+    nano.enable = false;
+  };
 
   virtualisation.docker.autoPrune = {
     enable = true;
@@ -144,5 +149,14 @@
       SystemMaxUse=1536M
       MaxFileSec=60day
     '';
+  };
+
+  # Trim more fat
+  xdg = {
+    autostart.enable = false;
+    icons.enable = false;
+    menus.enable = false;
+    mime.enable = false;
+    sounds.enable = false;
   };
 }
