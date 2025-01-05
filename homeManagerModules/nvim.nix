@@ -26,6 +26,15 @@ in
         withPython3 = false;
         withRuby = false;
 
+        package = pkgs.neovim-unwrapped.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [
+            (pkgs.fetchpatch {
+              url = "https://github.com/neovim/neovim/commit/f1f42ec063795f9461d9744d62eaaa6cc978ea56.patch";
+              hash = "sha256-TI3qfdQiMIz8GI6pT1ZtRAHXAEednYefJCnu1TkowE4=";
+            })
+          ];
+        });
+
         extraPackages = with pkgs; [
           nodePackages.typescript-language-server
           nil
