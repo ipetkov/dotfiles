@@ -20,6 +20,18 @@ in
         "immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())";
       };
 
+      templates.draft_commit_description = lib.mkDefault ''
+        concat(
+          coalesce(description, "wip: "),
+          surround(
+            "\nJJ: This commit contains the following changes:\n", "",
+            indent("JJ:     ", diff.summary()),
+          ),
+          "\nJJ: ignore-rest\n",
+          diff.git(),
+        )
+      '';
+
       ui.pager = "less -FRX";
       user = {
         name = cfgGit.userName;
