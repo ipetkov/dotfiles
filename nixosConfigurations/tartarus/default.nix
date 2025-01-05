@@ -114,7 +114,7 @@
   # Enable sound.
   services.pipewire.enable = false; # pipewire is enabled by default for new installs, keep the old behavior here
   hardware.bluetooth.enable = true;
-  hardware.pulseaudio = {
+  services.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull; # For bluetooth support
   };
