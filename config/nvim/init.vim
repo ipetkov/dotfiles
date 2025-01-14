@@ -119,6 +119,8 @@ augroup auto_cmds
   " Turn on spell checking and auto wrap text
   autocmd Filetype markdown setlocal spell textwidth=80 formatoptions+=t
   autocmd Filetype gitcommit setlocal spell textwidth=72 formatoptions+=t
+  autocmd Filetype jj setlocal spell textwidth=72 formatoptions+=t
+  autocmd Filetype jjdescription setlocal spell textwidth=72 formatoptions+=t
 
   " Show diagnostic popup on cursor hold
   autocmd CursorHold * lua vim.diagnostic.open_float({focusable = false})
