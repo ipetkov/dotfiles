@@ -1,17 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 let
   cfgGit = config.programs.git;
 in
 {
-  home.packages = [
-    pkgs.watchman
-  ];
-
   programs.jujutsu = {
     enable = true;
     settings = {
-      core.fsmonitor = "watchman";
-
       git.private-commits = lib.mkDefault "description(glob:'wip:*') | description(glob:'private:*')";
 
       revset-aliases = lib.mkDefault {
