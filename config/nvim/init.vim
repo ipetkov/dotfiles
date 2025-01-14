@@ -233,7 +233,7 @@ vim.g.rustaceanvim = {
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server-configurations.md
     server = {
         cmd = { '@rustAnalyzer@/bin/rust-analyzer' },
-        settings = {
+        default_settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
