@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -88,6 +88,7 @@
     interfaces.wlan0.useDHCP = true;
   };
 
+  environment.stub-ld.enable = lib.mkForce false; # trim fat
   environment.systemPackages = with pkgs; [
     htop
     vim
@@ -140,6 +141,7 @@
   systemd.timers.docker-prune.timerConfig.Persistent = true;
 
   services = {
+    logrotate.enable = false; # trim fat
     openssh.enable = true;
     tailscale.enable = true;
     udisks2.enable = false; # Unused, trim some fat
@@ -152,6 +154,9 @@
   };
 
   # Trim more fat
+  appstream.enable = false;
+  fonts.fontconfig.enable = false;
+  powerManagement.enable = false;
   xdg = {
     autostart.enable = false;
     icons.enable = false;
