@@ -26,13 +26,19 @@
   programs.git = {
     userName = "Ivan Petkov";
     userEmail = "ivanppetkov@gmail.com";
-    extraConfig.github.user = "ipetkov";
-    signing = {
-      # NB: note bang at the end to force that this subkey is used
-      # and not direct gpg to use whatever subkey it wants from the
-      # parent key (extremely good software...)
-      key = "0xBB6F9EFC065832B6!";
-      signByDefault = true;
+    extraConfig = {
+      github.user = "ipetkov";
+      commit.gpgsign = true;
+      gpg = {
+        format = "ssh";
+        ssh = {
+          program = "/run/current-system/sw/bin/op-ssh-sign";
+          allowedSignersFile = builtins.toString (pkgs.writeText "allowedSignersFile" ''
+            ivanppetkov@gmail.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX
+          '');
+        };
+      };
+      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX";
     };
   };
 
@@ -45,9 +51,10 @@
   };
 
   programs.jujutsu.settings.signing = {
-    inherit (config.programs.git.signing) key;
+    key = config.programs.git.extraConfig.user.signingKey;
     sign-all = true;
-    backend = "gpg";
+    backend = "ssh";
+    backends.ssh.program = config.programs.git.extraConfig.gpg.ssh.program;
   };
 
   programs.topgrade.enable = true;
