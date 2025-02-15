@@ -57,8 +57,6 @@
     backends.ssh.program = config.programs.git.extraConfig.gpg.ssh.program;
   };
 
-  programs.topgrade.enable = true;
-
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     XDG_CURRENT_DESKTOP = "sway";
