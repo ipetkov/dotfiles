@@ -19,10 +19,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "/home/ivan/.1password/agent.sock";
-  };
-
   programs.git = {
     userName = "Ivan Petkov";
     userEmail = "ivanppetkov@gmail.com";

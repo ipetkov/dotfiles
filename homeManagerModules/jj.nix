@@ -6,7 +6,10 @@ in
   programs.jujutsu = {
     enable = true;
     settings = {
-      git.private-commits = lib.mkDefault "description(glob:'wip:*') | description(glob:'private:*')";
+      git = {
+        private-commits = lib.mkDefault "description(glob:'wip:*') | description(glob:'private:*')";
+        subprocess = true;
+      };
 
       revset-aliases = lib.mkDefault {
         # The `trunk().. &` bit is an optimization to scan for non-`mine()` commits
@@ -26,7 +29,11 @@ in
         )
       '';
 
-      ui.pager = "less -FRX";
+      ui = {
+        pager = "less -FRX";
+        show-cryptographic-signatures = true;
+      };
+
       user = {
         name = cfgGit.userName;
         email = cfgGit.userEmail;
