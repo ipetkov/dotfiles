@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+
+let
+  gitExtraConfig = config.programs.git.extraConfig;
+in
 {
   imports = [
     ../../homeManagerModules/alacritty.nix
@@ -50,7 +54,10 @@
     key = config.programs.git.extraConfig.user.signingKey;
     sign-all = true;
     backend = "ssh";
-    backends.ssh.program = config.programs.git.extraConfig.gpg.ssh.program;
+    backends.ssh = {
+      inherit (gitExtraConfig.gpg.ssh) program;
+      allowed-signers = gitExtraConfig.gpg.ssh.allowedSignersFile;
+    };
   };
 
   home.sessionVariables = {
