@@ -44,15 +44,6 @@ in
       description = "a systemd.time(7) compatible option for how often the image should be pulled";
     };
 
-    serverIP = lib.mkOption {
-      type = lib.types.str;
-      default = "0.0.0.0";
-      description = ''
-        the IP address that the HTTP service should listen to (i.e. this should
-        probably be the interface of your local network).
-      '';
-    };
-
     webPort = lib.mkOption {
       type = lib.types.port;
       default = httpDefaultPort;
@@ -77,9 +68,8 @@ in
         "/var/lib/pihole/:/etc/pihole/"
       ];
       environment = {
-        FTLCONF_LOCAL_IPV4 = cfg.serverIP;
         TZ = config.time.timeZone;
-        WEB_PORT = "${toString cfg.webPort}";
+        FTLCONF_webserver_port = "${toString cfg.webPort}";
       };
       extraOptions = [
         "--cap-add=${networkCapability}"
