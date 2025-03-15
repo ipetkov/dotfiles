@@ -205,8 +205,12 @@
     #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,release,rollback \
     # lethe/backups/nvme-pool
 
-    service.serviceConfig = {
-      LoadCredential = "sshKey:/persist/syncoid-zfs-send-id_ed25519";
+    service = {
+      wants = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+      serviceConfig = {
+        LoadCredential = "sshKey:/persist/syncoid-zfs-send-id_ed25519";
+      };
     };
   };
   systemd.timers."syncoid-nvme-pool-persist".timerConfig.Persistent = true;
