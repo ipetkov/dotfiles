@@ -6,10 +6,7 @@ in
   programs.jujutsu = {
     enable = true;
     settings = {
-      git = {
-        private-commits = lib.mkDefault "description(glob:'wip:*') | description(glob:'private:*')";
-        subprocess = true;
-      };
+      git.private-commits = lib.mkDefault "description(glob:'wip:*') | description(glob:'private:*')";
 
       revset-aliases = lib.mkDefault {
         # The `trunk().. &` bit is an optimization to scan for non-`mine()` commits

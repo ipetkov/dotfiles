@@ -52,7 +52,7 @@ in
 
   programs.jujutsu.settings.signing = {
     key = config.programs.git.extraConfig.user.signingKey;
-    sign-all = true;
+    behavior = "own";
     backend = "ssh";
     backends.ssh = {
       inherit (gitExtraConfig.gpg.ssh) program;
