@@ -265,6 +265,10 @@ vim.g.rustaceanvim = {
 }
 
 local lspconfig = require'lspconfig'
+
+lspconfig.ast_grep.setup({
+})
+
 lspconfig.nil_ls.setup({
   settings = {
     ["nil"] = {
