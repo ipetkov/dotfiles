@@ -15,9 +15,12 @@
   programs.jq.enable = true;
 
   home.packages = with pkgs; [
+    bash-language-server
     fd
     nix-output-monitor
     nix-tree
     ripgrep
+    shellcheck
+    shfmt
   ];
 }

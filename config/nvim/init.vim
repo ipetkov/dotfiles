@@ -269,6 +269,9 @@ local lspconfig = require'lspconfig'
 lspconfig.ast_grep.setup({
 })
 
+lspconfig.bashls.setup({
+})
+
 lspconfig.nil_ls.setup({
   settings = {
     ["nil"] = {
