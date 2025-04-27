@@ -60,7 +60,6 @@
         direnv = import ./homeManagerModules/direnv.nix;
         fish = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/fish.nix) (args // { inherit inputs; });
         fonts = import ./homeManagerModules/fonts.nix;
-        fzf = import ./homeManagerModules/fzf.nix;
         git = import ./homeManagerModules/git.nix;
         jj = import ./homeManagerModules/jj.nix;
         nvim = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });

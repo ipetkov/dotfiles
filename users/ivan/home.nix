@@ -10,7 +10,6 @@ in
     ../../homeManagerModules/direnv.nix
     ../../homeManagerModules/fish.nix
     ../../homeManagerModules/fonts.nix
-    ../../homeManagerModules/fzf.nix
     ../../homeManagerModules/git.nix
     ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
