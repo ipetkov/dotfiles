@@ -7,7 +7,6 @@ in
   imports = [
     ../../homeManagerModules/common.nix
     ../../homeManagerModules/default.nix
-    ../../homeManagerModules/direnv.nix
     ../../homeManagerModules/fish.nix
     ../../homeManagerModules/fonts.nix
     ../../homeManagerModules/git.nix

@@ -2,6 +2,7 @@
 {
   imports = [
     ./alacritty.nix
+    ./direnv.nix
     ./fzf.nix
     ./gtk.nix
     ./rust.nix
