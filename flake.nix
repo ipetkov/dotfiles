@@ -66,7 +66,6 @@
         nvim = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });
         rust = import ./homeManagerModules/rust.nix;
         sway = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/sway.nix) (args // { inherit myPkgs; });
-        taskwarrior = import ./homeManagerModules/taskwarrior.nix;
       };
 
       homeConfigurations = { };

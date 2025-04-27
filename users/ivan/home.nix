@@ -16,10 +16,11 @@ in
     ../../homeManagerModules/nvim.nix
     ../../homeManagerModules/rust.nix
     ../../homeManagerModules/sway.nix
-    ../../homeManagerModules/taskwarrior.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
+
+  dotfiles.taskwarrior.enable = true;
 
   programs.git = {
     userName = "Ivan Petkov";
