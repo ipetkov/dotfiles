@@ -12,5 +12,7 @@ in
       # since it insists on placing the .taskrc file in $HOME
       pkgs.taskwarrior3
     ];
+
+    programs.fish.functions.fish_greeting = "task";
   };
 }

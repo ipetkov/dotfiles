@@ -36,6 +36,7 @@ in
         '';
 
         functions = {
+          fish_greeting = lib.mkDefault "";
           nom = {
             wraps = "nix";
             body = ''
