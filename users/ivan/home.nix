@@ -7,7 +7,6 @@ in
   imports = [
     ../../homeManagerModules/common.nix
     ../../homeManagerModules/default.nix
-    ../../homeManagerModules/nvim.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

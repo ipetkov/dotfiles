@@ -1,11 +1,11 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (lib) mkMerge;
+  inherit (pkgs) vimPlugins;
+  cfgFzf = config.programs.fzf;
+  cfgRust = config.dotfiles.rust;
 in
 {
-  # Ensure we pull in fzf for our fzf plugin below
-  imports = [ ./fzf.nix ];
-
   config = mkMerge [
     ({
       home.sessionVariables = {
@@ -28,14 +28,17 @@ in
 
         package = pkgs.neovim-unwrapped;
 
-        extraPackages = with pkgs; [
-          nodePackages.typescript-language-server
-          nil
-          nixpkgs-fmt
-          tree-sitter
+        extraPackages = [
+          pkgs.bash-language-server
+          pkgs.nil
+          pkgs.nixpkgs-fmt
+          pkgs.nodePackages.typescript-language-server
+          pkgs.shellcheck
+          pkgs.shfmt
+          pkgs.tree-sitter
         ];
 
-        plugins = with pkgs.vimPlugins; [
+        plugins = with vimPlugins; [
           # Git
           vim-gitgutter
           vim-fugitive
@@ -50,14 +53,14 @@ in
           hmts-nvim # better language highlighting inside home-manager configs
 
           # LSP plugins
-          nvim-lspconfig  # Collection of common configurations for the Nvim LSP client
+          nvim-lspconfig # Collection of common configurations for the Nvim LSP client
           rustaceanvim   # To enable more of the features of rust-analyzer, such as inlay hints and more!
-          nvim-cmp        # Completion framework
-          cmp-buffer      # completion source for buffer words
-          cmp-nvim-lsp    # completion source for builtin lsp
-          cmp-path        # completion source for paths
-          cmp-vsnip       # completion source for snippets
-          vim-vsnip       # snippet engine (required...)
+          nvim-cmp       # Completion framework
+          cmp-buffer     # completion source for buffer words
+          cmp-nvim-lsp   # completion source for builtin lsp
+          cmp-path       # completion source for paths
+          cmp-vsnip      # completion source for snippets
+          vim-vsnip      # snippet engine (required...)
 
           # Diagnostics
           dressing-nvim
@@ -65,15 +68,21 @@ in
           fidget-nvim
 
           # Misc
-          fzf-vim
           neoconf-nvim
           vim-easy-align
-        ];
+        ] ++ lib.optional cfgFzf.enable vimPlugins.fzf-vim;
 
-        extraConfig = builtins.replaceStrings
-          [ "@rustAnalyzer@" ]
-          [ "${pkgs.rust-analyzer}" ]
-          (builtins.readFile ../config/nvim/init.vim);
+        extraConfig =
+          let
+            file = builtins.readFile ../config/nvim/init.vim;
+          in
+          if cfgRust.enable
+          then
+            builtins.replaceStrings
+              [ "@rustAnalyzer@" ]
+              [ "${pkgs.rust-analyzer}" ]
+              (builtins.readFile ../config/nvim/init.vim)
+          else file;
       };
     })
   ];

@@ -9,6 +9,7 @@
     ./git.nix
     ./gtk.nix
     ./jj.nix
+    ./nvim.nix
     ./rust.nix
     ./sway.nix
     ./taskwarrior.nix
