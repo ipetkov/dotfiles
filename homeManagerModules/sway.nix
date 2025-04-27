@@ -4,13 +4,13 @@ let
 in
 {
   imports = [
-    # Alacritty is the default terminal in the config,
-    # so ensure our config is pulled in
-    ./alacritty.nix
-
     # Pull in GTK themes for wofi and just about everything else.
     ./gtk.nix
   ];
+
+  # Alacritty is the default terminal in the config,
+  # so ensure our config is pulled in
+  dotfiles.alacritty.enable = true;
 
   xdg.configFile."mako/config".source = ../config/mako/config;
   xdg.configFile."sway/config".source = ../config/sway/config;

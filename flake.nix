@@ -55,7 +55,7 @@
     in
     {
       homeManagerModules = {
-        alacritty = import ./homeManagerModules/alacritty.nix;
+        default = import ./homeManagerModules/default.nix;
         common = import ./homeManagerModules/common.nix;
         direnv = import ./homeManagerModules/direnv.nix;
         fish = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/fish.nix) (args // { inherit inputs; });
