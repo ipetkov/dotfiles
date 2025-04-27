@@ -14,13 +14,15 @@ in
     ../../homeManagerModules/git.nix
     ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
-    ../../homeManagerModules/rust.nix
     ../../homeManagerModules/sway.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
 
-  dotfiles.taskwarrior.enable = true;
+  dotfiles = {
+    rust.enable = true;
+    taskwarrior.enable = true;
+  };
 
   programs.git = {
     userName = "Ivan Petkov";
