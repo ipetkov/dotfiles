@@ -6,8 +6,6 @@ in
 {
   programs.fish.enable = true;
 
-  home-manager.users."${userName}" = import ./home.nix;
-
   users.users."${userName}" = {
     uid = lib.mkForce 1000;
     isNormalUser = true;

@@ -6,12 +6,7 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
-  dotfiles = {
-    fonts.enable = true;
-    rust.enable = true;
-    sway.enable = true;
-    taskwarrior.enable = true;
-  };
+  dotfiles.fonts.enable = true;
 
   programs.git = {
     userName = "Ivan Petkov";

@@ -1,11 +1,10 @@
 { pkgs, lib, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../../users/ivan/default.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../users/ivan/default.nix
+  ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -237,6 +236,16 @@
     nix.distributedBuilds = {
       enable = true;
       sshKey = "/persist/elysium-nixuser-id_ed25519";
+    };
+  };
+
+  home-manager.users.ivan = { ... }: {
+    imports = [ ../../users/ivan/home.nix ];
+
+    dotfiles = {
+      rust.enable = true;
+      sway.enable = true;
+      taskwarrior.enable = true;
     };
   };
 
