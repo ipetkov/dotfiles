@@ -62,7 +62,6 @@
         fonts = import ./homeManagerModules/fonts.nix;
         fzf = import ./homeManagerModules/fzf.nix;
         git = import ./homeManagerModules/git.nix;
-        gpg = import ./homeManagerModules/gpg.nix;
         gtk = import ./homeManagerModules/gtk.nix;
         jj = import ./homeManagerModules/jj.nix;
         nvim = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });

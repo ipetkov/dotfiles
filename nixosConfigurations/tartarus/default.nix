@@ -134,12 +134,6 @@
     vlc
   ];
 
-  programs.gnupg.agent = {
-    pinentryPackage = pkgs.pinentry-curses;
-    enable = true;
-    # enableSSHSupport = true;
-  };
-
   # So smartctl can read the disks
   services.udev.extraRules = ''
     SUBSYSTEM=="nvme", KERNEL=="nvme[0-9]*", GROUP="disk"
