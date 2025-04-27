@@ -8,7 +8,6 @@ in
     ../../homeManagerModules/common.nix
     ../../homeManagerModules/default.nix
     ../../homeManagerModules/fish.nix
-    ../../homeManagerModules/fonts.nix
     ../../homeManagerModules/git.nix
     ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
@@ -17,6 +16,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   dotfiles = {
+    fonts.enable = true;
     rust.enable = true;
     sway.enable = true;
     taskwarrior.enable = true;

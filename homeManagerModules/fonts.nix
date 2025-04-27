@@ -1,13 +1,20 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.dotfiles.fonts;
+in
 {
-  xdg.configFile."fontconfig/fonts.conf".source = ../config/fontconfig/fonts.conf;
+  options.dotfiles.fonts.enable = lib.mkEnableOption "fonts";
 
-  fonts.fontconfig.enable = true;
+  config = lib.mkIf cfg.enable {
+    xdg.configFile."fontconfig/fonts.conf".source = ../config/fontconfig/fonts.conf;
 
-  home.packages = with pkgs; [
-    font-awesome
-    hack-font
-    noto-fonts-emoji
-  ];
+    fonts.fontconfig.enable = true;
+
+    home.packages = [
+      pkgs.font-awesome
+      pkgs.hack-font
+      pkgs.noto-fonts-emoji
+    ];
+  };
 }
 
