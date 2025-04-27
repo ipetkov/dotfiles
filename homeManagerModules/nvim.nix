@@ -4,8 +4,11 @@ let
   inherit (pkgs) vimPlugins;
   cfgFzf = config.programs.fzf;
   cfgRust = config.dotfiles.rust;
+  cfgTypescript = config.dotfiles.typescript;
 in
 {
+  options.dotfiles.typescript.enable = lib.mkEnableOption "typescript";
+
   config = mkMerge [
     ({
       home.sessionVariables = {
@@ -32,11 +35,10 @@ in
           pkgs.bash-language-server
           pkgs.nil
           pkgs.nixpkgs-fmt
-          pkgs.nodePackages.typescript-language-server
           pkgs.shellcheck
           pkgs.shfmt
           pkgs.tree-sitter
-        ];
+        ] ++ lib.optional cfgTypescript.enable pkgs.nodePackages.typescript-language-server;
 
         plugins = with vimPlugins; [
           # Git
