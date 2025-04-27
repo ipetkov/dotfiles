@@ -13,13 +13,13 @@ in
     ../../homeManagerModules/git.nix
     ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
-    ../../homeManagerModules/sway.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   dotfiles = {
     rust.enable = true;
+    sway.enable = true;
     taskwarrior.enable = true;
   };
 

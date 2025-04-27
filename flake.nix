@@ -63,7 +63,6 @@
         git = import ./homeManagerModules/git.nix;
         jj = import ./homeManagerModules/jj.nix;
         nvim = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });
-        sway = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/sway.nix) (args // { inherit myPkgs; });
       };
 
       homeConfigurations = { };
