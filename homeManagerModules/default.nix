@@ -8,6 +8,7 @@
     ./fzf.nix
     ./git.nix
     ./gtk.nix
+    ./jj.nix
     ./rust.nix
     ./sway.nix
     ./taskwarrior.nix

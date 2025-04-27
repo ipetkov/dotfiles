@@ -57,7 +57,6 @@
       homeManagerModules = {
         default = import ./homeManagerModules/default.nix;
         common = import ./homeManagerModules/common.nix;
-        jj = import ./homeManagerModules/jj.nix;
         nvim = args@{ config, lib, pkgs, ... }: (import ./homeManagerModules/nvim.nix) (args // { inherit inputs; });
       };
 

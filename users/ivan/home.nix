@@ -7,7 +7,6 @@ in
   imports = [
     ../../homeManagerModules/common.nix
     ../../homeManagerModules/default.nix
-    ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
   ];
 
