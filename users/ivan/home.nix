@@ -5,7 +5,6 @@ let
 in
 {
   imports = [
-    ../../homeManagerModules/common.nix
     ../../homeManagerModules/default.nix
   ];
 

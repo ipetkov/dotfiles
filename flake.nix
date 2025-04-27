@@ -54,10 +54,7 @@
       systemLinuxArm = "aarch64-linux";
     in
     {
-      homeManagerModules = {
-        default = import ./homeManagerModules/default.nix;
-        common = import ./homeManagerModules/common.nix;
-      };
+      homeManagerModules.default = import ./homeManagerModules/default.nix;
 
       homeConfigurations = { };
 
