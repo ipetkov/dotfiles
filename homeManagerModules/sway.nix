@@ -1,4 +1,4 @@
-{ config, lib, pkgs, myPkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.dotfiles.sway;
   fishcfg = config.programs.fish;
@@ -21,7 +21,7 @@ in
 
     home.packages = [
       pkgs.mako # notification daemon
-      myPkgs.swaynagmode
+      (pkgs.callPackage ../pkgs/swaynagmode.nix { })
       pkgs.waybar # status bar
       pkgs.wofi # launcher
     ];
