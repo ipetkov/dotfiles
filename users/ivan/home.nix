@@ -49,16 +49,4 @@ in
       allowed-signers = gitExtraConfig.gpg.ssh.allowedSignersFile;
     };
   };
-
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = 1;
-    XDG_CURRENT_DESKTOP = "sway";
-  };
-
-  home.packages = with pkgs; [
-    blueberry # bluetooth configuration
-    discord
-    firefox-wayland
-    xdg-utils # for xdg-open, make links clickable from outside firefox
-  ];
 }

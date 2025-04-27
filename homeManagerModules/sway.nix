@@ -20,11 +20,20 @@ in
     xdg.configFile."waybar/config".source = ../config/waybar/config;
 
     home.packages = [
+      pkgs.blueberry # bluetooth configuration
+      pkgs.discord
+      pkgs.firefox-wayland
       pkgs.mako # notification daemon
       (pkgs.callPackage ../pkgs/swaynagmode.nix { })
       pkgs.waybar # status bar
       pkgs.wofi # launcher
+      pkgs.xdg-utils # for xdg-open, make links clickable from outside firefox
     ];
+
+    home.sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      XDG_CURRENT_DESKTOP = "sway";
+    };
 
     # Allow starting up sway (which should exec a systemd call that
     # sway-session.target has started) to then kick off other systemd
