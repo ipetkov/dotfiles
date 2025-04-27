@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ lib, pkgs, ...}:
 
 let
   userName = "ivan";
@@ -9,6 +9,7 @@ in
   home-manager.users."${userName}" = import ./home.nix;
 
   users.users."${userName}" = {
+    uid = lib.mkForce 1000;
     isNormalUser = true;
     home = "/home/${userName}";
     shell = pkgs.fish;

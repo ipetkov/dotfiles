@@ -103,6 +103,7 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
   users.users.ivan = {
+    uid = 1000;
     isNormalUser = true;
     home = "/home/ivan";
     extraGroups = [

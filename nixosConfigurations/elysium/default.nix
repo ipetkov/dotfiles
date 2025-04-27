@@ -108,6 +108,9 @@
   users.groups.syncoid-tartarus = { };
   users.users = {
     ivan = {
+      # Unfortunate that this one ended up being different but
+      # probably not worth the hassle to fix now
+      uid = lib.mkForce 1002;
       isNormalUser = true;
       home = "/home/ivan";
       extraGroups = [

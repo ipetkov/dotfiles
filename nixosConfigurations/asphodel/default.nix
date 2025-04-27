@@ -79,6 +79,7 @@
 
   users.mutableUsers = false;
   users.users.ivan = {
+    uid = 1000;
     isNormalUser = true;
     home = "/home/ivan";
     extraGroups = [
