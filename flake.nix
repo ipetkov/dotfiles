@@ -58,14 +58,7 @@
 
       homeConfigurations = { };
 
-      nixosModules = {
-        _1password = import ./nixosModules/_1password.nix;
-        default = import ./nixosModules/default.nix;
-        nixConfig = import ./nixosModules/nixConfig.nix;
-        pihole = import ./nixosModules/pihole.nix;
-        tailscale = import ./nixosModules/tailscale.nix;
-        zfs-send = import ./nixosModules/zfs-send.nix;
-      };
+      nixosModules.default = import ./nixosModules/default.nix;
 
       nixosConfigurations = {
         asphodel = mkHost {
