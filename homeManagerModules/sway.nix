@@ -3,14 +3,13 @@ let
   fishcfg = config.programs.fish;
 in
 {
-  imports = [
+  dotfiles = {
+    # Alacritty is the default terminal in the config,
+    # so ensure our config is pulled in
+    alacritty.enable = true;
     # Pull in GTK themes for wofi and just about everything else.
-    ./gtk.nix
-  ];
-
-  # Alacritty is the default terminal in the config,
-  # so ensure our config is pulled in
-  dotfiles.alacritty.enable = true;
+    gtk.enable = true;
+  };
 
   xdg.configFile."mako/config".source = ../config/mako/config;
   xdg.configFile."sway/config".source = ../config/sway/config;
@@ -37,9 +36,9 @@ in
   };
 
   programs.fish.loginShellInit = lib.mkIf fishcfg.enable ''
-      if test -z "$DISPLAY"; and test (tty) = "/dev/tty1"
-        # Use systemd-cat here to capture sway logs
-        exec systemd-cat --identifier=sway sway
-      end
+    if test -z "$DISPLAY"; and test (tty) = "/dev/tty1"
+      # Use systemd-cat here to capture sway logs
+      exec systemd-cat --identifier=sway sway
+    end
   '';
 }

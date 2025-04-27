@@ -12,7 +12,6 @@ in
     ../../homeManagerModules/fonts.nix
     ../../homeManagerModules/fzf.nix
     ../../homeManagerModules/git.nix
-    ../../homeManagerModules/gtk.nix
     ../../homeManagerModules/jj.nix
     ../../homeManagerModules/nvim.nix
     ../../homeManagerModules/rust.nix
