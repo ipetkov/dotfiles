@@ -6,6 +6,7 @@
     ./fish.nix
     ./fonts.nix
     ./fzf.nix
+    ./git.nix
     ./gtk.nix
     ./rust.nix
     ./sway.nix
