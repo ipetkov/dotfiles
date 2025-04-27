@@ -27,7 +27,9 @@ let
         type = lib.types.attrsOf (lib.types.submoduleWith {
           # make our flake inputs accessible from home-manager modules as well
           inherit specialArgs;
-          modules = [];
+          modules = [
+            ../homeManagerModules/default.nix
+          ];
         });
       };
     };

@@ -4,10 +4,6 @@ let
   gitExtraConfig = config.programs.git.extraConfig;
 in
 {
-  imports = [
-    ../../homeManagerModules/default.nix
-  ];
-
   nixpkgs.config.allowUnfree = true;
 
   dotfiles = {
