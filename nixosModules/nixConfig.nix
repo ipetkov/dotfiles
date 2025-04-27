@@ -1,7 +1,8 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.dotfiles.nix;
+  chosenNixpkgs = config.nixpkgs.flake.source;
 in
 {
   # The nixpkgs source is kinda large (87MB at this time, but constantly growing)
@@ -82,10 +83,10 @@ in
       # moves in lockstep. (Note adding a channel will take precedence over this).
       nix = {
         nixPath = [
-          "nixpkgs=${inputs.nixpkgs}"
+          "nixpkgs=${chosenNixpkgs}"
         ];
         registry = {
-          nixpkgs.flake = inputs.nixpkgs;
+          nixpkgs.flake.outPath = chosenNixpkgs;
         };
       };
     })
