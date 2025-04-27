@@ -71,10 +71,7 @@
         taskwarrior = import ./homeManagerModules/taskwarrior.nix;
       };
 
-      homeConfigurations = import ./homeConfigurations {
-        inherit (inputs) home-manager nixpkgs;
-        inherit (self) homeManagerModules;
-      };
+      homeConfigurations = { };
 
       nixosModules = {
         _1password = import ./nixosModules/_1password.nix;
