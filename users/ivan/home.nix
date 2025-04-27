@@ -4,8 +4,6 @@ let
   gitExtraConfig = config.programs.git.extraConfig;
 in
 {
-  nixpkgs.config.allowUnfree = true;
-
   dotfiles.fonts.enable = true;
 
   programs.git = {

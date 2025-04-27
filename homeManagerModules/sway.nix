@@ -19,6 +19,10 @@ in
     xdg.configFile."sway/config".source = ../config/sway/config;
     xdg.configFile."waybar/config".source = ../config/waybar/config;
 
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "discord"
+    ];
+
     home.packages = [
       pkgs.blueberry # bluetooth configuration
       pkgs.discord
