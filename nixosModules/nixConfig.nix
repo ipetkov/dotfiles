@@ -28,12 +28,23 @@ in
         };
       };
     };
+
+    useLix = lib.mkOption {
+      default = true;
+      description = "Whether to use Lix";
+      type = lib.types.bool;
+    };
+
+    lixPackageSet = mkOption {
+      type = lib.types.attrs;
+      default = pkgs.lixPackageSets.stable;
+      description = "Which Lix packages to use";
+    };
   };
 
   config = lib.mkMerge [
     ({
       nix = {
-        package = pkgs.lixPackageSets.stable.lix;
         extraOptions = ''
           experimental-features = nix-command flakes
           keep-outputs = true
@@ -76,6 +87,10 @@ in
 
       # This pulls in vanilla nix, plus I don't use it anyway
       system.tools.nixos-option.enable = false;
+    })
+
+    (lib.mkIf cfg.useLix {
+      nix.package = cfg.lixPackageSet.lix;
     })
 
     (lib.mkIf cfg.enableSetNixPathAndFlakeRegistry {
