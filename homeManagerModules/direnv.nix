@@ -1,6 +1,12 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  nixosConfig,
+  ...
+}:
 let
   cfg = config.dotfiles.direnv;
+  cfgNix = nixosConfig.dotfiles.nix;
 in
 {
   options.dotfiles.direnv.enable = lib.mkOption {
@@ -9,10 +15,16 @@ in
     type = lib.types.bool;
   };
 
-  config = lib.mkIf cfg.enable {
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
-  };
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+      };
+    })
+
+    (lib.mkIf (cfg.enable && cfgNix.useLix) {
+      programs.direnv.nix-direnv.package = cfgNix.lixPackageSet.nix-direnv;
+    })
+  ];
 }
