@@ -105,7 +105,10 @@
   };
 
   users.mutableUsers = false;
-  users.groups.syncoid-tartarus = { };
+  users.groups = {
+    syncoid-erebus = { };
+    syncoid-tartarus = { };
+  };
   users.users = {
     ivan = {
       # Unfortunate that this one ended up being different but
@@ -122,6 +125,12 @@
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKRVRlSZLcDEdJ13GjfJigN/KT3/Q1odIS4pf+hbmz+Z"
       ];
+    };
+
+    syncoid-erebus = {
+      group = "syncoid-erebus";
+      isSystemUser = true;
+      useDefaultShell = true; # Do permit login
     };
 
     syncoid-tartarus = {

@@ -72,6 +72,12 @@
           rootConfig = ./nixosConfigurations/elysium;
         };
 
+        erebus = mkHost {
+          system = systemLinux;
+          rootConfig = ./nixosConfigurations/erebus;
+          includeHomeManager = true;
+        };
+
         rpi = mkHost {
           system = systemLinuxArm;
           rootConfig = ./nixosConfigurations/rpi;
