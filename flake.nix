@@ -94,9 +94,11 @@
         checksForConfigs = configs: extract: lib.attrsets.filterAttrs
           (_: p: p.system == system)
           (lib.attrsets.mapAttrs (_: extract) configs);
+
+        formatter = pkgs.nixfmt-tree;
       in
       {
-        inherit packages;
+        inherit formatter packages;
 
         checks = lib.lists.foldl
           lib.attrsets.unionOfDisjoint
