@@ -107,5 +107,11 @@
             (checksForConfigs self.homeConfigurations (hm: hm.activationPackage))
             (checksForConfigs self.nixosConfigurations (c: c.config.system.build.toplevel))
           ];
+
+          devShells.default = pkgs.mkShell {
+            nativeBuildInputs = [
+              formatter
+            ];
+          };
       });
 }
