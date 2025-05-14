@@ -1,4 +1,9 @@
-{ config, lib, inputs, ... }:
+{
+  config,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -84,7 +89,10 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/0F92-BECC";
       fsType = "vfat";
-      options = [ "noatime" "umask=0077" ];
+      options = [
+        "noatime"
+        "umask=0077"
+      ];
     };
 
     "/empty/phlegethon-persist" = {

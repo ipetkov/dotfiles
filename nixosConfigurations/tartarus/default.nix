@@ -53,10 +53,10 @@
   # };
 
   programs.dconf.enable = true;
-  /* virtualisation.libvirtd = { */
-  /*   enable = true; */
-  /*   onShutdown = "shutdown"; */
-  /* }; */
+  # virtualisation.libvirtd = {
+  # enable = true;
+  # onShutdown = "shutdown";
+  # };
 
   location = {
     provider = "manual";
@@ -239,15 +239,17 @@
     };
   };
 
-  home-manager.users.ivan = { ... }: {
-    imports = [ ../../users/ivan/home.nix ];
+  home-manager.users.ivan =
+    { ... }:
+    {
+      imports = [ ../../users/ivan/home.nix ];
 
-    dotfiles = {
-      rust.enable = true;
-      sway.enable = true;
-      taskwarrior.enable = true;
+      dotfiles = {
+        rust.enable = true;
+        sway.enable = true;
+        taskwarrior.enable = true;
+      };
     };
-  };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";

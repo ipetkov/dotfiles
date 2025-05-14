@@ -12,27 +12,32 @@
 # - specifying a `rootConfig` module will include it within the system
 #   definition (just like manually specifying an `import`).
 let
-  mkAppendConfig = origArgs:
+  mkAppendConfig =
+    origArgs:
     let
       origRes = mkNixosSystem origArgs;
 
-      mergeArgs = newArgs@{
-        inputs ? {},
-        rootConfig,
-        ...
-      }: origArgs // newArgs // {
-        # Ensure we don't "lose" any previous inputs
-        inputs = origArgs.inputs // inputs;
+      mergeArgs =
+        newArgs@{
+          inputs ? { },
+          rootConfig,
+          ...
+        }:
+        origArgs
+        // newArgs
+        // {
+          # Ensure we don't "lose" any previous inputs
+          inputs = origArgs.inputs // inputs;
 
-        # Ensure we keep the old rootConfig around
-        rootConfig = {
-          imports = [
-            origArgs.rootConfig
-            rootConfig
-          ];
+          # Ensure we keep the old rootConfig around
+          rootConfig = {
+            imports = [
+              origArgs.rootConfig
+              rootConfig
+            ];
+          };
         };
-      };
     in
-      origRes // { appendConfig = newArgs: mkAppendConfig (mergeArgs newArgs); };
+    origRes // { appendConfig = newArgs: mkAppendConfig (mergeArgs newArgs); };
 in
-  mkAppendConfig
+mkAppendConfig

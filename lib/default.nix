@@ -1,5 +1,9 @@
 # Helper methods and other extensions
-{ lib, inputs, myPkgs }:
+{
+  lib,
+  inputs,
+  myPkgs,
+}:
 
 let
   mkNixosSystem = import ./mkNixosSystem.nix {

@@ -38,7 +38,8 @@
     };
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs =
+    inputs@{ self, ... }:
     let
       inherit (inputs.nixpkgs) lib legacyPackages;
 
@@ -83,35 +84,35 @@
           includeHomeManager = true;
         };
       };
-    } // inputs.flake-utils.lib.eachDefaultSystem (system:
+    }
+    // inputs.flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = legacyPackages.${system};
 
-        packages = lib.filterAttrs
-          (_: pkg: builtins.any (x: x == system) pkg.meta.platforms)
-          (import ./pkgs { inherit pkgs; });
+        packages = lib.filterAttrs (_: pkg: builtins.any (x: x == system) pkg.meta.platforms) (
+          import ./pkgs { inherit pkgs; }
+        );
 
-        checksForConfigs = configs: extract: lib.attrsets.filterAttrs
-          (_: p: p.system == system)
-          (lib.attrsets.mapAttrs (_: extract) configs);
+        checksForConfigs =
+          configs: extract:
+          lib.attrsets.filterAttrs (_: p: p.system == system) (lib.attrsets.mapAttrs (_: extract) configs);
 
         formatter = pkgs.nixfmt-tree;
       in
       {
         inherit formatter packages;
 
-        checks = lib.lists.foldl
-          lib.attrsets.unionOfDisjoint
-          packages
-          [
-            (checksForConfigs self.homeConfigurations (hm: hm.activationPackage))
-            (checksForConfigs self.nixosConfigurations (c: c.config.system.build.toplevel))
-          ];
+        checks = lib.lists.foldl lib.attrsets.unionOfDisjoint packages [
+          (checksForConfigs self.homeConfigurations (hm: hm.activationPackage))
+          (checksForConfigs self.nixosConfigurations (c: c.config.system.build.toplevel))
+        ];
 
-          devShells.default = pkgs.mkShell {
-            nativeBuildInputs = [
-              formatter
-            ];
-          };
-      });
+        devShells.default = pkgs.mkShell {
+          nativeBuildInputs = [
+            formatter
+          ];
+        };
+      }
+    );
 }

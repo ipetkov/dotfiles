@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.dotfiles.fonts;
 in
@@ -17,4 +22,3 @@ in
     ];
   };
 }
-

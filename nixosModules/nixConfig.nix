@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (lib) mkEnableOption mkOption types;
   cfg = config.dotfiles.nix;
@@ -108,21 +113,28 @@ in
 
     (lib.mkIf cfg.distributedBuilds.enable {
       nix = {
-        buildMachines = [{
-          inherit (cfg.distributedBuilds) sshKey;
+        buildMachines = [
+          {
+            inherit (cfg.distributedBuilds) sshKey;
 
-          hostName = "elysium";
-          maxJobs = 4;
-          protocol = "ssh-ng";
-          publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9XZDhYenkxSDFQd3dDWXpBeXBUc25BbnliaEVYd1gwUnRXV0k4THFjeEwgcm9vdEBlbHlzaXVtCg==";
-          speedFactor = 1;
-          sshUser = "nixuser";
-          supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-          systems = [
-            "x86_64-linux"
-            "aarch64-linux"
-          ];
-        }];
+            hostName = "elysium";
+            maxJobs = 4;
+            protocol = "ssh-ng";
+            publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9XZDhYenkxSDFQd3dDWXpBeXBUc25BbnliaEVYd1gwUnRXV0k4THFjeEwgcm9vdEBlbHlzaXVtCg==";
+            speedFactor = 1;
+            sshUser = "nixuser";
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+            systems = [
+              "x86_64-linux"
+              "aarch64-linux"
+            ];
+          }
+        ];
         distributedBuilds = true;
         settings.builders-use-substitutes = true;
       };

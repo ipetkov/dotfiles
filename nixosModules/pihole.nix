@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   defaultDnsPort = 53;
@@ -71,12 +76,13 @@ in
         TZ = config.time.timeZone;
         FTLCONF_webserver_port = "${toString cfg.webPort}";
       };
-      extraOptions = [
-        "--cap-add=${networkCapability}"
-        "--dns=${cfg.containerBackupDns}"
-      ]
-      # Allocate a port in the host's network space so ports opened in the firewall work
-      ++ (lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) "--network=host");
+      extraOptions =
+        [
+          "--cap-add=${networkCapability}"
+          "--dns=${cfg.containerBackupDns}"
+        ]
+        # Allocate a port in the host's network space so ports opened in the firewall work
+        ++ (lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) "--network=host");
     };
 
     systemd.services.pihole-update-image = {
@@ -102,8 +108,9 @@ in
 
     # Only open up the hostDnsPort if it's the default DNS port
     # otherwise let the caller sort it out
-    networking.firewall.allowedUDPPorts =
-      lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) cfg.hostDnsPort;
+    networking.firewall.allowedUDPPorts = lib.lists.optional (
+      cfg.hostDnsPort == defaultDnsPort
+    ) cfg.hostDnsPort;
     networking.firewall.allowedTCPPorts =
       (lib.lists.optional (cfg.hostDnsPort == defaultDnsPort) cfg.hostDnsPort)
 

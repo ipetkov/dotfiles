@@ -16,9 +16,11 @@ in
         format = "ssh";
         ssh = {
           program = "/run/current-system/sw/bin/op-ssh-sign";
-          allowedSignersFile = builtins.toString (pkgs.writeText "allowedSignersFile" ''
-            ivanppetkov@gmail.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX
-          '');
+          allowedSignersFile = builtins.toString (
+            pkgs.writeText "allowedSignersFile" ''
+              ivanppetkov@gmail.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX
+            ''
+          );
         };
       };
       user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX";

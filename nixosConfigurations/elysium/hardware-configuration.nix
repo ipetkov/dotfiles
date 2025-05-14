@@ -1,4 +1,9 @@
-{ config, lib, modulesPath, ... }:
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
 
 {
   imports = [
@@ -85,7 +90,10 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/87D1-ADFE";
       fsType = "vfat";
-      options = [ "noatime" "umask=0077" ];
+      options = [
+        "noatime"
+        "umask=0077"
+      ];
     };
 
     "/empty/acheron-persist-user" = {

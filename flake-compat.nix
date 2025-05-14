@@ -5,4 +5,4 @@ let
     sha256 = lock.nodes.flake-compat.locked.narHash;
   };
 in
-  import compat { src = ./.; }
+import compat { src = ./.; }
