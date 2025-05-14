@@ -34,7 +34,7 @@ in
         extraPackages = [
           pkgs.bash-language-server
           pkgs.nil
-          pkgs.nixpkgs-fmt
+          pkgs.nixfmt-rfc-style
           pkgs.shellcheck
           pkgs.shfmt
           pkgs.tree-sitter
