@@ -7,6 +7,7 @@
 let
   cfg = config.dotfiles.direnv;
   cfgNix = nixosConfig.dotfiles.nix;
+  useLix = nixosConfig != null && cfgNix.useLix;
 in
 {
   options.dotfiles.direnv.enable = lib.mkOption {
@@ -23,7 +24,7 @@ in
       };
     })
 
-    (lib.mkIf (cfg.enable && cfgNix.useLix) {
+    (lib.mkIf (cfg.enable && useLix) {
       programs.direnv.nix-direnv.package = cfgNix.lixPackageSet.nix-direnv;
     })
   ];
