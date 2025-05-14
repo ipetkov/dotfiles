@@ -89,13 +89,12 @@ in
           dates = [ "*-21" ];
         };
       };
-
-      # This pulls in vanilla nix, plus I don't use it anyway
-      system.tools.nixos-option.enable = false;
     })
 
     (lib.mkIf cfg.useLix {
       nix.package = cfg.lixPackageSet.lix;
+      # This pulls in vanilla nix, plus I don't use it anyway
+      system.tools.nixos-option.enable = false;
     })
 
     (lib.mkIf cfg.enableSetNixPathAndFlakeRegistry {
