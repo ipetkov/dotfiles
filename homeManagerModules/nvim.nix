@@ -20,12 +20,6 @@ in
         EDITOR = "vim";
       };
 
-      # NB: do the install inside of a nixshell with a C compiler so
-      # we can build the yaml parser
-      home.activation.tsgrammars = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        run nix shell ${pkgs.gcc} --command fish -c 'nvim --headless +TSUpdateSync +q'
-      '';
-
       programs.neovim = {
         enable = true;
         vimAlias = true;
