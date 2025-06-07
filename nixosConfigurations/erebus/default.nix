@@ -120,6 +120,7 @@
           "mdadm"
           "nfs"
           "nfsd"
+          "nvme"
           "rapl"
           "tapestats"
         ];
