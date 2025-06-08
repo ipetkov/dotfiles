@@ -34,7 +34,6 @@
     };
     gnome.excludePackages = [
       pkgs.epiphany
-      pkgs.geary
       pkgs.gnome-connections
       pkgs.gnome-tour
       pkgs.orca
@@ -45,6 +44,8 @@
       pkgs.dnsutils
       pkgs.fish
       pkgs.git
+      pkgs.gnomeExtensions.dash-to-dock
+      pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding
       pkgs.htop
       pkgs.rsync
       pkgs.vim
@@ -100,7 +101,6 @@
   programs = {
     command-not-found.enable = false;
     firefox.enable = true;
-    thunderbird.enable = true;
   };
 
   security.rtkit.enable = true;
