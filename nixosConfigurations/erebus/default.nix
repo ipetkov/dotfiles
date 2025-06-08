@@ -46,6 +46,7 @@
       pkgs.git
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding
+      pkgs.gnucash
       pkgs.htop
       pkgs.rsync
       pkgs.vim
