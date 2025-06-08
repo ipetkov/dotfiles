@@ -22,6 +22,16 @@
   };
 
   environment = {
+    etc = {
+      "xdg/gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=true
+      '';
+      "xdg/gtk-4.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=true
+      '';
+    };
     gnome.excludePackages = [
       pkgs.epiphany
       pkgs.geary
