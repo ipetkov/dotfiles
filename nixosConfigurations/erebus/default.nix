@@ -122,6 +122,7 @@
           "nfs"
           "nfsd"
           "nvme"
+          "powersupplyclass"
           "rapl"
           "tapestats"
         ];
