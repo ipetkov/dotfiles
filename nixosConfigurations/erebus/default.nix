@@ -36,6 +36,7 @@
       pkgs.fish
       pkgs.git
       pkgs.htop
+      pkgs.vim
     ];
   };
 
