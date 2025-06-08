@@ -44,6 +44,7 @@
       pkgs.dnsutils
       pkgs.fish
       pkgs.git
+      pkgs.gnomeExtensions.alternate-menu-for-hplip2
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding
       pkgs.gnomeExtensions.tray-icons-reloaded
