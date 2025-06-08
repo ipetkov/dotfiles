@@ -46,6 +46,7 @@
       pkgs.git
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding
+      pkgs.gnomeExtensions.tray-icons-reloaded
       pkgs.gnucash
       pkgs.htop
       pkgs.rsync
@@ -102,6 +103,7 @@
   programs = {
     command-not-found.enable = false;
     firefox.enable = true;
+    thunderbird.enable = true;
   };
 
   security.rtkit.enable = true;
