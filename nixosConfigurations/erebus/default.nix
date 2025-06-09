@@ -166,22 +166,6 @@
     # Enable sound with pipewire.
     pulseaudio.enable = false;
 
-    redshift = {
-      enable = true;
-      brightness = {
-        # Note the string values below.
-        day = "1";
-        night = "1";
-      };
-      temperature = {
-        day = 4200;
-        night = 2900;
-      };
-
-      package = pkgs.gammastep;
-      executable = "/bin/gammastep";
-    };
-
     syncoid = {
       enable = true;
 
