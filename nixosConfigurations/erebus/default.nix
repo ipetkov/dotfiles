@@ -110,6 +110,12 @@
   security.rtkit.enable = true;
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
     # Use GNOME
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
@@ -121,7 +127,12 @@
       pulse.enable = true;
     };
 
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [
+        pkgs.hplip
+      ];
+    };
 
     prometheus.exporters = {
       node = {
