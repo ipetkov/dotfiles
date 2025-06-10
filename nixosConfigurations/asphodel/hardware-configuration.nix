@@ -46,7 +46,6 @@
 
       postDeviceCommands = lib.mkAfter ''
         cryptsetup close cryptkey
-        zfs rollback -r phlegethon/local/root@blank && echo blanked out root
       '';
 
       # Support remote unlock. Run `cryptsetup-askpass` to unlock
