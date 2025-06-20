@@ -117,6 +117,7 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = [
             formatter
+            pkgs.nix-fast-build
           ];
         };
       }
