@@ -257,7 +257,7 @@ vim.g.rustaceanvim = {
                 },
                 -- Make rustaceanvim effectively work with neoconf for the fields we care about
                 files = {
-                  excludeDirs = ((((neoconf.get("vscode", {}) or {})["rust-analyzer"] or {}).files or {}).excludeDirs or {}),
+                  exclude = ((((neoconf.get("vscode", {}) or {})["rust-analyzer"] or {}).files or {}).excludeDirs or {}),
                 },
             }
         }
