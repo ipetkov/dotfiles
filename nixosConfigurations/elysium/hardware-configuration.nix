@@ -136,5 +136,8 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
   swapDevices = [
+    {
+      device = "/dev/mapper/cryptswap";
+    }
   ];
 }
