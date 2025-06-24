@@ -48,17 +48,7 @@
       pkgs.gnomeExtensions.dash-to-dock
       pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding
       pkgs.gnomeExtensions.tray-icons-reloaded
-      # https://github.com/NixOS/nixpkgs/pull/418426
-      # https://nixpk.gs/pr-tracker.html?pr=418426
-      (pkgs.gnucash.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          (pkgs.fetchpatch2 {
-            url = "https://github.com/Gnucash/gnucash/commit/940085a0172216240232551022686cea4da86096.patch?full_index=1";
-            name = "0006-remove-unused-includes.patch";
-            hash = "sha256-4CpBtKDkcT1HlOAHsbASxPiHKVpZ9ETWS3fXEupOl0Q=";
-          })
-        ];
-      }))
+      pkgs.gnucash
       pkgs.htop
       pkgs.rsync
       pkgs.vim
