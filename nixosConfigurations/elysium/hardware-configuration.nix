@@ -26,8 +26,6 @@
         "cryptd"
         "nvme"
         "r8169"
-        # FIXME: enable once kernel is 6.4 or higher
-        #"rtw89_8852be"
         "sd_mod"
         "usbhid"
         "usb_storage"
