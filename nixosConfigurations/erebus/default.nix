@@ -239,4 +239,8 @@
   systemd.timers."syncoid-cocytus-persist".timerConfig.Persistent = true;
 
   time.timeZone = "America/Los_Angeles";
+
+  users.users.ivan.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKRVRlSZLcDEdJ13GjfJigN/KT3/Q1odIS4pf+hbmz+Z"
+  ];
 }
