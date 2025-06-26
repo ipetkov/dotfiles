@@ -23,6 +23,7 @@
         "usbhid"
         "sd_mod"
         "sdhci_pci"
+        "tg3"
       ];
       kernelModules = [ ];
 

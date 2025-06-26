@@ -93,12 +93,12 @@
     hostId = "feedb0ba";
     hostName = "erebus";
     networkmanager.enable = true;
-    useDHCP = lib.mkDefault true;
-    # interfaces = {
-    #   enp12s0.useDHCP = lib.mkDefault true;
-    #   enp3s0f0.useDHCP = lib.mkDefault true;
-    #   wlp2s0.useDHCP = lib.mkDefault true;
-    # };
+    useDHCP = false;
+    interfaces = {
+      # enp12s0.useDHCP = lib.mkDefault true;
+      enp3s0f0.useDHCP = lib.mkDefault true;
+      wlp2s0.useDHCP = lib.mkDefault true;
+    };
   };
 
   programs = {
