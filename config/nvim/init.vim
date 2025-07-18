@@ -12,6 +12,8 @@ set sessionoptions-=options               " Don't save options, see if this fixe
 set shortmess+=c                          " Avoid showing extra messages when using completion
 set showcmd                               " show the (currently pending) command at bottom right
 set smartcase                             " sensitive if pattern contains uppercase letter, and insensitive otherwise
+set spell                                 " enable spell checking always, treesitter should only mark comments as eligible
+set spelloptions=noplainbuffer,camel      " check whenever syntax is on and treat camel cased words as separate words
 set statusline=%f\ %l:%c\ %m              " show: <filename> <line>:<col> <pending changes>
 set undofile                              " save undo history persistently to disk
 set updatetime=500                        " how long before triggering CursorHold/swap write
