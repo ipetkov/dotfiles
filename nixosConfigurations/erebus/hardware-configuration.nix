@@ -71,10 +71,12 @@
       "kvm-intel"
       "wl"
     ];
-    extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+    # https://www.cve.org/CVERecord?id=CVE-2019-9502
+    # https://www.cve.org/CVERecord?id=CVE-2019-9501
+    # extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   };
 
-  dotfiles.unfree.packageNames = [ "broadcom-sta" ];
+  # dotfiles.unfree.packageNames = [ "broadcom-sta" ];
 
   hardware.enableRedistributableFirmware = true;
 
