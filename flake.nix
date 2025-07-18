@@ -9,7 +9,7 @@
     # mixing and matching branches.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Pinned because deploying to rpi is slow as molasses due to SD card I/O being crap
-    nixpkgs-for-rpi.url = "github:NixOS/nixpkgs/3016b4b15d13f3089db8a41ef937b13a9e33a8df";
+    nixpkgs-for-rpi.url = "github:NixOS/nixpkgs/6e987485eb2c77e5dcc5af4e3c70843711ef9251";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     flake-compat = {
