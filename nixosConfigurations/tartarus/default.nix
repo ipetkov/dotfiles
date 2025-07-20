@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./quickemu.nix
     ../../users/ivan/default.nix
   ];
 

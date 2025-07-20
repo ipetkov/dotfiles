@@ -1,0 +1,14 @@
+diff --git a/quickemu b/quickemu
+index baee457..a2d3a0c 100755
+--- a/quickemu
++++ b/quickemu
+@@ -195,7 +195,8 @@ function configure_usb() {
+                 echo "               sudo chown -v root:${USER} /dev/bus/usb/${USB_BUS}/${USB_DEV}"
+                 USB_NOT_READY=1
+             fi
+-            USB_PASSTHROUGH="${USB_PASSTHROUGH} -device usb-host,bus=hostpass.0,vendorid=0x${VENDOR_ID},productid=0x${PRODUCT_ID}"
++            #USB_PASSTHROUGH="${USB_PASSTHROUGH} -device usb-host,bus=hostpass.0,vendorid=0x${VENDOR_ID},productid=0x${PRODUCT_ID}"
++            USB_PASSTHROUGH="${USB_PASSTHROUGH} -usb -device usb-ehci,id=ehci -device usb-host,bus=ehci.0,vendorid=0x${VENDOR_ID},productid=0x${PRODUCT_ID},guest-reset=false,id=iphone"
+         done
+ 
+         if [ "${USB_NOT_READY}" -eq 1 ]; then
