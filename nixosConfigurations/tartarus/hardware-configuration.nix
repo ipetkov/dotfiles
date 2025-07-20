@@ -79,6 +79,10 @@
       device = "nvme-pool/persist/user/ivan/books";
       fsType = "zfs";
     };
+    "/home/ivan/vm" = {
+      device = "nvme-pool/persist/user/ivan/vm";
+      fsType = "zfs";
+    };
     "/nix" = {
       device = "nvme-pool/local/nix";
       fsType = "zfs";
