@@ -130,6 +130,8 @@
     printing = {
       enable = true;
       drivers = [
+        pkgs.cups-browsed
+        pkgs.cups-filters
         pkgs.hplip
       ];
     };
