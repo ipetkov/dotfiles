@@ -38,6 +38,10 @@
     };
   };
 
+  nixConfig.extra-substituters = [
+    "https://ipetkov.cachix.org"
+  ];
+
   outputs =
     inputs@{ self, ... }:
     let
