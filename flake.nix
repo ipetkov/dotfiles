@@ -114,11 +114,17 @@
           (checksForConfigs self.nixosConfigurations (c: c.config.system.build.toplevel))
         ];
 
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = [
-            formatter
-            pkgs.nix-fast-build
-          ];
+        devShells = {
+          default = pkgs.mkShell {
+            packages = [
+              formatter
+            ];
+          };
+          ci = pkgs.mkShell {
+            packages = [
+              pkgs.nix-fast-build
+            ];
+          };
         };
       }
     );

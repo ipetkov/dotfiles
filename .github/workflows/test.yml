@@ -51,4 +51,4 @@ jobs:
         platforms: ${{ matrix.qemuPlatforms }}
 
     - name: build all definitions
-      run: nix develop .# --command nix-fast-build --skip-cached --no-download --no-nom --eval-workers 1 --eval-max-memory-size 2048 --flake .#checks.${{ matrix.system }}
+      run: nix develop .#ci --command nix-fast-build --skip-cached --no-nom --eval-workers 1 --systems ${{ matrix.system }}
