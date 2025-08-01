@@ -1,5 +1,13 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
+let
+  cfgNix = config.dotfiles.nix;
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -119,20 +127,21 @@
     package = pkgs.pulseaudioFull; # For bluetooth support
   };
 
-  environment.systemPackages = with pkgs; [
-    attic-client
-    bash
-    dnsutils
-    element-desktop
-    fish
-    git
-    #handbrake
-    htop
-    lsof
-    pavucontrol
-    vim
-    vlc
-  ];
+  environment.systemPackages = [
+    pkgs.attic-client
+    pkgs.bash
+    pkgs.dnsutils
+    pkgs.element-desktop
+    pkgs.fish
+    pkgs.git
+    #pkgs.handbrake
+    pkgs.htop
+    pkgs.lsof
+    pkgs.pavucontrol
+    pkgs.vim
+    pkgs.vlc
+  ]
+  ++ (if cfgNix.useLix then [ cfgNix.lixPackageSet.nix-fast-build ] else [ pkgs.nix-fast-build ]);
 
   # So smartctl can read the disks
   services.udev.extraRules = ''
