@@ -201,8 +201,14 @@
       #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,release,rollback \
       #  lethe/backups/cocytus
       service = {
-        wants = [ "network-online.target" ];
-        after = [ "network-online.target" ];
+        wants = [
+          "network-online.target"
+          "tailscaled.service"
+        ];
+        after = [
+          "network-online.target"
+          "tailscaled.service"
+        ];
         serviceConfig = {
           LoadCredential = "sshKey:/persist/syncoid-zfs-send-id_ed25519";
         };
