@@ -8,7 +8,6 @@
 let
   inherit (lib) escapeShellArg;
   cfg = config.dotfiles.zfs-send;
-  hasZfs = builtins.any (e: e == "zfs") config.boot.initrd.supportedFilesystems;
 in
 {
   options.dotfiles.zfs-send = {
@@ -62,11 +61,22 @@ in
       system.activationScripts.zfs-allow-syncoid = {
         deps = [ "users" ];
         text = ''
-          echo 'delegating zfs permissions for sending snapshots'
-          /run/booted-system/sw/bin/zfs allow \
-            -u ${escapeShellArg config.users.users.syncoid.name} \
-            bookmark,hold,send,release \
-            ${escapeShellArg cfg.rootPool}/persist
+          (
+            echo 'delegating zfs permissions for sending snapshots'
+            set -x
+
+            # Unfortunately on boot the activation script runs before we've linked
+            # the currently booted system, so we need to get a bit more clever
+            # and refer to the zfs from the activation we're starting up
+            myzfs=/run/booted-system/sw/bin/zfs
+            if ! [[ -x "$myzfs" ]]; then
+              myzfs="$(dirname "$0")/sw/bin/zfs"
+            fi
+            "$myzfs" allow \
+              -u ${escapeShellArg config.users.users.syncoid.name} \
+              bookmark,hold,send,release \
+              ${escapeShellArg cfg.rootPool}/persist
+          )
         '';
       };
     })
