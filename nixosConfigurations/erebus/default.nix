@@ -198,7 +198,7 @@
 
       # NB: remember to run the following on elysium:
       # zfs allow -u syncoid-erebus \
-      #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,release,rollback \
+      #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,recordsize,release,rollback \
       #  lethe/backups/cocytus
       service = {
         wants = [

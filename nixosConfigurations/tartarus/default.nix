@@ -205,7 +205,7 @@ in
 
     # NB: remember to run the following on elysium:
     # zfs allow -u syncoid-tartarus \
-    #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,release,rollback \
+    #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,recordsize,release,rollback \
     # lethe/backups/nvme-pool
 
     service = {

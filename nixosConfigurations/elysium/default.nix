@@ -85,6 +85,7 @@
         "mount"
         "mountpoint"
         "receive"
+        "recordsize"
         "release"
         "rollback"
       ];
