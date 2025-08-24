@@ -171,7 +171,7 @@
     syncoid = {
       enable = true;
 
-      interval = "*:10:00";
+      interval = "*:30:00";
       commonArgs = [
         "--sshkey"
         "%d/sshKey"
