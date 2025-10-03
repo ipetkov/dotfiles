@@ -168,6 +168,8 @@
     # Enable sound with pipewire.
     pulseaudio.enable = false;
 
+    speechd.enable = false;
+
     syncoid = {
       enable = true;
 
