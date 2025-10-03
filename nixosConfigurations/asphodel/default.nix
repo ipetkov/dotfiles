@@ -65,6 +65,8 @@
     # Broken on Linux 6.1 the sitronix driver doesn't seem to work
     #piboxFramebuffer.enable = true;
 
+    speechd.enable = false;
+
     tailscale.enable = true;
     zfs = {
       autoScrub = {
