@@ -266,15 +266,10 @@ vim.g.rustaceanvim = {
     },
 }
 
-local lspconfig = require'lspconfig'
+vim.lsp.enable('ast_grep')
+vim.lsp.enable('bashls')
 
-lspconfig.ast_grep.setup({
-})
-
-lspconfig.bashls.setup({
-})
-
-lspconfig.nil_ls.setup({
+vim.lsp.config('nil_ls', {
   settings = {
     ["nil"] = {
       formatting = {
@@ -283,9 +278,9 @@ lspconfig.nil_ls.setup({
     },
   },
 })
+vim.lsp.enable('nil_ls')
 
-lspconfig.ts_ls.setup({
-})
+vim.lsp.enable('ts_ls')
 
 -- Setup Completion
 -- See https://github.com/hrsh7th/nvim-cmp#basic-configuration
