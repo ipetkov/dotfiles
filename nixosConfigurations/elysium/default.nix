@@ -41,6 +41,7 @@
 
   services = {
     openssh.enable = true;
+    speechd.enable = false;
 
     syncoid = {
       enable = true;
