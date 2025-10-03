@@ -126,6 +126,7 @@ in
     enable = true;
     package = pkgs.pulseaudioFull; # For bluetooth support
   };
+  services.speechd.enable = false;
 
   environment.systemPackages = [
     pkgs.attic-client
