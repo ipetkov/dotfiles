@@ -151,6 +151,7 @@
   services = {
     logrotate.enable = false; # trim fat
     openssh.enable = true;
+    speechd.enable = false;
     tailscale.enable = true;
     udisks2.enable = false; # Unused, trim some fat
 
