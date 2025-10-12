@@ -34,7 +34,7 @@ in
 
     difftastic = {
       enable = true;
-      display = "side-by-side";
+      options.display = "side-by-side";
     };
   };
 }
