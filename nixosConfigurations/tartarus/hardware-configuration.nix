@@ -32,19 +32,19 @@
   # whatever you name them, come after cryptkey.
   boot.initrd.luks.devices = {
     cryptkey = {
-      device = "/dev/disk/by-uuid/e264facc-7943-4fd7-8be7-9fa555664af6";
+      device = "/dev/disk/by-uuid/bfa6fdc4-aa19-4908-b4d9-10b1d8021706";
     };
 
     cryptroot = {
       allowDiscards = true;
-      device = "/dev/disk/by-uuid/50650a6a-003c-4928-82ae-eeeffc3a3fe1";
+      device = "/dev/disk/by-uuid/497d160d-cd6d-4355-96bb-47eaf8ef7ff8";
       keyFile = "/dev/mapper/cryptkey";
       keyFileSize = 8192;
     };
 
     cryptswap = {
       allowDiscards = true;
-      device = "/dev/disk/by-uuid/db266c85-9dce-484a-8b32-00c410b33234";
+      device = "/dev/disk/by-uuid/89d44679-7e68-4b6e-8f02-32c51ec48e07";
       keyFile = "/dev/mapper/cryptkey";
       keyFileSize = 8192;
     };
@@ -56,11 +56,11 @@
 
   fileSystems = {
     "/" = {
-      device = "nvme-pool/local/root";
+      device = "styx/local/root";
       fsType = "zfs";
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/2100-01FF";
+      device = "/dev/disk/by-uuid/FB5A-020D";
       fsType = "vfat";
       options = [
         "noatime"
@@ -68,36 +68,36 @@
       ];
     };
     "/empty/user" = {
-      device = "nvme-pool/persist/user";
+      device = "styx/persist/user";
       fsType = "zfs";
     };
     "/home/ivan" = {
-      device = "nvme-pool/persist/user/ivan";
+      device = "styx/persist/user/ivan";
       fsType = "zfs";
     };
     "/home/ivan/books" = {
-      device = "nvme-pool/persist/user/ivan/books";
+      device = "styx/persist/user/ivan/books";
       fsType = "zfs";
     };
     "/home/ivan/vm" = {
-      device = "nvme-pool/persist/user/ivan/vm";
+      device = "styx/persist/user/ivan/vm";
       fsType = "zfs";
     };
     "/nix" = {
-      device = "nvme-pool/local/nix";
+      device = "styx/local/nix";
       fsType = "zfs";
     };
     "/persist" = {
-      device = "nvme-pool/persist/system";
+      device = "styx/persist/system";
       fsType = "zfs";
       neededForBoot = true;
     };
     "/scratch" = {
-      device = "nvme-pool/local/scratch";
+      device = "styx/local/scratch";
       fsType = "zfs";
     };
     "/var" = {
-      device = "nvme-pool/persist/var";
+      device = "styx/persist/var";
       fsType = "zfs";
     };
   };

@@ -191,9 +191,9 @@ in
     ];
 
     commands = {
-      "nvme-pool/persist" = {
+      "styx/persist" = {
         recursive = true;
-        target = "syncoid-tartarus@elysium:lethe/backups/nvme-pool";
+        target = "syncoid-tartarus@elysium:lethe/backups/styx";
       };
     };
 
@@ -207,7 +207,7 @@ in
     # NB: remember to run the following on elysium:
     # zfs allow -u syncoid-tartarus \
     #  bookmark,compression,create,destroy,hold,mount,mountpoint,receive,recordsize,release,rollback \
-    # lethe/backups/nvme-pool
+    #  lethe/backups/styx
 
     service = {
       wants = [
@@ -223,7 +223,7 @@ in
       };
     };
   };
-  systemd.timers."syncoid-nvme-pool-persist".timerConfig.Persistent = true;
+  systemd.timers."syncoid-styx-persist".timerConfig.Persistent = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
