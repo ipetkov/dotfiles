@@ -4,6 +4,11 @@ let
   inherit (stdenv) isDarwin;
 in
 {
+  programs.difftastic = {
+    enable = true;
+    options.display = "side-by-side";
+  };
+
   programs.git = {
     enable = true;
     package = if isDarwin then git else gitFull;
@@ -15,11 +20,10 @@ in
       "Session.vim"
     ];
 
-    aliases = {
-      lg = "log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
-    };
-
-    extraConfig = {
+    settings = {
+      alias = {
+        lg = "log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
+      };
       core.autoctrlf = "input";
       fetch.fsckobjects = "true";
       init.defaultBranch = "main";
@@ -30,11 +34,6 @@ in
       receive.fsckObjects = "true";
       rerere.enabled = "true";
       transfer.fsckobjects = "true";
-    };
-
-    difftastic = {
-      enable = true;
-      options.display = "side-by-side";
     };
   };
 }

@@ -1,17 +1,15 @@
 { config, pkgs, ... }:
 
 let
-  gitExtraConfig = config.programs.git.extraConfig;
+  gitSettings = config.programs.git.settings;
 in
 {
   dotfiles.fonts.enable = true;
 
   programs.git = {
-    userName = "Ivan Petkov";
-    userEmail = "ivanppetkov@gmail.com";
-    extraConfig = {
-      github.user = "ipetkov";
+    settings = {
       commit.gpgsign = true;
+      github.user = "ipetkov";
       gpg = {
         format = "ssh";
         ssh = {
@@ -23,17 +21,21 @@ in
           );
         };
       };
-      user.signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX";
+      user = {
+        name = "Ivan Petkov";
+        email = "ivanppetkov@gmail.com";
+        signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKFl+lzHHWKk9dgl6XkfSbKCFAkAZEEC3t+WXszgJuXX";
+      };
     };
   };
 
   programs.jujutsu.settings.signing = {
-    key = config.programs.git.extraConfig.user.signingKey;
+    key = gitSettings.user.signingKey;
     behavior = "own";
     backend = "ssh";
     backends.ssh = {
-      inherit (gitExtraConfig.gpg.ssh) program;
-      allowed-signers = gitExtraConfig.gpg.ssh.allowedSignersFile;
+      inherit (gitSettings.gpg.ssh) program;
+      allowed-signers = gitSettings.gpg.ssh.allowedSignersFile;
     };
   };
 }

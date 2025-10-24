@@ -40,8 +40,8 @@ in
           };
 
           user = {
-            name = cfgGit.userName;
-            email = cfgGit.userEmail;
+            name = cfgGit.settings.user.name;
+            email = cfgGit.settings.user.email;
           };
         };
       };
