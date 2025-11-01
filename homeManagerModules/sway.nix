@@ -33,7 +33,7 @@ in
     home.packages = [
       pkgs.blueberry # bluetooth configuration
       pkgs.discord
-      pkgs.firefox-wayland
+      pkgs.firefox
       pkgs.mako # notification daemon
       (pkgs.callPackage ../pkgs/swaynagmode.nix { })
       pkgs.waybar # status bar

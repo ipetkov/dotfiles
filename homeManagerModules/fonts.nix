@@ -18,7 +18,7 @@ in
     home.packages = [
       pkgs.font-awesome
       pkgs.hack-font
-      pkgs.noto-fonts-emoji
+      pkgs.noto-fonts-color-emoji
     ];
   };
 }
