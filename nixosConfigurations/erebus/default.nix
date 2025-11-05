@@ -50,6 +50,7 @@
       pkgs.gnomeExtensions.tray-icons-reloaded
       pkgs.gnucash
       pkgs.htop
+      pkgs.libreoffice
       pkgs.rsync
       pkgs.vim
     ];
