@@ -117,7 +117,7 @@ in
             inherit (cfg.distributedBuilds) sshKey;
 
             hostName = "elysium";
-            maxJobs = 4;
+            maxJobs = 12;
             protocol = "ssh-ng";
             publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9XZDhYenkxSDFQd3dDWXpBeXBUc25BbnliaEVYd1gwUnRXV0k4THFjeEwgcm9vdEBlbHlzaXVtCg==";
             speedFactor = 1;
