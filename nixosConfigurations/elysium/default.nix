@@ -27,7 +27,7 @@
     bash
     dnsutils
     fish
-    git
+    gitMinimal
     htop
     rsync
     vim
