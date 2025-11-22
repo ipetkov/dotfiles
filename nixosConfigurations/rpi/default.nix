@@ -96,7 +96,7 @@
   environment.stub-ld.enable = lib.mkForce false; # trim fat
   environment.systemPackages = with pkgs; [
     dnsutils
-    git
+    gitMinimal
     htop
     vim
   ];
