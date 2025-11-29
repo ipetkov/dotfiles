@@ -22,7 +22,7 @@ jobs:
       run: cachix use nix-community
     - name: Update flake.lock
       id: flakeupdate
-      uses: DeterminateSystems/update-flake-lock@v27
+      uses: DeterminateSystems/update-flake-lock@v28
       with:
         token: ${{ secrets.PAT_FLAKE_UPDATE }}
         branch: "automation/flake-update"
