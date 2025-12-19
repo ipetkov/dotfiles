@@ -19,7 +19,7 @@ in
     home.packages =
       [
         pkgs.cargo-outdated
-        pkgs.rustup
+        #pkgs.rustup
       ]
       ++ lib.lists.optionals pkgs.stdenv.isLinux [
         # binutils now conflicts with clang as well, turning this off for now...
