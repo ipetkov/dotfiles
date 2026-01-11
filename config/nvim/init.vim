@@ -187,7 +187,7 @@ vim.api.nvim_create_autocmd('FileType', {
     "toml",
     "vim",
     "yaml",
-  }
+  },
   callback = function() vim.treesitter.start() end,
 })
 
