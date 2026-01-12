@@ -184,6 +184,7 @@ vim.api.nvim_create_autocmd('FileType', {
     "mermaid",
     "nix",
     "rust",
+    "sshconfig",
     "toml",
     "vim",
     "yaml",
