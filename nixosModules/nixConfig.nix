@@ -89,6 +89,10 @@ in
           dates = [ "*-21" ];
         };
       };
+      nixpkgs.flake = {
+        setFlakeRegistry = cfg.enableSetNixPathAndFlakeRegistry;
+        setNixPath = cfg.enableSetNixPathAndFlakeRegistry;
+      };
     })
 
     (lib.mkIf cfg.useLix {
