@@ -129,6 +129,6 @@
 
   # Bring back previous font look: https://github.com/NixOS/nixpkgs/issues/222805
   fonts.packages = [
-    pkgs.xorg.fontmiscmisc
+    pkgs.font-misc-misc
   ];
 }
