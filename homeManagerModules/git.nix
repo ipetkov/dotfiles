@@ -36,4 +36,9 @@ in
       transfer.fsckobjects = "true";
     };
   };
+
+  programs.mergiraf = {
+    enable = true;
+    enableGitIntegration = true;
+  };
 }

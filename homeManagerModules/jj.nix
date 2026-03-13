@@ -46,7 +46,10 @@ in
         };
       };
 
-      programs.mergiraf.enable = true;
+      programs.mergiraf = {
+        enable = true;
+        enableJujutsuIntegration = true;
+      };
     })
     (lib.mkIf (cfgJJ.enable && cfgJJ.settings.ui.show-cryptographic-signatures) {
       home.packages = [
