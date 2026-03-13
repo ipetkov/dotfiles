@@ -31,7 +31,7 @@ in
       ];
 
     home.packages = [
-      pkgs.blueberry # bluetooth configuration
+      pkgs.blueman # bluetooth configuration
       pkgs.discord
       pkgs.firefox
       pkgs.mako # notification daemon
