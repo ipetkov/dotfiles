@@ -35,6 +35,7 @@ in
       rerere.enabled = "true";
       transfer.fsckobjects = "true";
     };
+    signing.format = "ssh";
   };
 
   programs.mergiraf = {
