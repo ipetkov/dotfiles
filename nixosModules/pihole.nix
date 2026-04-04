@@ -79,6 +79,7 @@ in
       extraOptions =
         [
           "--cap-add=${networkCapability}"
+          "--cap-add=SYS_NICE"
           "--dns=${cfg.containerBackupDns}"
         ]
         # Allocate a port in the host's network space so ports opened in the firewall work
