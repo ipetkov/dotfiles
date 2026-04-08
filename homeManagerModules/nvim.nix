@@ -37,7 +37,7 @@ in
           pkgs.shellcheck
           pkgs.shfmt
           pkgs.tree-sitter
-        ] ++ lib.optional cfgTypescript.enable pkgs.nodePackages.typescript-language-server;
+        ] ++ lib.optional cfgTypescript.enable pkgs.typescript-language-server;
 
         plugins =
           with vimPlugins;
