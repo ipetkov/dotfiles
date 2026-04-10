@@ -156,6 +156,7 @@ in
       port = 9100;
       enabledCollectors = [ "systemd" ];
       disabledCollectors = [
+        "bcachefs"
         "bonding"
         "fibrechannel"
         "infiniband"
