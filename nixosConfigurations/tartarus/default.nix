@@ -138,6 +138,7 @@ in
     #pkgs.handbrake
     pkgs.htop
     pkgs.lsof
+    pkgs.nh
     pkgs.pavucontrol
     pkgs.vim
     pkgs.vlc
