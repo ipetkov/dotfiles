@@ -12,5 +12,12 @@ in
       trustedInterfaces = [ cfg.interfaceName ];
       checkReversePath = "loose";
     };
+
+    # For some reason tailscale started failing at startup and this wires things up to force the tun
+    # module to be enabled
+    systemd.services.tailscaled = {
+      after = [ "modprobe@tun.service" ];
+      wants = [ "modprobe@tun.service" ];
+    };
   };
 }
