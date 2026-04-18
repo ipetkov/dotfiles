@@ -2,7 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  lib,
   pkgs,
   modulesPath,
   ...
@@ -49,10 +48,6 @@
       keyFileSize = 8192;
     };
   };
-
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    cryptsetup close cryptkey
-  '';
 
   fileSystems = {
     "/" = {

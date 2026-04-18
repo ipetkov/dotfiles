@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   modulesPath,
   ...
@@ -49,10 +48,6 @@
           keyFileSize = 8192;
         };
       };
-
-      postDeviceCommands = lib.mkAfter ''
-        cryptsetup close cryptkey
-      '';
 
       # Support remote unlock. Run `cryptsetup-askpass` to unlock
       network = {

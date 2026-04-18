@@ -4,6 +4,7 @@
   imports = [
     ./_1password.nix
     ./knownHosts.nix
+    ./luks.nix
     ./nixConfig.nix
     ./pihole.nix
     ./tailscale.nix
