@@ -24,6 +24,8 @@
     "console=ttyS1,115200n8"
   ];
 
+  boot.initrd.systemd.services.cryptkey-close.enable = false;
+
   boot.enableContainers = false;
   boot.tmp.cleanOnBoot = true;
 
