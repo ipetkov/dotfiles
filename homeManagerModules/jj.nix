@@ -14,6 +14,37 @@ in
       programs.jujutsu = {
         enable = true;
         settings = {
+          aliases = {
+            # `jj stack <revset>` to include specific revs
+            # https://web.archive.org/web/20260501225239/https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit
+            stack = [
+              "rebase"
+              "--after"
+              "trunk()"
+              "--before"
+              "closest_merge(@)"
+              "--revision"
+            ];
+
+            # `jj stage` to include the whole stack after the megamerge
+            # https://web.archive.org/web/20260501225239/https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit
+            stage = [
+              "stack"
+              "closest_merge(@)+::@- ~ empty()"
+            ];
+
+            # `jj restack` to rebase your changes onto `trunk()`
+            # https://web.archive.org/web/20260501225239/https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit
+            restack = [
+              "rebase"
+              "--onto"
+              "trunk()"
+              "--source"
+              "roots(trunk()..) & mutable()"
+              "--simplify-parents"
+            ];
+          };
+
           git.private-commits = lib.mkDefault "description(glob:'wip:*') | description(glob:'private:*')";
 
           revsets.bookmark-advance-to = "@-";
@@ -22,6 +53,9 @@ in
             # The `trunk().. &` bit is an optimization to scan for non-`mine()` commits
             # only among commits that are not in `trunk()`
             "immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())";
+
+            # https://web.archive.org/web/20260501225239/https://isaaccorbrey.com/notes/jujutsu-megamerges-for-fun-and-profit
+            "closest_merge(to)" = "heads(::to & merges())";
           };
 
           templates.draft_commit_description = lib.mkDefault ''
