@@ -5,6 +5,12 @@
   ...
 }:
 
+let
+  cross = import inputs.nixpkgs {
+    localSystem = "x86_64-linux";
+    crossSystem = "aarch64-linux";
+  };
+in
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
@@ -57,6 +63,11 @@
         };
       };
     };
+
+    # https://github.com/NixOS/nixos-hardware/blob/2096f3f411ce46e88a79ae4eafcfc9df8ed41c61/raspberry-pi/4/default.nix#L33
+    kernelPackages = cross.linuxPackagesFor (cross.callPackage "${inputs.nixos-hardware.outPath}/raspberry-pi/common/kernel.nix" {
+      rpiVersion = 4;
+    });
 
     loader = {
       efi.canTouchEfiVariables = true;
