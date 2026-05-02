@@ -83,6 +83,7 @@ in
     ];
 
     supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
   };
 
   fileSystems = {

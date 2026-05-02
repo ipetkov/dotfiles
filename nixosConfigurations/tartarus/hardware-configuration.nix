@@ -49,6 +49,8 @@
     };
   };
 
+  boot.zfs.forceImportRoot = false;
+
   fileSystems = {
     "/" = {
       device = "styx/local/root";

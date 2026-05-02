@@ -78,7 +78,10 @@
     loader.systemd-boot.enable = true;
 
     supportedFilesystems = [ "zfs" ];
-    zfs.extraPools = [ "lethe" ];
+    zfs = {
+      extraPools = [ "lethe" ];
+      forceImportRoot = false;
+    };
   };
 
   fileSystems = {

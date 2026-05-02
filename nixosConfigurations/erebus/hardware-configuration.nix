@@ -69,6 +69,7 @@
     # https://www.cve.org/CVERecord?id=CVE-2019-9502
     # https://www.cve.org/CVERecord?id=CVE-2019-9501
     # extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+    zfs.forceImportRoot = false;
   };
 
   # dotfiles.unfree.packageNames = [ "broadcom-sta" ];
