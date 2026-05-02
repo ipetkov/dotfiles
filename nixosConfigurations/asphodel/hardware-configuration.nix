@@ -64,17 +64,17 @@ in
       };
     };
 
-    # https://github.com/NixOS/nixos-hardware/blob/2096f3f411ce46e88a79ae4eafcfc9df8ed41c61/raspberry-pi/4/default.nix#L33
-    kernelPackages = cross.linuxPackagesFor (cross.callPackage "${inputs.nixos-hardware.outPath}/raspberry-pi/common/kernel.nix" {
-      rpiVersion = 4;
-    });
-
     loader = {
       efi.canTouchEfiVariables = true;
       generic-extlinux-compatible.enable = false;
       systemd-boot.enable = true;
       timeout = 3; # seconds
     };
+
+    # https://github.com/NixOS/nixos-hardware/blob/2096f3f411ce46e88a79ae4eafcfc9df8ed41c61/raspberry-pi/4/default.nix#L33
+    kernelPackages = cross.linuxPackagesFor (cross.callPackage "${inputs.nixos-hardware.outPath}/raspberry-pi/common/kernel.nix" {
+      rpiVersion = 4;
+    });
 
     kernelParams = [
       "8250.nr_uarts=1"
