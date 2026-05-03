@@ -72,6 +72,10 @@
       device = "styx/persist/user/ivan";
       fsType = "zfs";
     };
+    "/home/ivan/.cache" = {
+      device = "styx/local/user/ivan/cache";
+      fsType = "zfs";
+    };
     "/home/ivan/books" = {
       device = "styx/persist/user/ivan/books";
       fsType = "zfs";
