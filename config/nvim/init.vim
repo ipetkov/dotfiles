@@ -58,6 +58,8 @@ tnoremap <Esc> <C-\><C-n>
 
 " Ctrl-p with fzf
 nnoremap <C-p> :Files<Cr>
+" Overridden from fzf'fs default to include hidden files (but exclude .git/.jj)
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden -g!.git -g!.jj -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)
 
 " Keep accidentally hitting K (to move up) during visual selection
 " after hitting V (for visual line) without letting go of <SHIFT>

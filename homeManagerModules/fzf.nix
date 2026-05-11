@@ -17,8 +17,8 @@ in
   config = lib.mkIf cfg.enable {
     programs.fzf = {
       enable = true;
-      defaultCommand = "rg --files --hidden --glob !.git";
-      fileWidgetCommand = "rg --files --hidden --glob !.git";
+      defaultCommand = "rg --files --hidden --glob !.jj --glob !.git";
+      fileWidgetCommand = "rg --files --hidden --glob !.jj --glob !.git";
       changeDirWidgetCommand = "fd --type d";
     };
 
