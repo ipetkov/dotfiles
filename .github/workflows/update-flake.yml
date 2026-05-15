@@ -2,7 +2,7 @@ name: Update flake dependencies
 
 on:
   schedule:
-    - cron: '0 16 * * 5'
+    - cron: '0 13 * * 5'
   workflow_dispatch: # for allowing manual triggers of the workflow
 
 permissions:
