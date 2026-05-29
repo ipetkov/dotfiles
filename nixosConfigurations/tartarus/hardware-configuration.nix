@@ -22,7 +22,9 @@
     "cryptd"
     "amdgpu"
   ];
+  boot.initrd.checkJournalingFS = true;
   boot.initrd.kernelModules = [ ];
+  boot.initrd.supportedFilesystems = [ "ext4" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -37,14 +39,14 @@
     cryptroot = {
       allowDiscards = true;
       device = "/dev/disk/by-uuid/497d160d-cd6d-4355-96bb-47eaf8ef7ff8";
-      keyFile = "/dev/mapper/cryptkey";
+      keyFile = "/keyfile:/dev/mapper/cryptkey";
       keyFileSize = 8192;
     };
 
     cryptswap = {
       allowDiscards = true;
-      device = "/dev/disk/by-uuid/89d44679-7e68-4b6e-8f02-32c51ec48e07";
-      keyFile = "/dev/mapper/cryptkey";
+      device = "/dev/disk/by-uuid/d9f0ac48-2f5c-4e1d-b471-fd92c3e18a73";
+      keyFile = "/keyfile:/dev/mapper/cryptkey";
       keyFileSize = 8192;
     };
   };

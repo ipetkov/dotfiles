@@ -26,6 +26,8 @@
       ];
       kernelModules = [ ];
 
+      checkJournalingFS = true;
+
       # !!! cryptkey must be done first, and the list seems to be
       # alphabetically sorted, so take care that cryptroot / cryptswap,
       # whatever you name them, come after cryptkey.
@@ -37,14 +39,14 @@
         cryptroot = {
           allowDiscards = true;
           device = "/dev/disk/by-uuid/0f883b04-6875-4503-9974-f49ac1ed9d0c";
-          keyFile = "/dev/mapper/cryptkey";
+          keyFile = "/keyfile:/dev/mapper/cryptkey";
           keyFileSize = 8192;
         };
 
         cryptswap = {
           allowDiscards = true;
           device = "/dev/disk/by-uuid/eafc2a4d-e784-4a85-901d-c429664ad797";
-          keyFile = "/dev/mapper/cryptkey";
+          keyFile = "/keyfile:/dev/mapper/cryptkey";
           keyFileSize = 8192;
         };
       };
@@ -61,6 +63,8 @@
           ];
         };
       };
+
+      supportedFilesystems = [ "ext4" ];
     };
     kernelModules = [
       "kvm-intel"

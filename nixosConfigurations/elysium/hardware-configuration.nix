@@ -32,29 +32,31 @@
         "xhci_pci"
       ];
 
+      checkJournalingFS = true;
+
       luks.devices = {
         cryptkey = {
-          device = "/dev/disk/by-uuid/2896616e-f1d0-48ad-a980-681db105ad1c";
+          device = "/dev/disk/by-uuid/dec7a187-c801-401b-ab2f-c685f95ed3ee";
         };
 
         cryptroot = {
           allowDiscards = true;
           device = "/dev/disk/by-uuid/27cbbb09-665b-4a12-bf9e-5f43064839d5";
-          keyFile = "/dev/mapper/cryptkey";
+          keyFile = "/keyfile:/dev/mapper/cryptkey";
           keyFileSize = 8192;
         };
 
         cryptroot2 = {
           allowDiscards = true;
           device = "/dev/disk/by-uuid/e2089bea-cafe-4992-9819-773055ec9d5e";
-          keyFile = "/dev/mapper/cryptkey";
+          keyFile = "/keyfile:/dev/mapper/cryptkey";
           keyFileSize = 8192;
         };
 
         cryptswap = {
           allowDiscards = true;
           device = "/dev/disk/by-uuid/1eb719ba-5599-4a8c-bc23-c1b7bf43d46b";
-          keyFile = "/dev/mapper/cryptkey";
+          keyFile = "/keyfile:/dev/mapper/cryptkey";
           keyFileSize = 8192;
         };
       };
@@ -71,6 +73,8 @@
           ];
         };
       };
+
+      supportedFilesystems = [ "ext4" ];
     };
 
     kernelModules = [ "kvm-amd" ];
