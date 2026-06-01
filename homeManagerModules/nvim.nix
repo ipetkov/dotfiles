@@ -71,7 +71,7 @@ in
             fidget-nvim
 
             # Misc
-            neoconf-nvim
+            codesettings-nvim
             vim-easy-align
           ]
           ++ lib.optional cfgFzf.enable vimPlugins.fzf-vim;
