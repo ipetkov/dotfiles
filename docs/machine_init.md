@@ -299,6 +299,14 @@ should be run as root.
 
 ### LUKS Setup
 
+> Note: the original version of this write-up described a flawed approach at
+> initializing `cryptkey` (without creating a filesystem) which will fail to
+> boot starting with NixOS 26.05. This has since been corrected to show the
+> _proper_ steps to initialize LUKS while _avoiding_ this problem, but for
+> anyone who may have followed the earlier instructions, [see
+> here](https://www.ipetkov.dev/blog/nixos-on-the-pibox/) on how to
+> correct the issue
+
 1. Now that the disk is partitioned, it's time to turn on encryption! First
    we'll initialize our `cryptkey` partition and fill it with random data.
    This will eventually become the key to decrypt our actual drive. Note that
@@ -307,7 +315,12 @@ should be run as root.
    ```sh
    cryptsetup luksFormat --type luks1 "${DISK}p2"
    cryptsetup luksOpen "${DISK}p2" cryptkey
-   dd if=/dev/urandom of=/dev/mapper/cryptkey bs=1024 status=progress
+
+   mkfs.ext4 /dev/mapper/cryptkey
+   mkdir -p /mnt-cryptkey
+   mount /dev/mapper/cryptkey /mnt-cryptkey
+
+   dd if=/dev/urandom of=/mnt-cryptkey/keyfile bs=1024 status=progress
    ```
 1. Next, we initialize the swap partition (which will share the same key
    written to our `cryptkey` partition along with the rest of the drive). Note
@@ -316,9 +329,18 @@ should be run as root.
    `cryptkey` partition is damaged.
 
    ```sh
-   cryptsetup luksFormat --type luks1 --keyfile-size 8192 --key-file /dev/mapper/cryptkey "${DISK}p3"
+   cryptsetup luksFormat \
+     --type luks1 \
+     --keyfile-size 8192 \
+     --key-file /mnt-cryptkey/keyfile \
+     "${DISK}p3"
+
    # Mount the partition after creation
-   cryptsetup luksOpen --keyfile-size 8192 --key-file /dev/mapper/cryptkey "${DISK}p3" cryptswap
+   cryptsetup luksOpen \
+     --keyfile-size 8192 \
+     --key-file /mnt-cryptkey/keyfile \
+     "${DISK}p3" \
+     cryptswap
    ```
 1. Now it's time to encrypt the rest of the drive. Note that first we'll
    initialize the drive with a *backup passphrase*. Make this a strong
@@ -330,14 +352,27 @@ should be run as root.
    # Initialize with a passphrase
    cryptsetup luksFormat --type luks1 "${DISK}p4"
    # Add the cryptkey partition as a keyfile for unlocking during boot
-   cryptsetup luksAddKey --new-keyfile-size 8192 "${DISK}p4" /dev/mapper/cryptkey
+   cryptsetup luksAddKey \
+     --new-keyfile-size 8192 \
+     "${DISK}p4" \
+     /mnt-cryptkey/keyfile
    ```
-1. Finally, mount the root partition. **Note the use of `--allow-discards`
+1. Next, mount the root partition. **Note the use of `--allow-discards`
    which may be a security risk**. Read about the choices and assumptions
    above as to why I have chosen to use this flag, but feel free to omit it if
    desired.
    ```sh
-   cryptsetup luksOpen --keyfile-size 8192 --key-file /dev/mapper/cryptkey --allow-discards "${DISK}p4" cryptroot
+   cryptsetup luksOpen \
+     --keyfile-size 8192 \
+     --key-file /mnt-cryptkey/keyfile \
+     --allow-discards \
+     "${DISK}p4" \
+     cryptroot
+   ```
+1. Finally, unmount and close cryptkey
+   ```sh
+   umount /mnt-cryptkey
+   cryptsetup close cryptkey
    ```
 1. Note that some guides recommend filling the drive with random data before
    doing the encryption to avoid leaking information about how big the drive
@@ -366,8 +401,9 @@ should be run as root.
    time of writing, using `mountpoint=legacy` is required for correct NixOS
    interoperation.
 
-   ```
+   ```sh
    zfs create -o compression=on -o mountpoint=legacy "${POOL}/local"
+   zfs create -o compression=on -o mountpoint=legacy "${POOL}/local/nix"
    zfs create -o compression=on -o mountpoint=legacy "${POOL}/system"
    zfs create -o compression=on -o mountpoint=legacy "${POOL}/user"
    zfs create -o compression=on -o mountpoint=legacy "${POOL}/reserved"
@@ -455,9 +491,10 @@ should be run as root.
       anything is missing, or the disk uuid is incorrect, **carefully** update
       the config and double check everything
    1. Also carefully note that the `cryptkey` declaration shows up before any
-      other partions which are unlocked by it!
+      other partitions which are unlocked by it!
    1. Make sure to update the `keyFileSize` parameter to whatever was used
       during initialization
+   1. Make sure `keyFile` is set to `/keyfile:/dev/mapper/cryptkey`
    1. Also make sure to set the `allowDiscards` flag if used above
       (**noting the security caveats from before**)
    1. Make sure that all filesystems are correctly mapped to their zfs data
@@ -466,11 +503,16 @@ should be run as root.
       had to add `"amdgpu"` to fix some screen resolution issues during early
       boot.
    1. Add your default user and set their home directory
-1. Time to actually install NixOS now! After the initial install is done,
-   reboot and hope everything went well...
-
+1. Time to actually install NixOS now!
    ```sh
    nixos-install
+   ```
+1. After the initial install is done, unmount everything, (gracefully) export
+   the zfs pool, reboot, and hope everything went well...
+
+   ```sh
+   umount /mnt/boot
+   zpool export "${POOL}"
    reboot
    ```
 1. If you got this far and were able to log in, congrats, you did it! A few
