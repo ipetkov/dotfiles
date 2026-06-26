@@ -190,6 +190,8 @@ in
       "--no-sync-snap"
       "--use-hold"
       "--skip-parent"
+      # pv seems broken at 1.11.0: https://github.com/NixOS/nixpkgs/pull/531076#issuecomment-4813712927
+      "--quiet"
     ];
 
     commands = {

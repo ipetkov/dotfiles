@@ -55,6 +55,8 @@
         "--use-hold"
         "--skip-parent"
         "--preserve-recordsize"
+        # pv seems broken at 1.11.0: https://github.com/NixOS/nixpkgs/pull/531076#issuecomment-4813712927
+        "--quiet"
       ];
       commands = {
         # Local
