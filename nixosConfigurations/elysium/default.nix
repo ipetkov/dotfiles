@@ -31,12 +31,6 @@
     htop
     rsync
     vim
-
-    # For syncoid
-    procps
-    pv
-    mbuffer
-    lzop
   ];
 
   services = {
