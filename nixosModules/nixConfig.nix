@@ -52,7 +52,7 @@ in
       nix = {
         extraOptions = ''
           experimental-features = nix-command flakes
-          keep-outputs = true
+          keep-outputs = false
           keep-derivations = true
         '';
 
