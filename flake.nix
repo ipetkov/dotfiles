@@ -122,11 +122,17 @@
           default = pkgs.mkShell {
             packages = [
               formatter
+              pkgs.zizmor
             ];
           };
           ci = pkgs.mkShell {
             packages = [
               pkgs.nix-fast-build
+            ];
+          };
+          zizmor = pkgs.mkShell {
+            packages = [
+              pkgs.zizmor
             ];
           };
         };
