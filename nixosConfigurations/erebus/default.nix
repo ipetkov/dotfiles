@@ -184,8 +184,6 @@
         "--no-sync-snap"
         "--use-hold"
         "--skip-parent"
-        # pv seems broken at 1.11.0: https://nixpk.gs/pr-tracker.html?pr=536167
-        "--quiet"
       ];
 
       commands = {
