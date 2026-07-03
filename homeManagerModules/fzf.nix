@@ -18,8 +18,8 @@ in
     programs.fzf = {
       enable = true;
       defaultCommand = "rg --files --hidden --glob !.jj --glob !.git";
-      fileWidgetCommand = "rg --files --hidden --glob !.jj --glob !.git";
-      changeDirWidgetCommand = "fd --type d";
+      fileWidget.command = "rg --files --hidden --glob !.jj --glob !.git";
+      changeDirWidget.command = "fd --type d";
     };
 
     home.packages = [
