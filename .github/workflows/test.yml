@@ -40,6 +40,7 @@ jobs:
             system: "aarch64-linux"
             extraPlatforms: "aarch64-linux"
     runs-on: ${{ matrix.os }}
+    environment: flake-update
     env:
       SYSTEMS: ${{ matrix.system }}
     steps:
@@ -77,7 +78,7 @@ jobs:
         persist-credentials: false
     - uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31.10.6
     - name: Run zizmor 🌈
-      run: nix develop .#zizmor --command zizmor --format=sarif . >results.sarif 
+      run: nix develop .#zizmor --command zizmor --persona=auditor --format=sarif . >results.sarif 
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
     - name: Upload SARIF file
