@@ -17,10 +17,6 @@
       flake = false;
     };
 
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs = {
@@ -33,7 +29,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
       };
     };
   };
@@ -57,6 +52,32 @@
 
       systemLinux = "x86_64-linux";
       systemLinuxArm = "aarch64-linux";
+
+      eachSystem =
+        systems: f:
+        let
+          # Merge together the outputs for all systems.
+          op =
+            attrs: system:
+            let
+              ret = f system;
+              op =
+                attrs: key:
+                attrs
+                // {
+                  ${key} = (attrs.${key} or { }) // {
+                    ${system} = ret.${key};
+                  };
+                };
+            in
+            builtins.foldl' op attrs (builtins.attrNames ret);
+        in
+        builtins.foldl' op { } systems;
+
+      eachDefaultSystem = eachSystem [
+        systemLinux
+        systemLinuxArm
+      ];
     in
     {
       homeManagerModules.default = import ./homeManagerModules/default.nix;
@@ -95,7 +116,7 @@
         };
       };
     }
-    // inputs.flake-utils.lib.eachDefaultSystem (
+    // eachDefaultSystem (
       system:
       let
         pkgs = legacyPackages.${system};
