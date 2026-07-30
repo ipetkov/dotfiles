@@ -61,7 +61,6 @@ in
   #   keyMap = "us";
   # };
 
-  programs.dconf.enable = true;
   # virtualisation.libvirtd = {
   # enable = true;
   # onShutdown = "shutdown";
@@ -97,26 +96,34 @@ in
   # desktop portals off and revisit it if I ever need them in the future.
   xdg.portal.enable = lib.mkForce false;
 
-  # Desktop/window management
-  programs.sway = {
-    enable = true;
+  programs = {
+    _1password.enable = true;
 
-    wrapperFeatures = {
-      base = true; # Setup dbus stuff...
-      gtk = true; # Allow GTK apps to run
+    command-not-found.enable = false;
+
+    dconf.enable = true;
+
+    # Desktop/window management
+    sway = {
+      enable = true;
+
+      wrapperFeatures = {
+        base = true; # Setup dbus stuff...
+        gtk = true; # Allow GTK apps to run
+      };
+
+      # Tweak the extra packages and make sure they're available
+      # *just* in case something goes wrong with a user sway config
+      extraPackages = with pkgs; [
+        alacritty
+        #calibre # Build seems broken atm
+        dmenu
+        swayidle
+        swaylock
+        wl-clipboard
+        xwayland
+      ];
     };
-
-    # Tweak the extra packages and make sure they're available
-    # *just* in case something goes wrong with a user sway config
-    extraPackages = with pkgs; [
-      alacritty
-      #calibre # Build seems broken atm
-      dmenu
-      swayidle
-      swaylock
-      wl-clipboard
-      xwayland
-    ];
   };
 
   # Enable sound.
@@ -248,14 +255,13 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
 
-  programs.command-not-found.enable = false;
-
   dotfiles = {
     _1password.enable = true;
     nix.distributedBuilds = {
       enable = true;
       sshKey = "/persist/elysium-nixuser-id_ed25519";
     };
+    unfree.packageNames = [ "1password-cli" ];
   };
 
   home-manager.users.ivan =
