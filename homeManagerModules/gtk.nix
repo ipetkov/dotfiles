@@ -19,7 +19,6 @@ in
 
       pkgs.hicolor-icon-theme # base icons
       pkgs.adwaita-icon-theme # standard default theme
-      pkgs.nordic # popular dark theme
     ];
   };
 }
