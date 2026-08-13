@@ -120,6 +120,7 @@
       uid = lib.mkForce 1002;
       isNormalUser = true;
       home = "/home/ivan";
+      shell = pkgs.fish;
       extraGroups = [
         "wheel" # Enable sudo
         "disk"
@@ -152,7 +153,10 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "20.09"; # Did you read the comment?
 
-  programs.command-not-found.enable = false;
+  programs = {
+    command-not-found.enable = false;
+    fish.enable = true;
+  };
 
   security.sudo.execWheelOnly = true;
   security.sudo.wheelNeedsPassword = false;
