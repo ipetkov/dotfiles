@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -47,6 +48,16 @@ in
     })
 
     (lib.mkIf cfg.enable {
+      environment.systemPackages = [
+        # syncoid deps
+        pkgs.gzip
+        pkgs.lzop
+        pkgs.mbuffer
+        pkgs.pigz
+        pkgs.procps
+        pkgs.pv
+      ];
+
       users.users.syncoid.useDefaultShell = true; # Do permit login
 
       system.activationScripts.zfs-allow-syncoid = {
