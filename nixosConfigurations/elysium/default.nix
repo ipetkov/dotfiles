@@ -23,14 +23,22 @@
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  environment.systemPackages = with pkgs; [
-    bash
-    dnsutils
-    fish
-    gitMinimal
-    htop
-    rsync
-    vim
+  environment.systemPackages = [
+    pkgs.bash
+    pkgs.dnsutils
+    pkgs.fish
+    pkgs.gitMinimal
+    pkgs.htop
+    pkgs.rsync
+    pkgs.vim
+
+    # syncoid deps
+    pkgs.gzip
+    pkgs.lzop
+    pkgs.mbuffer
+    pkgs.pigz
+    pkgs.procps
+    pkgs.pv
   ];
 
   services = {
