@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   inherit (pkgs) git gitFull stdenv;
-  inherit (stdenv) isDarwin;
+  inherit (stdenv.hostPlatform) isDarwin;
 in
 {
   programs.difftastic = {

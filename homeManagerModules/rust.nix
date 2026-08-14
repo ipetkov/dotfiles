@@ -21,7 +21,7 @@ in
         pkgs.cargo-outdated
         pkgs.rustup
       ]
-      ++ lib.lists.optionals pkgs.stdenv.isLinux [
+      ++ lib.lists.optionals pkgs.stdenv.hostPlatform.isLinux [
         # binutils now conflicts with clang as well, turning this off for now...
         # binutils # For some reason conflicts on darwin
         pkgs.clang # Provides `cc` for any *-sys crates
