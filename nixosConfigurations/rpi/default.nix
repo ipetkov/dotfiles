@@ -158,10 +158,10 @@
     udisks2.enable = false; # Unused, trim some fat
 
     # Limit the journal size to X MB or last Y days of logs
-    journald.extraConfig = ''
-      SystemMaxUse=1536M
-      MaxFileSec=60day
-    '';
+    journald.settings.Journal = {
+      SystemMaxUse = "1536M";
+      MaxFileSec = "60day";
+    };
   };
 
   # Trim more fat
