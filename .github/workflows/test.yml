@@ -65,7 +65,7 @@ jobs:
         platforms: ${{ matrix.qemuPlatforms }}
 
     - name: build all definitions
-      run: nix develop .#ci --command nix-fast-build --skip-cached --no-nom --eval-workers 1 --systems "${SYSTEMS}"
+      run: nix develop .#ci --command nix-fast-build --skip-cached --no-nom --eval-workers 1 --eval-max-memory-size 5120 --systems "${SYSTEMS}"
 
   zizmor:
     name: run zizmor
