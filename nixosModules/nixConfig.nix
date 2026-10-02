@@ -18,7 +18,7 @@ in
       type = lib.types.bool;
       default = true;
       example = true;
-      description = "Whether to add nixpkgs to nixPath and flake registry";
+      description = "Whether to add nixpkgs to nix-path and flake registry";
     };
 
     distributedBuilds = mkOption {
@@ -105,7 +105,7 @@ in
       # Use our inputs as defaults for nixpkgs/nixos so everything (like nix-env)
       # moves in lockstep. (Note adding a channel will take precedence over this).
       nix = {
-        nixPath = [
+        settings.nix-path = [
           "nixpkgs=${chosenNixpkgs}"
         ];
         registry = {
