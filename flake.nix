@@ -76,6 +76,7 @@
 
       nixosConfigurations = {
         tartarus = mkHost {
+          inherit (inputs) nixpkgs;
           system = "x86_64-linux";
           rootConfig = ./nixosConfigurations/tartarus;
           includeHomeManager = true;
