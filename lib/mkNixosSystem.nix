@@ -14,6 +14,8 @@ let
   # Allows our flake inputs to appear as an argument in all of our modules.
   specialArgs = {
     inherit inputs;
+    # Allows for re-importing the chosen nixpkgs, useful for potential cross-compilation
+    chosenNixpkgs = nixpkgs;
     myPkgs = myPkgs."${system}";
   };
 
