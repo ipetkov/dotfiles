@@ -36,51 +36,6 @@
         "type": "github"
       }
     },
-    "nixos-hardware": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1793355509,
-        "narHash": "sha256-/Zs18x+IW4LuVH0rKxra0WPRgsk0DQsi0Bwkf8sOC5c=",
-        "owner": "NixOS",
-        "repo": "nixos-hardware",
-        "rev": "04c6b94fa104bc23650983a4513aea196794d321",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixos-hardware",
-        "type": "github"
-      }
-    },
-    "nixos-pibox": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pibox-framebuffer": "pibox-framebuffer",
-        "pibox-os": "pibox-os"
-      },
-      "locked": {
-        "lastModified": 1791055795,
-        "narHash": "sha256-Mh9AIRccP9jqQBknww1a5PFezLi7AtBdrCiIQWmxfcM=",
-        "owner": "ipetkov",
-        "repo": "nixos-pibox",
-        "rev": "230477c8361fe7f809b68f435836d4dcfed3041d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "nixos-pibox",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1793110635,
@@ -97,62 +52,11 @@
         "type": "github"
       }
     },
-    "nixpkgs-for-rpi": {
-      "locked": {
-        "lastModified": 1793110635,
-        "narHash": "sha256-dhoW6VgFWlaodSY5jrBn+CF2FLmaUvDVgM7+C7T2+NM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-        "type": "github"
-      }
-    },
-    "pibox-framebuffer": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707191842,
-        "narHash": "sha256-xxHs2lseT1111EF34ABluOH/GUTXCMdcDeoo5k13geU=",
-        "owner": "kubesail",
-        "repo": "pibox-framebuffer",
-        "rev": "4295efeffa22369f3843bedc989d881dcec26bfa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kubesail",
-        "repo": "pibox-framebuffer",
-        "type": "github"
-      }
-    },
-    "pibox-os": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1714956345,
-        "narHash": "sha256-YuHCnBgqpgifWfybXDe6lTELtaKKznhCLS40hH/cLlA=",
-        "owner": "kubesail",
-        "repo": "pibox-os",
-        "rev": "14a6e60814514e85876bf9125b80b39100ffadd0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kubesail",
-        "repo": "pibox-os",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
         "home-manager": "home-manager",
-        "nixos-hardware": "nixos-hardware",
-        "nixos-pibox": "nixos-pibox",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-for-rpi": "nixpkgs-for-rpi"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

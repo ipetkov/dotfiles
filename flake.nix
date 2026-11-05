@@ -8,13 +8,6 @@
     # nice having the exact same application versions across all machines rather than
     # mixing and matching branches.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # Pinned because deploying to rpi is slow as molasses due to SD card I/O being crap
-    nixpkgs-for-rpi.url = "github:NixOS/nixpkgs/31ecbaca1bdefa45dffc409f0250bd8039ea0010";
-
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
@@ -25,14 +18,6 @@
       url = "github:nix-community/home-manager";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    nixos-pibox = {
-      url = "github:ipetkov/nixos-pibox";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
       };
     };
   };
@@ -53,9 +38,6 @@
       };
 
       inherit (myLib) mkHost;
-
-      systemLinux = "x86_64-linux";
-      systemLinuxArm = "aarch64-linux";
 
       eachSystem =
         systems: f:
@@ -79,8 +61,8 @@
         builtins.foldl' op { } systems;
 
       eachDefaultSystem = eachSystem [
-        systemLinux
-        systemLinuxArm
+        "x86_64-linux"
+        "aarch64-linux"
       ];
     in
     {
@@ -93,30 +75,8 @@
       nixosModules.default = import ./nixosModules/default.nix;
 
       nixosConfigurations = {
-        asphodel = mkHost {
-          system = systemLinuxArm;
-          rootConfig = ./nixosConfigurations/asphodel;
-        };
-
-        elysium = mkHost {
-          system = systemLinux;
-          rootConfig = ./nixosConfigurations/elysium;
-        };
-
-        erebus = mkHost {
-          system = systemLinux;
-          rootConfig = ./nixosConfigurations/erebus;
-          includeHomeManager = true;
-        };
-
-        rpi = mkHost {
-          system = systemLinuxArm;
-          rootConfig = ./nixosConfigurations/rpi;
-          nixpkgs = inputs.nixpkgs-for-rpi;
-        };
-
         tartarus = mkHost {
-          system = systemLinux;
+          system = "x86_64-linux";
           rootConfig = ./nixosConfigurations/tartarus;
           includeHomeManager = true;
         };
