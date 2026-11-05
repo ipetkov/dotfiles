@@ -84,6 +84,8 @@
       ];
     in
     {
+      inherit myLib;
+
       homeManagerModules.default = import ./homeManagerModules/default.nix;
 
       homeConfigurations = { };
