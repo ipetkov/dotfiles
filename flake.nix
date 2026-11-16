@@ -7,7 +7,7 @@
     # nixos-unstable, so trying this out to see if things are a bit smoother. Also, it is
     # nice having the exact same application versions across all machines rather than
     # mixing and matching branches.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
 
     flake-compat = {
       url = "github:edolstra/flake-compat";
