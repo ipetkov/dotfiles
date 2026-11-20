@@ -152,6 +152,10 @@ in
   ]
   ++ (if cfgNix.useLix then [ cfgNix.lixPackageSet.nix-fast-build ] else [ pkgs.nix-fast-build ]);
 
+  fonts.packages = [
+    pkgs.nerd-fonts.hack
+  ];
+
   # So smartctl can read the disks
   services.udev.extraRules = ''
     SUBSYSTEM=="nvme", KERNEL=="nvme[0-9]*", GROUP="disk"
