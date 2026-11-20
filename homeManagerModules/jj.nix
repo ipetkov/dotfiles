@@ -86,6 +86,17 @@ in
         enable = true;
         enableJujutsuIntegration = true;
       };
+
+      programs.oyui = {
+        enable = true;
+        enableJujutsuIntegration = true;
+        # Technically this is rune but there's no treesitter grammar for it
+        config = /* rust */ ''
+          pub fn config() {
+            theme::set("kanagawa-dark");
+          }
+        '';
+      };
     })
     (lib.mkIf (cfgJJ.enable && cfgJJ.settings.ui.show-cryptographic-signatures) {
       home.packages = [
